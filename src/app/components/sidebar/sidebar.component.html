@@ -1,0 +1,217 @@
+<nav
+  [ngClass]="{ 'sidebar-retracted': false, 'sidebar-retracted': forRetractedSideBar === false, 'sidebar-expanded': forRetractedSideBar === true }"
+  class="navbar navbar-vertical navbar-expand-md navbar-light bg-white disable-overflow"
+  id="sidenav-main"
+>
+  <div class="container-fluid">
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" aria-controls="sidenav-collapse-main">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Ribbon -->
+    <ng-container *ngIf="forRetractedSideBar; else forExpanded">
+      <div class="ribbon-target" (click)="onToggleSideBar()">
+        <span class="ribbon-inner"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <polygon points="0 0 24 0 24 24 0 24" />
+            <rect
+              fill="white"
+              opacity="0.3"
+              transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) "
+              x="14"
+              y="7"
+              width="2"
+              height="10"
+              rx="1"
+            />
+            <path
+              d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z"
+              fill="white"
+              fill-rule="nonzero"
+              transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "
+            />
+          </g>
+        </svg>
+      </div>
+    </ng-container>
+    <ng-template #forExpanded>
+      <div class="ribbon-target" (click)="onToggleSideBar()">
+        <span class="ribbon-inner"></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <polygon points="0 0 24 0 24 24 0 24" />
+            <rect
+              fill="white"
+              opacity="0.3"
+              transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) "
+              x="11"
+              y="5"
+              width="2"
+              height="14"
+              rx="1"
+            />
+            <path
+              d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z"
+              fill="white"
+              fill-rule="nonzero"
+              transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) "
+            />
+          </g>
+        </svg>
+      </div>
+    </ng-template>
+    <!-- /Ribbon -->
+
+    <!-- Brand -->
+    <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/']">
+      <img src="./assets/img/brand/red.png" class="navbar-brand-img" alt="logo" />
+    </a>
+    <!-- User -->
+    <ul class="nav align-items-center d-md-none">
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link nav-link-icon" role="button" ngbDropdownToggle>
+          <i class="ni ni-bell-55"></i>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <a class="dropdown-item" href="javascript:void(0)">Action</a>
+          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item" ngbDropdown placement="bottom-right">
+        <a class="nav-link" role="button" ngbDropdownToggle>
+          <div class="media align-items-center">
+            <span class="avatar avatar-sm rounded-circle">
+              <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg" />
+            </span>
+          </div>
+        </a>
+        <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
+          <div class=" dropdown-header noti-title">
+            <h6 class="text-overflow m-0">Welcome!</h6>
+          </div>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
+            <i class="ni ni-single-02"></i>
+            <span>My profile</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
+            <i class="ni ni-settings-gear-65"></i>
+            <span>Settings</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
+            <i class="ni ni-calendar-grid-58"></i>
+            <span>Activity</span>
+          </a>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
+            <i class="ni ni-support-16"></i>
+            <span>Support</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#!" class="dropdown-item">
+            <i class="ni ni-user-run"></i>
+            <span>Logout</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+      <!-- Collapse header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a routerLinkActive="active" [routerLink]="['/dashboard']">
+              <img src="./assets/img/brand/blue.png" />
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /Collapse header -->
+      <!-- Form -->
+      <form class="mt-4 mb-3 d-md-none">
+        <div class="input-group input-group-rounded input-group-merge">
+          <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search" />
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <span class="fa fa-search"></span>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- /Form -->
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngxPermissionsOnly="menuItem.permissionOnly">
+            <i
+              [ngClass]="{
+                'inscrease-icon-size': false,
+                'inscrease-icon-size': forRetractedSideBar === false,
+                'decrease-icon-size': forRetractedSideBar === true
+              }"
+              class="ni {{ menuItem.icon }}"
+            ></i>
+            <span *ngIf="forRetractedSideBar">{{ menuItem.title }}</span>
+          </a>
+        </li>
+      </ul>
+      <!-- /Navigation -->
+
+      <!-- Divider -->
+      <hr class="my-3" />
+      <!-- Heading -->
+      <h6 class="navbar-heading text-muted" *ngIf="forRetractedSideBar">Documentation</h6>
+      <!-- Navigation -->
+      <ul class="navbar-nav mb-md-3">
+        <li class="nav-item">
+          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial">
+            <i
+              [ngClass]="{
+                'inscrease-icon-size': false,
+                'inscrease-icon-size': forRetractedSideBar === false,
+                'decrease-icon-size': forRetractedSideBar === true
+              }"
+              class="ni ni-spaceship"
+            ></i>
+            <span *ngIf="forRetractedSideBar">Getting started</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
+            <i
+              [ngClass]="{
+                'inscrease-icon-size': false,
+                'inscrease-icon-size': forRetractedSideBar === false,
+                'decrease-icon-size': forRetractedSideBar === true
+              }"
+              class="ni ni-palette"
+            ></i>
+            <span *ngIf="forRetractedSideBar">Foundation</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
+            <i
+              [ngClass]="{
+                'inscrease-icon-size': false,
+                'inscrease-icon-size': forRetractedSideBar === false,
+                'decrease-icon-size': forRetractedSideBar === true
+              }"
+              class="ni ni-ui-04"
+            ></i>
+            <span *ngIf="forRetractedSideBar">Components</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- /Collapse -->
+  </div>
+</nav>

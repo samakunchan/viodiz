@@ -1,0 +1,17 @@
+<li ngbDropdown [placement]="'bottom-right'" class="nav-item">
+  <a class="nav-link pr-0" role="button" ngbDropdownToggle>
+    <div class="media align-items-center">
+      <span class="avatar avatar-sm rounded">
+        <img class="" src="{{ language?.flag }}" alt="{{ language.alt }}" />
+      </span>
+    </div>
+  </a>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu-arrow dropdown-menu-right" [ngStyle]="{minWidth: '8rem'}">
+    <ng-container *ngFor="let language of languages">
+      <a href="javascript:;" (click)="setLanguage(language.lang)" class="dropdown-item">
+        <img class="flag" src="{{ language.flag }}" alt="{{ language.alt }}" />
+        <span class="kt-nav__link-text">{{ language.name }}</span>
+      </a>
+    </ng-container>
+  </div>
+</li>

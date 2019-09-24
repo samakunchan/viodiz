@@ -1,0 +1,88 @@
+/*!
+
+=========================================================
+* Argon Dashboard Angular - v1.0.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-angular
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-angular/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+// Core
+
+@import 'custom/functions';
+@import 'custom/variables';
+@import 'custom/mixins';
+@import 'custom/sectionFront';
+@import 'custom/navbarFront';
+@import 'custom/modal.scss';
+@import 'custom/pagination.scss';
+@import 'custom/popover.scss';
+@import 'custom/progress.scss';
+@import 'custom/section.scss';
+@import 'custom/separator.scss';
+
+@import 'core/vendors/headroom';
+
+// Bootstrap (4.3.0) components
+
+// @import "bootstrap/bootstrap";
+@import 'bootstrap/root';
+@import 'bootstrap/reboot';
+@import 'bootstrap/type';
+@import 'bootstrap/images';
+@import 'bootstrap/code';
+@import 'bootstrap/grid';
+@import 'bootstrap/tables';
+@import 'bootstrap/forms';
+@import 'bootstrap/buttons';
+@import 'bootstrap/transitions';
+@import 'bootstrap/dropdown';
+@import 'bootstrap/button-group';
+@import 'bootstrap/input-group';
+@import 'bootstrap/custom-forms';
+@import 'bootstrap/nav';
+@import 'bootstrap/navbar';
+@import 'bootstrap/card';
+@import 'bootstrap/breadcrumb';
+@import 'bootstrap/pagination';
+@import 'bootstrap/badge';
+@import 'bootstrap/jumbotron';
+@import 'bootstrap/alert';
+@import 'bootstrap/progress';
+@import 'bootstrap/media';
+@import 'bootstrap/list-group';
+@import 'bootstrap/close';
+@import 'bootstrap/modal';
+@import 'bootstrap/tooltip';
+@import 'bootstrap/popover';
+@import 'bootstrap/carousel';
+@import 'bootstrap/utilities';
+@import 'bootstrap/print';
+
+// Argon utilities and components
+
+@import 'custom/reboot';
+@import 'custom/utilities';
+@import 'custom/components';
+
+// Vendor (Plugins)
+
+@import 'custom/vendors';
+
+// Angular Differences
+@import 'angular-differences/angular-differences';
+
+// pour l'avatar
+.flag {
+  width: 30px;
+  padding-right: 10px;
+}

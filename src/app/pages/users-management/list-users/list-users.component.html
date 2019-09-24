@@ -1,0 +1,21 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+  <h2>Users List</h2>
+  <div *ngxPermissionsOnly="['ADMIN']">
+    <div>Bravo, vous avez un accès lvl 4: accessUserManagement. Vous êtes au maximum un Admin</div>
+  </div>
+  <div *ngxPermissionsOnly="['ADMIN', 'MODERATOR']">
+    <div>Bravo, vous avez un accès lvl 4 et 3: accessUserManagement, canReadUserManagement. Vous êtes au maximum un Modérateur</div>
+  </div>
+
+  <ng-template ngxPermissionsOnly="canUpdateUserManagement">
+    <div>Bravo, vous avez un accès lvl 2 pour voir cette ligne. Vous êtes au maximum un User</div>
+  </ng-template>
+
+  <ng-template ngxPermissionsOnly="canReadUserManagement">
+    <div>Bravo, vous avez un accès lvl 1 pour voir cette ligne. Vous êtes au maximum un Guest</div>
+  </ng-template>
+
+  <ng-template [ngxPermissionsExcept]="['anonymous']">
+    <div>Tout le monde peux voir cette ligne sauf les anonymes.</div>
+  </ng-template>
+</div>

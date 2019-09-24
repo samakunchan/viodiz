@@ -1,0 +1,21 @@
+:host ::ng-deep .vio-loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+:host ::ng-deep .vio-loading-bar .progress-bar {
+  background-color: #3d4aed;
+}
+:host ::ng-deep .kt-header__topbar-item {
+  height: 100%;
+}
+@media (min-width: 1025px) {
+  :host ::ng-deep .kt-header__topbar,
+  :host ::ng-deep .kt-header__topbar-item-wrapper {
+    height: 100%;
+  }
+}
+
+/*# sourceMappingURL=app.component.css.map */

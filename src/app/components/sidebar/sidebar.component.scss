@@ -1,0 +1,61 @@
+.disable-overflow{
+  overflow: unset;
+  z-index: 1;
+}
+
+.ribbon-target{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  background-color: #4472C4;
+  color: #ffffff;
+  right: -10px;
+  cursor: pointer;
+  top: 0;
+  height: 35px;
+  &:hover{
+    background-color: #4595E8;
+    .ribbon-inner{
+      &::before{
+        border-left-color: #222 !important;
+      }
+    }
+  }
+  .ribbon-inner{
+    &::before{
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+      border-width: 0 0 10px 10px;
+      border-left-color: #505050 !important;
+      right: 0;
+    }
+    &::after{
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+    }
+  }
+}
+
+.sidebar-retracted{
+  max-width: 80px;
+}
+.sidebar-expanded{
+  max-width: 250px;
+}
+.inscrease-icon-size{
+  font-size: 24px!important;
+  transition-duration: .5s;
+}
+.decrease-icon-size{
+  font-size: 0.9375rem;
+  transition-duration: .5s;
+}

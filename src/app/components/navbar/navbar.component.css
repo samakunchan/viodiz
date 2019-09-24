@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.bg-profil-bar {
+  background-image: url("../../../assets/img/misc/bg-1.jpg");
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 25px 1rem;
+  background-color: #f9fafe;
+}
+
+.profil-item::after {
+  font-family: "FontAwesome";
+  content: "";
+  font-style: normal;
+  font-weight: normal;
+  margin-left: 5px;
+  color: #74788d;
+  float: right;
+}
+
+/*# sourceMappingURL=navbar.component.css.map */
