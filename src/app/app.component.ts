@@ -14,7 +14,7 @@ import { RoleService } from './services/role.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Angular template';
+  title = 'Viodiz';
   logo = 'assets/img/brand/logo-viodiz.png';
 
   /**
