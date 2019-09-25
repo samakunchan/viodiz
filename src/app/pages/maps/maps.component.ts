@@ -13,7 +13,7 @@ export class MapsComponent implements OnInit {
     // let map = document.getElementById('map-canvas');
     // const lat = map.getAttribute('data-lat');
     // const lng = map.getAttribute('data-lng');
-//
+    //
     // const myLatlng = new google.maps.LatLng(lat, lng);
     // const mapOptions = {
     //   zoom: 12,
@@ -31,16 +31,13 @@ export class MapsComponent implements OnInit {
     //     { featureType: 'water', elementType: 'all', stylers: [{ color: '#5e72e4' }, { visibility: 'on' }] },
     //   ],
     // };
-
     // map = new google.maps.Map(map, mapOptions);
-
     // const marker = new google.maps.Marker({
     //   position: myLatlng,
     //   map: map,
     //   animation: google.maps.Animation.DROP,
     //   title: 'Hello World!',
     // });
-
     // const contentString =
     //   "<div class='info-window-content'><h2>Argon Dashboard</h2>" + '
     //   <p>A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</p></div>';
