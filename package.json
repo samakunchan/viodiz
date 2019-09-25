@@ -13,7 +13,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pretty-quick && npm run lint"
+      "pre-commit": "npm run pretty-quick && npm run lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "private": true,
@@ -51,6 +52,8 @@
     "@angular/cli": "8.3.4",
     "@angular/compiler-cli": "8.2.6",
     "@angular/language-service": "8.2.6",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/jasmine": "3.3.8",
     "@types/jasminewd2": "2.0.6",
     "@types/node": "11.9.0",
