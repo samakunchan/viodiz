@@ -1,5 +1,5 @@
 {
-  "name": "angular-template",
+  "name": "viodiz",
   "version": "1.0.1",
   "scripts": {
     "ng": "ng",
@@ -13,7 +13,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run pretty-quick && npm run lint"
     }
   },
   "private": true,
