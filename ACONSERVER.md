@@ -6,3 +6,4 @@ core/avatar
 core/dropdown/\_dropdown
 core/navbar/navbar-dropdown
 bootstrap/dropdown
+bootstrap/card
