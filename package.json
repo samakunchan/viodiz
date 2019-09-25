@@ -11,6 +11,12 @@
     "e2e": "ng e2e",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "8.2.6",
@@ -50,6 +56,7 @@
     "@types/jasminewd2": "2.0.6",
     "@types/node": "11.9.0",
     "codelyzer": "^5.0.1",
+    "husky": "^3.0.5",
     "jasmine-core": "3.3.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "4.0.0",

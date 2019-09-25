@@ -6,7 +6,6 @@ import { filter } from 'rxjs/operators';
 import { TranslationService } from '../../../services/translation.service';
 // Translate
 
-
 interface LanguageFlag {
   lang: string;
   name: string;
@@ -15,11 +14,10 @@ interface LanguageFlag {
 }
 
 @Component({
-  selector: 'vio-language-selector',
+  selector: 'app-language-selector',
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent implements OnInit {
-
   language: LanguageFlag;
   languages: LanguageFlag[] = [
     {
