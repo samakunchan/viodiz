@@ -4,7 +4,9 @@
     <div class="text-white">Bravo, vous avez un accès lvl 4: accessUserManagement. Vous êtes au maximum un Admin</div>
   </div>
   <div *ngxPermissionsOnly="['ADMIN', 'MODERATOR']">
-    <div class="text-white">Bravo, vous avez un accès lvl 4 et 3: accessUserManagement, canReadUserManagement. Vous êtes au maximum un Modérateur</div>
+    <div class="text-white">
+      Bravo, vous avez un accès lvl 4 et 3: accessUserManagement, canReadUserManagement. Vous êtes au maximum un Modérateur
+    </div>
   </div>
 
   <ng-template ngxPermissionsOnly="canUpdateUserManagement">

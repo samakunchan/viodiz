@@ -27,6 +27,6 @@ export class NucleoSectionComponent implements OnInit {
           bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
           bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
       );
-  };
+  }
 
 }
