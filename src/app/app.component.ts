@@ -44,7 +44,7 @@ export class AppComponent {
     this.roleService.loadRole().subscribe((role: []) => {
       role.map((res: Role) => {
         // 'USER' à remplacer avec la valeur de la BDD
-        if (res.name === 'USER') {
+        if (res.name === 'ADMIN') {
           return this.ngxRolesService.addRole(res.name, res.permissions);
         }
       });
