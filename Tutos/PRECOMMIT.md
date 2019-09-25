@@ -2,6 +2,9 @@
 
 ## Dépendence
 
+    npm install husky --save-dev
+    NB: Faire attention a la version de GIT. Actuellement il faut la 2.13.3
+
 ## package.json
 
       "scripts": {
