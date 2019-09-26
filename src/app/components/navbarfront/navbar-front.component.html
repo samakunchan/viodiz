@@ -1,7 +1,7 @@
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
   <div class="container">
     <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
-      <img src="./assets/img/brand/logo-viodiz-mini.png" />
+      <img [src]="front.logo.src" [alt]="front.logo.alt" />
       <span class="text-white">iodiz</span>
     </a>
     <button
@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-6 collapse-brand">
             <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png" />
+              <img [src]="front.logo.src" [alt]="front.logo.alt" />
             </a>
           </div>
           <div class="col-6 collapse-close">

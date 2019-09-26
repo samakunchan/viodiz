@@ -8,7 +8,14 @@ import { Router } from '@angular/router';
 })
 export class FooterFrontComponent implements OnInit {
   test: Date = new Date();
-
+  landingPage = {
+    src: './assets/img/theme/landing.jpg',
+    alt: 'Landing page',
+  };
+  profilePage = {
+    src: './assets/img/theme/profile.jpg',
+    alt: 'Profile page',
+  };
   constructor(private router: Router) {}
 
   ngOnInit() {}

@@ -76,20 +76,22 @@ $colors: map-merge(
   $colors
 );
 
-$default: #172b4d !default;
+// $default: #172b4d !default;
+$default: #22b9ff !default;
 // $primary: #5e72e4 !default;
-$primary: #01579b !default;
+$primary: #5867dd !default;
 $secondary: #f7fafc !default;
 // $success: $green !default;
-$success: #004d40 !default;
+$success: #34bfa3 !default;
 // $info: $teal !default;
-$info: #006064 !default;
+$info: #36a3f7 !default;
 // $warning: $orange !default;
-$warning: #e65100 !default;
+$warning: #ffb822 !default;
 // $danger: $red !default;
-$danger: #b71c1c !default;
+$danger: #fd3995 !default;
 $light: $gray-500 !default;
-$dark: $gray-900 !default;
+// $dark: $gray-900 !default;
+$dark: #282a3c !default;
 $darker: darken($gray-900, 15%) !default;
 
 $facebook: #3b5999 !default;
