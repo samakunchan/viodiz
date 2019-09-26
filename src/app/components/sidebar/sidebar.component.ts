@@ -57,16 +57,6 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
-  public sidebar: {
-    logo: {
-      src: './assets/img/brand/logo-viodiz-mini.png';
-      alt: 'logo';
-    };
-    team: {
-      src: './assets/img/theme/team-1-800x800.jpg';
-      alt: 'Image placeholder teammate';
-    };
-  };
   @Input() forRetractedSideBar;
   @Output() infoRetracted = new EventEmitter<boolean>();
 
