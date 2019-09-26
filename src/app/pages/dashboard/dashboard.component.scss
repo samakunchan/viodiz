@@ -1,4 +1,4 @@
-.vio-catalog{
+.vio-catalog {
   background-color: #ffffff;
   border: 0 solid transparent;
   border-radius: 0.25rem;
@@ -10,7 +10,7 @@
   line-height: 1.25rem;
   margin-bottom: 1.875rem;
   padding: 0;
-  .picture{
+  .picture {
     height: 250px;
     background-position: center;
     background-size: cover;
@@ -19,19 +19,19 @@
     border-top-right-radius: 0.25rem;
     flex: 1;
   }
-  .detail{
+  .detail {
     padding: 1rem 1.25rem;
-    h4{
+    h4 {
       font-size: 1.625rem;
       font-family: Open Sans, sans-serif;
       font-weight: 700;
       line-height: 2rem;
     }
-    .description{
+    .description {
       text-align: justify;
     }
   }
-  .vio-catalog-footer{
+  .vio-catalog-footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -39,8 +39,8 @@
     border-top: 1px solid #edf1f7;
     border-bottom-left-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
-    a{
-      i{
+    a {
+      i {
         font-size: 30px;
       }
     }
