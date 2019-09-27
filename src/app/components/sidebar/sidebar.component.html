@@ -1,5 +1,9 @@
 <nav
-  [ngClass]="{ 'sidebar-retracted': false, 'sidebar-retracted': forRetractedSideBar === false, 'sidebar-expanded': forRetractedSideBar === true && innerWidth < 425 }"
+  [ngClass]="{
+    'sidebar-retracted': false,
+    'sidebar-retracted': forRetractedSideBar === false,
+    'sidebar-expanded': forRetractedSideBar === true && innerWidth < 425
+  }"
   class="navbar navbar-vertical navbar-expand-md navbar-light bg-white disable-overflow"
   id="sidenav-main"
 >
@@ -123,8 +127,9 @@
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a routerLinkActive="active" [routerLink]="['/dashboard']">
-              <img src="./assets/img/brand/blue.png" />
+            <a [ngStyle]="{'display': 'flex', 'align-items': 'center'}" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <img src="./assets/img/brand/logo-viodiz-mini.png" class="navbar-brand-img" alt="logo" />
+              <span [ngStyle]="{'font-size': '25px'}" class="text-info">iodiz</span>
             </a>
           </div>
           <div class="col-6 collapse-close">

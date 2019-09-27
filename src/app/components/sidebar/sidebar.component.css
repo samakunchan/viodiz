@@ -29,7 +29,7 @@
   border-left-color: #222 !important;
 }
 .ribbon-target .ribbon-inner::before {
-  content: "";
+  content: '';
   position: absolute;
   border-style: solid;
   border-color: transparent !important;
@@ -39,7 +39,7 @@
   right: 0;
 }
 .ribbon-target .ribbon-inner::after {
-  content: "";
+  content: '';
   position: absolute;
   border-style: solid;
   border-color: transparent !important;
