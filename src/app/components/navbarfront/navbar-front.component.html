@@ -19,7 +19,9 @@
           <div class="col-6 collapse-brand">
             <a [routerLink]="['/home']">
               <img [src]="front.logo.src" [alt]="front.logo.alt" />
+              <span [ngStyle]="{ 'font-size': '25px' }">iodiz</span>
             </a>
+
           </div>
           <div class="col-6 collapse-close">
             <button
@@ -34,6 +36,9 @@
             </button>
           </div>
         </div>
+      </div>
+      <div class="d-lg-none d-md-flex float-right">
+        <app-language-selector [position]="'bottom-right'"></app-language-selector>
       </div>
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
@@ -131,9 +136,9 @@
             <span class="nav-link-inner--text d-lg-none">Twitter</span>
           </a>
         </li>
-        <li>
+        <li class="d-lg-block d-none">
           <ul class="navbar-nav d-md-flex">
-            <app-language-selector></app-language-selector>
+            <app-language-selector [position]="'bottom-left'"></app-language-selector>
           </ul>
         </li>
         <li class="nav-item d-none d-lg-block ml-lg-4">

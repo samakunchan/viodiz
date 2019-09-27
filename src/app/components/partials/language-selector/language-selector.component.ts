@@ -18,6 +18,7 @@ interface LanguageFlag {
   templateUrl: './language-selector.component.html',
 })
 export class LanguageSelectorComponent implements OnInit {
+  @Input() position: string;
   language: LanguageFlag;
   languages: LanguageFlag[] = [
     {
