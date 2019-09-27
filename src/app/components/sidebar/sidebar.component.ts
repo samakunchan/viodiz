@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
-import { PermissionService } from '../../services/permission.service';
-import { RoleService } from '../../services/role.service';
 
 declare interface RouteInfo {
   path: string;
@@ -57,19 +54,18 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
+  public innerWidth: any;
   @Input() forRetractedSideBar;
   @Output() infoRetracted = new EventEmitter<boolean>();
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+  }
 
-  constructor(
-    private router: Router,
-    private ngxPermissionsService: NgxPermissionsService,
-    private ngxRolesService: NgxRolesService,
-    private permissionService: PermissionService,
-    private roleService: RoleService,
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log(this.ngxRolesService.getRoles());
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe(event => {
       this.isCollapsed = true;

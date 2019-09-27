@@ -16,6 +16,9 @@
   cursor: pointer;
   top: 0;
   height: 35px;
+  @media screen and (max-width: 425px) {
+    display: none;
+  }
   &:hover {
     background-color: #4595e8;
     .ribbon-inner {

@@ -17,6 +17,11 @@
   top: 0;
   height: 35px;
 }
+@media screen and (max-width: 425px) {
+  .ribbon-target {
+    display: none;
+  }
+}
 .ribbon-target:hover {
   background-color: #4595e8;
 }
@@ -24,7 +29,7 @@
   border-left-color: #222 !important;
 }
 .ribbon-target .ribbon-inner::before {
-  content: '';
+  content: "";
   position: absolute;
   border-style: solid;
   border-color: transparent !important;
@@ -34,7 +39,7 @@
   right: 0;
 }
 .ribbon-target .ribbon-inner::after {
-  content: '';
+  content: "";
   position: absolute;
   border-style: solid;
   border-color: transparent !important;

@@ -1,5 +1,5 @@
 <nav
-  [ngClass]="{ 'sidebar-retracted': false, 'sidebar-retracted': forRetractedSideBar === false, 'sidebar-expanded': forRetractedSideBar === true }"
+  [ngClass]="{ 'sidebar-retracted': false, 'sidebar-retracted': forRetractedSideBar === false, 'sidebar-expanded': forRetractedSideBar === true && innerWidth < 425 }"
   class="navbar navbar-vertical navbar-expand-md navbar-light bg-white disable-overflow"
   id="sidenav-main"
 >
