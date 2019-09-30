@@ -9,10 +9,19 @@ export const locale = {
       MENU: {
         START: 'Démarrer',
       },
-      HOME: {},
+      HOME: {
+        DASHBOARD: 'Tableau de bord',
+      },
     },
     BACK: {
       DASHBOARD: 'Tableau de bord',
+      SIDE: {
+        DASHBOARD: 'Tableau de bord',
+        ICON: 'Icônes',
+        MAP: 'Carte',
+        LISTUSERS: 'Listes des utilisateurs',
+        TABLE: 'Table'
+      }
     },
   },
 };

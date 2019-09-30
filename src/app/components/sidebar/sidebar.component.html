@@ -168,7 +168,7 @@
               }"
               class="ni {{ menuItem.icon }}"
             ></i>
-            <span *ngIf="forRetractedSideBar">{{ menuItem.title }}</span>
+            <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
           </a>
         </li>
       </ul>

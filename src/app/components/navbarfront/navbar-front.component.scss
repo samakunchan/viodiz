@@ -1,0 +1,21 @@
+.lang-selector-mobile{
+  position: absolute;
+  right: 50%;
+  top: 0;
+}
+.no-btw{
+  justify-content: unset;
+}
+.flex-grow{
+  @media screen and (max-width: 990px) {
+    flex-grow: 1;
+  }
+}
+.nav-front-social{
+  @media screen and (max-width: 990px) {
+    padding-right: 10px;
+  }
+}
+.flex-direction-initial{
+  flex-direction: initial;
+}
