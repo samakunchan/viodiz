@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 
@@ -9,7 +9,8 @@ import { Location, PopStateEvent } from '@angular/common';
 })
 export class NavbarFrontComponent implements OnInit {
   public isCollapsed = true;
-  private lastPoppedUrl: string;
+  private innerWidth: any;
+  private lastPoppedUrl: any;
   private yScrollStack: number[] = [];
   public front = {
     logo: {
@@ -17,6 +18,10 @@ export class NavbarFrontComponent implements OnInit {
       alt: 'Logo',
     },
   };
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+  }
   constructor(public location: Location, private router: Router) {}
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-<li ngbDropdown [placement]="position" class="nav-item">
+<div ngbDropdown [placement]="position" class="nav-item">
   <a class="nav-link pr-0" role="button" ngbDropdownToggle>
     <div class="media align-items-center">
       <span class="avatar avatar-sm rounded">
@@ -6,7 +6,7 @@
       </span>
     </div>
   </a>
-  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu-left" [ngStyle]="{ minWidth: '8rem' }">
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu-left" [ngStyle]="{ minWidth: '8rem', 'position': 'absolute' }">
     <ng-container *ngFor="let language of languages">
       <a href="javascript:;" (click)="setLanguage(language.lang)" class="dropdown-item">
         <img class="flag" src="{{ language.flag }}" alt="{{ language.alt }}" />
@@ -14,4 +14,4 @@
       </a>
     </ng-container>
   </div>
-</li>
+</div>
