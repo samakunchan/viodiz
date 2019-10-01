@@ -1,5 +1,9 @@
 <nav
-  [ngClass]="{ 'sidebar-retracted': false, 'sidebar-retracted': forRetractedSideBar === false, 'sidebar-expanded': forRetractedSideBar === true }"
+  [ngClass]="{
+    'sidebar-retracted': false,
+    'sidebar-retracted': forRetractedSideBar === false,
+    'sidebar-expanded': forRetractedSideBar === true && innerWidth < 320
+  }"
   class="navbar navbar-vertical navbar-expand-md navbar-light bg-white disable-overflow"
   id="sidenav-main"
 >
@@ -10,7 +14,7 @@
     </button>
     <!-- Ribbon -->
     <ng-container *ngIf="forRetractedSideBar; else forExpanded">
-      <div class="ribbon-target" (click)="onToggleSideBar()">
+      <div class="ribbon-target d-none d-md-block" (click)="onToggleSideBar()">
         <span class="ribbon-inner"></span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -61,6 +65,10 @@
         </svg>
       </div>
     </ng-template>
+    <div class="ribbon-target-1">
+      <span class="ribbon-inner"></span>
+      <app-language-selector [position]="'bottom-left'"></app-language-selector>
+    </div>
     <!-- /Ribbon -->
 
     <!-- Brand -->
@@ -93,20 +101,20 @@
           <div class=" dropdown-header noti-title">
             <h6 class="text-overflow m-0">Welcome!</h6>
           </div>
-          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
-            <i class="ni ni-single-02"></i>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item p-3">
+            <i class="ni ni-single-02 text-success"></i>
             <span>My profile</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
-            <i class="ni ni-settings-gear-65"></i>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item p-3">
+            <i class="ni ni-settings-gear-65 text-warning"></i>
             <span>Settings</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
-            <i class="ni ni-calendar-grid-58"></i>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item p-3">
+            <i class="ni ni-calendar-grid-58 text-info"></i>
             <span>Activity</span>
           </a>
-          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item">
-            <i class="ni ni-support-16"></i>
+          <a routerLinkActive="active" [routerLink]="['user-profile']" class="dropdown-item p-3">
+            <i class="ni ni-support-16 text-danger"></i>
             <span>Support</span>
           </a>
           <div class="dropdown-divider"></div>
@@ -123,8 +131,9 @@
       <div class="navbar-collapse-header d-md-none">
         <div class="row">
           <div class="col-6 collapse-brand">
-            <a routerLinkActive="active" [routerLink]="['/dashboard']">
-              <img src="./assets/img/brand/blue.png" />
+            <a [ngStyle]="{ display: 'flex', 'align-items': 'center' }" routerLinkActive="active" [routerLink]="['/dashboard']">
+              <img src="./assets/img/brand/logo-viodiz-mini.png" class="navbar-brand-img" alt="logo" />
+              <span [ngStyle]="{ 'font-size': '25px' }" class="text-info">iodiz</span>
             </a>
           </div>
           <div class="col-6 collapse-close">
@@ -137,6 +146,11 @@
       </div>
       <!-- /Collapse header -->
       <!-- Form -->
+      <!--
+      <div class="d-md-none">
+        <app-language-selector [position]="'bottom-left'"></app-language-selector>
+      </div>
+       -->
       <form class="mt-4 mb-3 d-md-none">
         <div class="input-group input-group-rounded input-group-merge">
           <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search" />
@@ -160,7 +174,7 @@
               }"
               class="ni {{ menuItem.icon }}"
             ></i>
-            <span *ngIf="forRetractedSideBar">{{ menuItem.title }}</span>
+            <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
           </a>
         </li>
       </ul>

@@ -7,18 +7,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 5px;
   position: absolute;
   z-index: 1;
-  background-color: #4472C4;
+  background-color: #36a3f7;
   color: #ffffff;
   right: -10px;
   cursor: pointer;
   top: 0;
   height: 35px;
 }
+@media screen and (max-width: 425px) {
+  .ribbon-target {
+    display: none;
+  }
+}
 .ribbon-target:hover {
-  background-color: #4595E8;
+  background-color: #4595e8;
 }
 .ribbon-target:hover .ribbon-inner::before {
   border-left-color: #222 !important;
@@ -34,6 +39,57 @@
   right: 0;
 }
 .ribbon-target .ribbon-inner::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent !important;
+  bottom: -10px;
+}
+
+.ribbon-target-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  background-color: #e2e2e2;
+  color: #ffffff;
+  right: -10px;
+  cursor: pointer;
+  top: 45px;
+  height: 35px;
+  width: 35px;
+}
+@media screen and (max-width: 768px) {
+  .ribbon-target-1 {
+    position: initial;
+    padding: 0;
+    background-color: #ffffff;
+  }
+}
+.ribbon-target-1:hover {
+  background-color: #a2a2a2;
+}
+@media screen and (max-width: 425px) {
+  .ribbon-target-1:hover {
+    background-color: #ffffff;
+  }
+}
+.ribbon-target-1:hover .ribbon-inner::before {
+  border-left-color: #222 !important;
+}
+.ribbon-target-1 .ribbon-inner::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-color: transparent !important;
+  bottom: -10px;
+  border-width: 0 0 10px 10px;
+  border-left-color: #505050 !important;
+  right: 0;
+}
+.ribbon-target-1 .ribbon-inner::after {
   content: "";
   position: absolute;
   border-style: solid;

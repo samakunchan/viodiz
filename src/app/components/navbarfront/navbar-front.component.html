@@ -1,27 +1,27 @@
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
-  <div class="container">
-    <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
-      <img src="./assets/img/brand/logo-viodiz-mini.png" />
+  <div class="container no-btw">
+    <a class="navbar-brand mr-lg-5 flex-grow" [routerLink]="['/home']">
+      <img [src]="front.logo.src" [alt]="front.logo.alt" />
       <span class="text-white">iodiz</span>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="isCollapsed = !isCollapsed"
-      [attr.aria-expanded]="!isCollapsed"
-      aria-controls="navbar_global"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
+    <div class="navbar-collapse-front collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
       <div class="navbar-collapse-header">
         <div class="row">
-          <div class="col-6 collapse-brand">
+          <div class="col-sm-3 col-md-2 collapse-brand">
             <a [routerLink]="['/home']">
-              <img src="./assets/img/brand/blue.png" />
+              <img [src]="front.logo.src" [alt]="front.logo.alt" />
+              <span [ngStyle]="{ 'font-size': '25px' }">iodiz</span>
             </a>
           </div>
-          <div class="col-6 collapse-close">
+          <div class="col-sm-8 col-md-9 nav-item ml-lg-4 text-center">
+            <a [routerLink]="['/auth']" class="btn btn-neutral btn-icon w-100">
+              <span class="btn-inner--icon">
+                <i class="flaticon-logout mr-2"></i>
+              </span>
+              <span class="nav-link-inner--text" [translate]="'FRONT.MENU.START'"></span>
+            </a>
+          </div>
+          <div class="col-sm-1 col-md-1 collapse-close position-absolute right-0">
             <button
               type="button"
               class="navbar-toggler"
@@ -38,125 +38,79 @@
       <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-ui-04 d-lg-none"></i>
+            <i [ngStyle]="{ 'font-size': '25px' }" class="ni ni-ui-04 d-lg-none text-primary"></i>
             <span class="nav-link-inner--text">Components</span>
           </a>
-          <div class="dropdown-menu-xl dropdown-menu">
-            <div class="dropdown-menu-inner">
-              <a routerLinkActive="active" [routerLink]="['documentation/tutorial']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                  <i class="ni ni-spaceship"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Getting started</h6>
-                  <p class="description d-none d-md-inline-block mb-0">Learn how to use Argon compiling Scss, change brand colors and more.</p>
-                </div>
-              </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/colors']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
-                  <i class="ni ni-palette"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h6 class="heading text-primary mb-md-1">Foundation</h6>
-                  <p class="description d-none d-md-inline-block mb-0">
-                    Learn more about colors, typography, icons and the grid system we used for Argon.
-                  </p>
-                </div>
-              </a>
-              <a routerLinkActive="active" [routerLink]="['documentation/alerts']" class="media d-flex align-items-center">
-                <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                  <i class="ni ni-ui-04"></i>
-                </div>
-                <div class="media-body ml-3">
-                  <h5 class="heading text-warning mb-md-1">Components</h5>
-                  <p class="description d-none d-md-inline-block mb-0">Browse our 50 beautiful handcrafted components offered in the Free version.</p>
-                </div>
-              </a>
-            </div>
-          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
-            <i class="ni ni-collection d-lg-none"></i>
+            <i [ngStyle]="{ 'font-size': '25px' }" class="ni ni-collection d-lg-none text-blue"></i>
             <span class="nav-link-inner--text">Examples</span>
           </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/landing']" class="dropdown-item">Landing</a>
-            <a [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
-            <a [routerLink]="['/login']" class="dropdown-item">Login</a>
-            <a [routerLink]="['/register']" class="dropdown-item">Register</a>
-          </div>
         </li>
         <li class="nav-item dropdown">
-          <span class="nav-link-inner--text">
-            <a routerLink="/admin/dashboard">Dashboard</a>
-          </span>
-        </li>
-      </ul>
-      <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-        <li class="nav-item">
-          <a
-            class="nav-link nav-link-icon-front"
-            href="https://www.facebook.com/creativetim"
-            target="_blank"
-            data-toggle="tooltip"
-            title="Like us on Facebook"
-          >
-            <i class="fa fa-facebook-square"></i>
-            <span class="nav-link-inner--text d-lg-none">Facebook</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-link-icon-front"
-            href="https://www.instagram.com/creativetimofficial"
-            target="_blank"
-            data-toggle="tooltip"
-            title="Follow us on Instagram"
-          >
-            <i class="fa fa-instagram"></i>
-            <span class="nav-link-inner--text d-lg-none">Instagram</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-link-icon-front"
-            href="https://twitter.com/creativetim"
-            target="_blank"
-            data-toggle="tooltip"
-            title="Follow us on Twitter"
-          >
-            <i class="fa fa-twitter-square"></i>
-            <span class="nav-link-inner--text d-lg-none">Twitter</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link nav-link-icon-front"
-            href="https://github.com/creativetimofficial/argon-design-system-angular?ref=adsa-navbar"
-            target="_blank"
-            data-toggle="tooltip"
-            title="Star us on Github"
-          >
-            <i class="fa fa-github"></i>
-            <span class="nav-link-inner--text d-lg-none">Github</span>
-          </a>
-        </li>
-        <li>
-          <ul class="navbar-nav align-items-center d-none d-md-flex">
-            <app-language-selector></app-language-selector>
-          </ul>
-        </li>
-        <li class="nav-item d-none d-lg-block ml-lg-4">
-          <!-- Si le user est authentifié, on affiche le bouton dashboard -->
-          <a [routerLink]="['/auth']" class="btn btn-neutral btn-icon">
-            <span class="btn-inner--icon">
-              <i class="fa fa-sign-in mr-2"></i>
-            </span>
-            <span class="nav-link-inner--text" [translate]="'FRONT.MENU.START'"></span>
+          <a class="nav-link no-caret" routerLink="/admin/dashboard">
+            <i [ngStyle]="{ 'font-size': '25px' }" class="ni ni-tablet-button d-lg-none text-orange"></i>
+            <span class="nav-link-inner--text">Dashboard</span>
           </a>
         </li>
       </ul>
     </div>
+    <ul class="navbar-nav flex-direction-initial align-items-lg-center ml-lg-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link nav-link-icon-front"
+          href="https://www.facebook.com/creativetim"
+          target="_blank"
+          data-toggle="tooltip"
+          title="Like us on Facebook"
+        >
+          <i [ngStyle]="{ 'font-size': '25px' }" class="flaticon-facebook-logo-button text-white nav-front-social"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link nav-link-icon-front"
+          href="https://www.instagram.com/creativetimofficial"
+          target="_blank"
+          data-toggle="tooltip"
+          title="Follow us on Instagram"
+        >
+          <i [ngStyle]="{ 'font-size': '25px' }" class="flaticon-instagram-logo text-white nav-front-social"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link nav-link-icon-front"
+          href="https://twitter.com/creativetim"
+          target="_blank"
+          data-toggle="tooltip"
+          title="Follow us on Twitter"
+        >
+          <i [ngStyle]="{ 'font-size': '25px' }" class="flaticon-twitter-logo-button text-white nav-front-social"></i>
+        </a>
+      </li>
+    </ul>
+
+    <div class="navbar-nav d-md-flex">
+      <app-language-selector [position]="'bottom-left'"></app-language-selector>
+    </div>
+    <div class="nav-item d-none d-lg-block ml-lg-4">
+      <a [routerLink]="['/auth']" class="btn btn-neutral btn-icon">
+        <span class="btn-inner--icon">
+          <i class="flaticon-logout mr-2"></i>
+        </span>
+        <span class="nav-link-inner--text" [translate]="'FRONT.MENU.START'"></span>
+      </a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed"
+      aria-controls="navbar_global"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
 </nav>

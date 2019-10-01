@@ -1,31 +1,34 @@
-.disable-overflow{
+.disable-overflow {
   overflow: unset;
   z-index: 1;
 }
 
-.ribbon-target{
+.ribbon-target {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 5px;
   position: absolute;
   z-index: 1;
-  background-color: #4472C4;
+  background-color: #36a3f7;
   color: #ffffff;
   right: -10px;
   cursor: pointer;
   top: 0;
   height: 35px;
-  &:hover{
-    background-color: #4595E8;
-    .ribbon-inner{
-      &::before{
+  @media screen and (max-width: 425px) {
+    display: none;
+  }
+  &:hover {
+    background-color: #4595e8;
+    .ribbon-inner {
+      &::before {
         border-left-color: #222 !important;
       }
     }
   }
-  .ribbon-inner{
-    &::before{
+  .ribbon-inner {
+    &::before {
       content: '';
       position: absolute;
       border-style: solid;
@@ -35,7 +38,7 @@
       border-left-color: #505050 !important;
       right: 0;
     }
-    &::after{
+    &::after {
       content: '';
       position: absolute;
       border-style: solid;
@@ -44,18 +47,67 @@
     }
   }
 }
-
-.sidebar-retracted{
+.ribbon-target-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  background-color: #e2e2e2;
+  color: #ffffff;
+  right: -10px;
+  cursor: pointer;
+  top: 45px;
+  height: 35px;
+  width: 35px;
+  @media screen and (max-width: 768px) {
+    position: initial;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  &:hover {
+    background-color: #a2a2a2;
+    @media screen and (max-width: 425px) {
+      background-color: #ffffff;
+    }
+    .ribbon-inner {
+      &::before {
+        border-left-color: #222 !important;
+      }
+    }
+  }
+  .ribbon-inner {
+    &::before {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+      border-width: 0 0 10px 10px;
+      border-left-color: #505050 !important;
+      right: 0;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+    }
+  }
+}
+.sidebar-retracted {
   max-width: 80px;
 }
-.sidebar-expanded{
+.sidebar-expanded {
   max-width: 250px;
 }
-.inscrease-icon-size{
-  font-size: 24px!important;
-  transition-duration: .5s;
+.inscrease-icon-size {
+  font-size: 24px !important;
+  transition-duration: 0.5s;
 }
-.decrease-icon-size{
+.decrease-icon-size {
   font-size: 0.9375rem;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }

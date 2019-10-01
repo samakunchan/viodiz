@@ -3,15 +3,31 @@
 //
 
 .card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: $card-bg;
-  background-clip: border-box;
-  border: $card-border-width solid $card-border-color;
-  // @include border-radius($card-border-radius); ici
+  // ici
+  display: -webkit-box; // ici
+  display: -ms-flexbox; // ici
+  display: flex; // ici
+  -webkit-box-flex: 1; // ici
+  -ms-flex-positive: 1; // ici
+  flex-grow: 1; // ici
+  -webkit-box-orient: vertical; // ici
+  -webkit-box-direction: normal; // ici
+  -ms-flex-direction: column; // ici
+  flex-direction: column; // ici
+  -webkit-box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05); // ici
+  box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05); // ici
+  background-color: #ffffff; // ici
+  margin-bottom: 20px; // ici
+  border-radius: 4px; // ici
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // min-width: 0;
+  // word-wrap: break-word;
+  // background-color: $card-bg;
+  // background-clip: border-box;
+  // border: $card-border-width solid $card-border-color;
+  // @include border-radius($card-border-radius);
 
   > hr {
     margin-right: 0;
@@ -32,10 +48,167 @@
 }
 
 .card-body {
+  // ici
   // Enable `flex-grow: 1` for decks and groups so that card blocks take up
   // as much space as possible, ensuring footers are aligned to the bottom.
-  flex: 1 1 auto;
-  padding: $card-spacer-x;
+  // flex: 1 1 auto;
+  // padding: $card-spacer-x;
+  display: -webkit-box; // ici
+  display: -ms-flexbox; // ici
+  display: flex; // ici
+  -webkit-box-orient: vertical; // ici
+  -webkit-box-direction: normal; // ici
+  -ms-flex-direction: column; // ici
+  flex-direction: column; // ici
+  padding: 10px; // ici
+  border-radius: 4px; // ici
+}
+.icon-brand {
+  color: $primary;
+}
+.iconbox__body {
+  // ici
+  display: -webkit-box; // ici
+  display: -ms-flexbox; // ici
+  display: flex; // ici
+  -ms-flex-wrap: nowrap; // ici
+  flex-wrap: nowrap; // ici
+  .iconbox__icon {
+    // ici
+    -webkit-box-flex: 0; // ici
+    -ms-flex: 0 0 50px; // ici
+    flex: 0 0 50px; // ici
+    padding-right: 20px; // ici
+    svg {
+      width: 50px;
+      height: 50px;
+      color: inherit;
+    }
+  }
+  .iconbox__desc {
+    // ici
+    display: -webkit-box; // ici
+    display: -ms-flexbox; // ici
+    display: flex; // ici
+    -webkit-box-orient: vertical; // ici
+    -webkit-box-direction: normal; // ici
+    -ms-flex-direction: column; // ici
+    flex-direction: column; // ici
+    h3 {
+      font-size: 1.55rem; // ici
+      color: $gray-600; // ici
+    }
+    .iconbox__content {
+      font-size: 1.1rem; // ici
+      font-weight: 400; // ici
+      color: #9392a0; // ici
+    }
+  }
+}
+// ici
+.iconbox-brand {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $default;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-light {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $light;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-dark {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $dark;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-primary {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $primary;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-success {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $success;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-info {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $info;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-warning {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $warning;
+          }
+        }
+      }
+    }
+  }
+}
+.iconbox-danger {
+  .iconbox__body {
+    .iconbox__icon {
+      svg {
+        g {
+          [fill] {
+            fill: $danger;
+          }
+        }
+      }
+    }
+  }
 }
 
 .card-title {

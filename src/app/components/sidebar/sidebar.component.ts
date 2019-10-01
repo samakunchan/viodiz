@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
-import { PermissionService } from '../../services/permission.service';
-import { RoleService } from '../../services/role.service';
 
 declare interface RouteInfo {
   path: string;
@@ -14,35 +11,35 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
   {
     path: 'dashboard',
-    title: 'Dashboard',
+    title: 'BACK.SIDE.DASHBOARD',
     icon: 'ni-tv-2 text-primary',
     permissionOnly: ['ADMIN', 'MODERATOR', 'USER', 'GUEST'],
     class: '',
   },
   {
     path: 'icons',
-    title: 'Icons',
+    title: 'BACK.SIDE.ICON',
     icon: 'ni-planet text-blue',
     permissionOnly: ['ADMIN', 'MODERATOR', 'USER'],
     class: '',
   },
   {
     path: 'maps',
-    title: 'Maps',
+    title: 'BACK.SIDE.MAP',
     icon: 'ni-pin-3 text-orange',
     permissionOnly: ['ADMIN', 'MODERATOR', 'USER', 'GUEST'],
     class: '',
   },
   {
     path: 'users-management/list-users',
-    title: 'List Users',
+    title: 'BACK.SIDE.LISTUSERS',
     icon: 'ni-single-02 text-info',
     permissionOnly: ['ADMIN', 'MODERATOR'],
     class: '',
   },
   {
     path: 'tables',
-    title: 'Tables',
+    title: 'BACK.SIDE.TABLE',
     icon: 'ni-bullet-list-67 text-red',
     permissionOnly: ['ADMIN', 'MODERATOR'],
     class: '',
@@ -57,19 +54,17 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
+  public innerWidth: any;
   @Input() forRetractedSideBar;
   @Output() infoRetracted = new EventEmitter<boolean>();
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+  }
 
-  constructor(
-    private router: Router,
-    private ngxPermissionsService: NgxPermissionsService,
-    private ngxRolesService: NgxRolesService,
-    private permissionService: PermissionService,
-    private roleService: RoleService,
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    console.log(this.ngxRolesService.getRoles());
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe(event => {
       this.isCollapsed = true;

@@ -11,10 +11,67 @@
       margin-left: 0.25rem;
       cursor: pointer;
       color: white;
+      @media screen and (max-width: 990px) {
+        // ici
+        color: $black;
+        padding-left: 20px;
+      }
     }
   }
 }
+.navbar-expand {
+  // ici juste pour le navbar-collapse-front. N'existe pas dans ce fichier a la base
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
 
+    &#{$infix} {
+      @include media-breakpoint-down($breakpoint) {
+        > .container,
+        > .container-fluid {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+
+      @include media-breakpoint-up($next) {
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+
+        .navbar-nav {
+          flex-direction: row;
+
+          .dropdown-menu {
+            position: absolute;
+          }
+
+          .nav-link {
+            padding-right: $navbar-nav-link-padding-x;
+            padding-left: $navbar-nav-link-padding-x;
+          }
+        }
+
+        // For nesting containers, have to redeclare for alignment purposes
+        > .container,
+        > .container-fluid {
+          flex-wrap: nowrap;
+        }
+
+        .navbar-collapse-front {
+          // ici
+          display: flex !important; // stylelint-disable-line declaration-no-important
+
+          // Changes flex-bases to auto because of an IE10 bug
+          flex-basis: auto;
+        }
+
+        .navbar-toggler {
+          display: none;
+        }
+      }
+    }
+  }
+}
 .navbar-brand {
   font-size: $font-size-sm;
   font-weight: 600;
@@ -81,7 +138,7 @@
       padding-right: 0.5rem !important;
       font-size: 1rem;
       border-radius: $navbar-nav-link-border-radius;
-      color: white!important;
+      color: white !important;
       i {
         margin-right: 0;
       }
@@ -238,7 +295,8 @@
     }
   }
 
-  .navbar-collapse {
+  .navbar-collapse-front {
+    // ici
     width: calc(100% - 1.4rem);
     position: absolute;
     top: 0;
@@ -295,23 +353,23 @@
     }
   }
 
-  .navbar-collapse.collapsing,
-  .navbar-collapse.show {
+  .navbar-collapse-front.collapsing,
+  .navbar-collapse-front.show {
     padding: 1.5rem;
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
-    animation: show-navbar-collapse 0.2s ease forwards;
+    animation: show-navbar-collapse-front 0.2s ease forwards;
   }
 
-  .navbar-collapse.collapsing-out {
-    animation: hide-navbar-collapse 0.2s ease forwards;
+  .navbar-collapse-front.collapsing-out {
+    animation: hide-navbar-collapse-front 0.2s ease forwards;
   }
 }
 
 // Keyframes
 
-@keyframes show-navbar-collapse {
+@keyframes show-navbar-collapse-front {
   0% {
     opacity: 0;
     transform: scale(0.95);
@@ -324,7 +382,7 @@
   }
 }
 
-@keyframes hide-navbar-collapse {
+@keyframes hide-navbar-collapse-front {
   from {
     opacity: 1;
     transform: scale(1);

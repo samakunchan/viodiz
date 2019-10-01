@@ -9,10 +9,19 @@ export const locale = {
       MENU: {
         START: 'Get started',
       },
-      HOME: {},
+      HOME: {
+        DASHBOARD: 'Dashboard',
+      },
     },
     BACK: {
       DASHBOARD: 'Dashboard',
+      SIDE: {
+        DASHBOARD: 'Dashboard',
+        ICON: 'Icon',
+        MAP: 'Maps',
+        LISTUSERS: 'List users',
+        TABLE: 'Table',
+      },
     },
   },
 };
