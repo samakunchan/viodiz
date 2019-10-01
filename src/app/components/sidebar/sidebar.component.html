@@ -14,7 +14,7 @@
     </button>
     <!-- Ribbon -->
     <ng-container *ngIf="forRetractedSideBar; else forExpanded">
-      <div class="ribbon-target" (click)="onToggleSideBar()">
+      <div class="ribbon-target d-none d-md-block" (click)="onToggleSideBar()">
         <span class="ribbon-inner"></span>
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -65,6 +65,10 @@
         </svg>
       </div>
     </ng-template>
+    <div class="ribbon-target-1">
+      <span class="ribbon-inner"></span>
+      <app-language-selector [position]="'bottom-left'"></app-language-selector>
+    </div>
     <!-- /Ribbon -->
 
     <!-- Brand -->
@@ -142,9 +146,11 @@
       </div>
       <!-- /Collapse header -->
       <!-- Form -->
+      <!--
       <div class="d-md-none">
         <app-language-selector [position]="'bottom-left'"></app-language-selector>
       </div>
+       -->
       <form class="mt-4 mb-3 d-md-none">
         <div class="input-group input-group-rounded input-group-merge">
           <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search" />

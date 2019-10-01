@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 10px;
+  padding: 5px 5px;
   position: absolute;
   z-index: 1;
   background-color: #36a3f7;
@@ -47,7 +47,56 @@
     }
   }
 }
-
+.ribbon-target-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  background-color: #e2e2e2;
+  color: #ffffff;
+  right: -10px;
+  cursor: pointer;
+  top: 45px;
+  height: 35px;
+  width: 35px;
+  @media screen and (max-width: 768px) {
+    position: initial;
+    padding: 0;
+    background-color: #ffffff;
+  }
+  &:hover {
+    background-color: #a2a2a2;
+    @media screen and (max-width: 425px) {
+      background-color: #ffffff;
+    }
+    .ribbon-inner {
+      &::before {
+        border-left-color: #222 !important;
+      }
+    }
+  }
+  .ribbon-inner {
+    &::before {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+      border-width: 0 0 10px 10px;
+      border-left-color: #505050 !important;
+      right: 0;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      border-style: solid;
+      border-color: transparent !important;
+      bottom: -10px;
+    }
+  }
+}
 .sidebar-retracted {
   max-width: 80px;
 }

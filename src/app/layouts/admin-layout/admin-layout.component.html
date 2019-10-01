@@ -2,7 +2,7 @@
 <app-sidebar [forRetractedSideBar]="forRetractedSideBar" (infoRetracted)="onInfoRetracted($event)"></app-sidebar>
 <div
   class="main-content"
-  [ngClass]="{'content-expanded': false, 'content-expanded': forExpandedContent === false, 'content-retracted': forExpandedContent === true}">
+  [ngClass]="{'content-expanded': false, 'content-expanded': forExpandedContent === false}">
   <!-- Top navbarfront -->
   <app-navbar></app-navbar>
   <!-- Pages -->
