@@ -1,22 +1,4 @@
-<footer class="footer" [ngClass]="{ 'has-cards': getPath() !== '/user-profile' && getPath() !== '/register' && getPath() !== '/login' }">
-  <div class="container container-lg" *ngIf="getPath() !== '/user-profile' && getPath() !== '/register' && getPath() !== '/login'">
-    <div class="row">
-      <div class="col-md-6 mb-5 mb-md-0">
-        <div class="card card-lift--hover shadow border-0">
-          <a [routerLink]="['/landing']" [title]="landingPage.alt">
-            <img [src]="landingPage.src" [alt]="landingPage.alt" class="card-img" />
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6 mb-5 mb-lg-0">
-        <div class="card card-lift--hover shadow border-0">
-          <a [routerLink]="['/user-profile']" [title]="profilePage.alt">
-            <img [src]="profilePage.src" [alt]="profilePage.alt" class="card-img" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<footer class="footer" >
   <div class="container">
     <div
       class="row row-grid align-items-center"
