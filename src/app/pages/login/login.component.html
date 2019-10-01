@@ -1,34 +1,32 @@
-<div class="header  py-7 py-lg-8">
-  <div class="container">
-    <div class="header-body text-center mb-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white" [translate]="'AUTH.TITLE'"></h1>
-          <p class="text-lead text-light" [translate]="'AUTH.TEXT'"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="separator separator-bottom separator-skew zindex-100">
-    <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-    </svg>
-  </div>
-</div>
+
 <!-- Page content -->
-<div class="container mt--8 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
+<div class="d-flex justify-content-between w-100">
+  <div class="d-none d-md-block  w-75 pt-5 bg-primary left-side" style="background: url('../assets/img/misc/bg-2.jpg') center/cover no-repeat">
+    <div>
+      <a class="p-4" [routerLink]="['/home']">
+        <img [src]="front.logo.src" [alt]="front.logo.alt" width="100"/>
+      </a>
+    </div>
+    <img class="w-100" src="../assets/img/ill/ill-2.svg" alt="ill-2.svg">
+  </div>
+  <div class="d-flex justify-content-center w-100 pt-5 bg-white right-side">
+    <div class="w-75">
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+          <div class="text-muted text-center mt-2 mb-3">
+            <small>Sign in with</small>
+          </div>
           <div class="btn-wrapper text-center">
             <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/github.svg"/></span>
-              <span class="btn-inner--text">Github</span>
+              <span class="btn-inner--icon">
+                <i class="flaticon-facebook-letter-logo"></i>
+              </span>
+              <span class="btn-inner--text">Facebook</span>
             </a>
             <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="../assets/img/icons/common/google.svg"/></span>
+              <span class="btn-inner--icon">
+                <img src="../assets/img/icons/common/google.svg" alt="google"/>
+              </span>
               <span class="btn-inner--text">Google</span>
             </a>
           </div>
@@ -41,7 +39,9 @@
             <div class="form-group mb-3">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                  <span class="input-group-text">
+                    <i class="ni ni-email-83"></i>
+                  </span>
                 </div>
                 <input class="form-control" placeholder="Email" type="email" />
               </div>
@@ -65,15 +65,20 @@
             </div>
           </form>
         </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-6">
-          <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
+        <div class="row mt-3">
+          <div class="col-6 text-center">
+            <a href="javascript:void(0)" class="text-light">
+              <small>Forgot password?</small>
+            </a>
+          </div>
+          <div class="col-6 text-center">
+            <a [routerLink]="['/auth/register']" class="text-light">
+              <small>Create new account</small>
+            </a>
+          </div>
         </div>
-        <div class="col-6 text-right">
-          <a [routerLink]="['/auth/register']" class="text-light"><small>Create new account</small></a>
-        </div>
       </div>
+
     </div>
   </div>
 </div>
