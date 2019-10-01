@@ -20,8 +20,8 @@ export const locale = {
         ICON: 'Icon',
         MAP: 'Maps',
         LISTUSERS: 'List users',
-        TABLE: 'Table'
-      }
+        TABLE: 'Table',
+      },
     },
   },
 };

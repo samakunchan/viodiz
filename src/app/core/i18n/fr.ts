@@ -20,8 +20,8 @@ export const locale = {
         ICON: 'Icônes',
         MAP: 'Carte',
         LISTUSERS: 'Listes des utilisateurs',
-        TABLE: 'Table'
-      }
+        TABLE: 'Table',
+      },
     },
   },
 };

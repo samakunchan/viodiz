@@ -19,7 +19,8 @@
     }
   }
 }
-.navbar-expand { // ici juste pour le navbar-collapse-front. N'existe pas dans ce fichier a la base
+.navbar-expand {
+  // ici juste pour le navbar-collapse-front. N'existe pas dans ce fichier a la base
   @each $breakpoint in map-keys($grid-breakpoints) {
     $next: breakpoint-next($breakpoint, $grid-breakpoints);
     $infix: breakpoint-infix($next, $grid-breakpoints);
@@ -56,7 +57,8 @@
           flex-wrap: nowrap;
         }
 
-        .navbar-collapse-front { // ici
+        .navbar-collapse-front {
+          // ici
           display: flex !important; // stylelint-disable-line declaration-no-important
 
           // Changes flex-bases to auto because of an IE10 bug
