@@ -3,10 +3,10 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
 import { NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 
 import { enLang, frLang, Role } from './core/';
-import { TranslationService } from './services/translation.service';
+import { TranslationService } from './core/services/translation.service';
 import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
-import { PermissionService } from './services/permission.service';
-import { RoleService } from './services/role.service';
+import { PermissionService } from './core/services/permission.service';
+import { RoleService } from './core/services/role.service';
 
 @Component({
   selector: 'app-root',

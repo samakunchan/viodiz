@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Permission } from '../core';
-import { NgxPermissionsService } from 'ngx-permissions';
-import { Observable, Subject } from 'rxjs';
+import { Permission } from '..';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PermissionService {
-  permissionSubject = new Subject<Permission[]>();
-
   // A remplacer par la BDD
   private permission = [
     {
