@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxPermissionsService } from 'ngx-permissions';
-import { PermissionService } from '../../../services/permission.service';
 
 @Component({
   selector: 'app-list-users',

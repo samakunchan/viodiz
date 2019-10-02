@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Role } from '../core';
+import { Observable } from 'rxjs';
+import { Role } from '..';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleService {
-  roleSubject = new Subject<Role[]>();
 
   // A remplacer par la BDD
   private role = [
