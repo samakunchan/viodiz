@@ -1,9 +1,9 @@
 // Angular
-import { Component, HostBinding, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 // RxJS
 import { filter } from 'rxjs/operators';
-import { TranslationService } from '../../../services/translation.service';
+import { TranslationService } from '../../../core/services/translation.service';
 // Translate
 
 interface LanguageFlag {
@@ -52,7 +52,7 @@ export class LanguageSelectorComponent implements OnInit {
    */
   ngOnInit() {
     this.setSelectedLanguage();
-    this.router.events.pipe(filter(event => event instanceof NavigationStart)).subscribe(event => {
+    this.router.events.pipe(filter(event => event instanceof NavigationStart)).subscribe(() => {
       this.setSelectedLanguage();
     });
   }

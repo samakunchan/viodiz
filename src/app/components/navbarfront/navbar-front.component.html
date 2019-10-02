@@ -51,7 +51,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" routerLink="/admin/dashboard">
             <i [ngStyle]="{ 'font-size': '25px' }" class="ni ni-tablet-button d-lg-none text-orange"></i>
-            <span class="nav-link-inner--text">Dashboard</span>
+            <span class="nav-link-inner--text" [translate]="'FRONT.HOME.DASHBOARD'" *ngxPermissionsOnly="['ADMIN', 'MODERATOR', 'USER']"></span>
           </a>
         </li>
       </ul>

@@ -19,7 +19,7 @@ export class NavbarFrontComponent implements OnInit {
     },
   };
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.innerWidth = window.innerWidth;
   }
   constructor(public location: Location, private router: Router) {}
@@ -54,18 +54,10 @@ export class NavbarFrontComponent implements OnInit {
   isHome() {
     const titlee = this.location.prepareExternalUrl(this.location.path());
 
-    if (titlee === '#/home') {
-      return true;
-    } else {
-      return false;
-    }
+    return titlee === '#/home';
   }
   isDocumentation() {
     const titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee === '#/documentation') {
-      return true;
-    } else {
-      return false;
-    }
+    return titlee === '#/documentation';
   }
 }
