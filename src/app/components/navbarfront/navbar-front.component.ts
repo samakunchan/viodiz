@@ -19,30 +19,24 @@ export class NavbarFrontComponent implements OnInit {
     },
   };
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     this.innerWidth = window.innerWidth;
   }
   constructor(public location: Location, private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
-      console.log(event)
       this.isCollapsed = true;
       if (event instanceof NavigationStart) {
-        console.log('NavigationStart')
         if (event.url !== this.lastPoppedUrl) {
           this.yScrollStack.push(window.scrollY);
-          console.log(this.yScrollStack)
         }
       } else if (event instanceof NavigationEnd) {
-        console.log('NavigationEnd')
         if (event.url === this.lastPoppedUrl) {
           this.lastPoppedUrl = undefined;
           window.scrollTo(0, this.yScrollStack.pop());
-          console.log(this.yScrollStack)
         } else {
           window.scrollTo(0, 0);
-          console.log('window.scrollTo(0, 0)')
         }
       }
     });
@@ -54,18 +48,10 @@ export class NavbarFrontComponent implements OnInit {
   isHome() {
     const titlee = this.location.prepareExternalUrl(this.location.path());
 
-    if (titlee === '#/home') {
-      return true;
-    } else {
-      return false;
-    }
+    return titlee === '#/home';
   }
   isDocumentation() {
     const titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee === '#/documentation') {
-      return true;
-    } else {
-      return false;
-    }
+    return titlee === '#/documentation';
   }
 }
