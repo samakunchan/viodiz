@@ -26,23 +26,17 @@ export class NavbarFrontComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.subscribe(event => {
-      console.log(event)
       this.isCollapsed = true;
       if (event instanceof NavigationStart) {
-        console.log('NavigationStart')
         if (event.url !== this.lastPoppedUrl) {
           this.yScrollStack.push(window.scrollY);
-          console.log(this.yScrollStack)
         }
       } else if (event instanceof NavigationEnd) {
-        console.log('NavigationEnd')
         if (event.url === this.lastPoppedUrl) {
           this.lastPoppedUrl = undefined;
           window.scrollTo(0, this.yScrollStack.pop());
-          console.log(this.yScrollStack)
         } else {
           window.scrollTo(0, 0);
-          console.log('window.scrollTo(0, 0)')
         }
       }
     });
@@ -51,13 +45,4 @@ export class NavbarFrontComponent implements OnInit {
     });
   }
 
-  isHome() {
-    const titlee = this.location.prepareExternalUrl(this.location.path());
-
-    return titlee === '#/home';
-  }
-  isDocumentation() {
-    const titlee = this.location.prepareExternalUrl(this.location.path());
-    return titlee === '#/documentation';
-  }
 }
