@@ -16,7 +16,8 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     // A remplacer avec le NGRX
-    const isLoggin = false;
+    const isLoggin = true;
+    console.assert(isLoggin, 'Il est connecter')
     this.ngxRolesService.roles$.subscribe(data => {
       if (!isLoggin) {
         this.router.navigate(['auth', 'login']);
