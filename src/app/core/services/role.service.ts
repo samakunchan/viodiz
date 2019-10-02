@@ -6,7 +6,6 @@ import { Role } from '..';
   providedIn: 'root',
 })
 export class RoleService {
-
   // A remplacer par la BDD
   private role = [
     {

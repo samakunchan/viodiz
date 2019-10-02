@@ -11,6 +11,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       src: './assets/img/brand/logo-viodiz-mini.png',
       alt: 'Logo',
     },
+    bg: {
+      src: '../assets/img/misc/bg-2.jpg',
+      ill: '../assets/img/ill/ill-2.svg',
+      google: '../assets/img/icons/common/google.svg'
+    }
   };
   constructor() {}
 
