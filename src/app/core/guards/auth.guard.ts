@@ -7,17 +7,15 @@ import { NgxRolesService } from 'ngx-permissions';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-
   constructor(private router: Router, private ngxRolesService: NgxRolesService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
     // A remplacer avec le NGRX
     const isLoggin = true;
-    console.assert(isLoggin, 'Il est connecter')
+    console.assert(isLoggin, 'Il est connecter');
     this.ngxRolesService.roles$.subscribe(data => {
       if (!isLoggin) {
         this.router.navigate(['auth', 'login']);

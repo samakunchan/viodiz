@@ -44,5 +44,4 @@ export class NavbarFrontComponent implements OnInit {
       this.lastPoppedUrl = ev.url;
     });
   }
-
 }
