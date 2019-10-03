@@ -16,6 +16,10 @@ import { FrontLayoutComponent } from './layouts/front-layout/front-layout.compon
 import { LoadingBarModule } from '@ngx-loading-bar/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -30,6 +34,14 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     LoadingBarModule,
     TranslateModule.forRoot(),
     NgxPermissionsModule.forRoot(),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   bootstrap: [AppComponent],
