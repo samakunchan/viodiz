@@ -1,50 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Permission } from '..';
-import { Observable } from 'rxjs';
+import { Permission, } from '..';
+import { Subject } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PermissionService {
-  // A remplacer par la BDD
-  private permission = [
-    {
-      id: 0,
-      title: 'fullAccessUserManagement',
-      level: 4,
-      name: 'User Management',
-    },
-    {
-      id: 1,
-      title: 'canDeleteUserManagement',
-      level: 3,
-      name: 'Employee accreditation',
-    },
-    {
-      id: 2,
-      title: 'canUpdateUserManagement',
-      level: 2,
-      name: 'User accreditation',
-    },
-    {
-      id: 3,
-      title: 'canReadUserManagement',
-      level: 1,
-      name: 'Guest accreditation',
-    },
-  ];
+  permissionSubject = new Subject<Permission[]>();
+  private permissions: Permission[] = [];
 
-  constructor() {}
+  constructor(private afs: AngularFirestore) {
+    this.getAllPermission();
+  }
 
-  loadPermission() {
-    return new Observable(observer => {
-      const data = this.permission.map((res: Permission) => {
-        return res.title;
+  emitPermission() {
+    this.permissionSubject.next(this.permissions);
+  }
+
+  private getAllPermission() {
+    this.afs
+      .collection<Permission>('Permissions')
+      .valueChanges()
+      .subscribe(permissions => {
+        this.permissions = permissions ? permissions : [];
+        this.emitPermission();
       });
-      observer.next(data);
-      if (data.length <= 0) {
-        observer.error('Les permissions sont manquantes');
-      }
-    });
   }
 }

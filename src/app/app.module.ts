@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -20,6 +20,9 @@ import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AppFirebaseModule } from './app-firebase.module';
+import { RoleService } from './core/services/role.service';
+import { PermissionService } from './core/services/permission.service';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -42,8 +45,9 @@ import { environment } from '../environments/environment';
       },
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AppFirebaseModule,
   ],
-  providers: [],
+  providers: [RoleService, PermissionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
