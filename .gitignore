@@ -4,6 +4,7 @@
 .firebaserc
 firebase.json
 /functions/src
+
 /src/environments/api-config.ts
 
 # compiled output
