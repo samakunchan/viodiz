@@ -1,21 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 
-import { enLang, frLang, Role } from './core/';
+import { enLang, frLang, Permission, Role } from './core/';
 import { TranslationService } from './core/services/translation.service';
 import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
 import { PermissionService } from './core/services/permission.service';
 import { RoleService } from './core/services/role.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   title = 'Viodiz';
   logo = 'assets/img/brand/logo-viodiz.png';
+  roles: Role[];
+  permissions: Permission[];
+  roleSubscription: Subscription;
+  permissionSubscription: Subscription;
 
   /**
    * App constructor
@@ -36,19 +41,26 @@ export class AppComponent {
     private permissionService: PermissionService,
     private roleService: RoleService,
   ) {
-    // On charge les permissions et le rôle utilisateur sélectionné.
-    this.permissionService.loadPermission().subscribe((perm: []) => {
-      this.ngxPermissionsService.addPermission(perm);
-    });
-
-    this.roleService.loadRole().subscribe((role: []) => {
-      role.map((res: Role) => {
-        // 'USER' à remplacer avec la valeur de la BDD
+    // Chargement des rôles
+    this.roleSubscription = this.roleService.roleSubject.subscribe((role: Role[]) => {
+      this.roles = role;
+      this.roles.map(res => {
         if (res.name === 'ADMIN') {
           return this.ngxRolesService.addRole(res.name, res.permissions);
         }
       });
     });
+    this.roleService.emitRole();
+
+    // Chargement des permssions
+    this.permissionSubscription = this.permissionService.permissionSubject.subscribe((permissions: []) => {
+      this.permissions = permissions;
+      const permTitle = this.permissions.map(res => {
+        return res.title;
+      });
+      this.ngxPermissionsService.addPermission(permTitle);
+    });
+    this.permissionService.emitPermission();
 
     // Chargement de la traduction
     this.translationService.loadTranslations(enLang, frLang);
@@ -70,5 +82,10 @@ export class AppComponent {
         this.loader.complete();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.roleSubscription.unsubscribe();
+    this.permissionSubscription.unsubscribe();
   }
 }
