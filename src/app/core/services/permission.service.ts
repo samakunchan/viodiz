@@ -12,14 +12,14 @@ export class PermissionService {
   private permissions: Permission[] = [];
 
   constructor(private afs: AngularFirestore) {
-    this.getAllPermission();
+    this.getAllPermissions();
   }
 
   emitPermission() {
     this.permissionSubject.next(this.permissions);
   }
 
-  private getAllPermission() {
+  private getAllPermissions() {
     this.afs
       .collection<Permission>('Permissions')
       .valueChanges()
