@@ -27,7 +27,7 @@ C'est le firebase CLI
     firebase login (ouvre une page pour se logger a google)
 
     firebase init  pour configurer
-    
+
     firebase deploy --only functions pour deploy les fonctions
     NB: En supprimant une fonction dans l'index, il supprime aussi dans la cloud.
 
@@ -116,10 +116,10 @@ Enter the Auto Return URL and click Save
 
     ng build --prod --aot --vendor-chunk --common-chunk --delete-output-path --buildOptimizer
     NB: Réduit considérablement la taille du dossier. Doit être accompagné d'un bon système de cache.
-    
+
     node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build --prod --...
     NB: Dans le cas ou le buid est out of memory
-    
+
 #Regler le problème de Ciruclar dependecy
 
     "architect": {
@@ -129,6 +129,6 @@ Enter the Auto Return URL and click Save
     "showCircularDependencies": false, <= Rajouter ceci au angular.json
 
 ## Technique GIT
-    
+
     Supprimer un fichier du repository afin de l'ignorer
     git rm --cached src/environments/api-config.ts
