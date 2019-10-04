@@ -26,5 +26,3 @@
 
     ng add @ngrx/router-store
 
-    A FAIRE: 1er test a faire est de connecter firebase juste pour avoir les permissions et les roles, et tester si tout fonctionne bien/
-    Ensuite on pourra connecter l'user simple

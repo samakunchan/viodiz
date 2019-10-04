@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Permission, } from '..';
+
+import { Permission } from '..';
 import { Subject } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 
