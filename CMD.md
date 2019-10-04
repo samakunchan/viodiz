@@ -127,3 +127,8 @@ Enter the Auto Return URL and click Save
     "builder": "@angular-devkit/build-angular:browser",
     "options": {
     "showCircularDependencies": false, <= Rajouter ceci au angular.json
+
+## Technique GIT
+    
+    Supprimer un fichier du repository afin de l'ignorer
+    git rm --cached src/environments/api-config.ts

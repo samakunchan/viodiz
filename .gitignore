@@ -3,7 +3,7 @@
 #Config firebase
 .firebaserc
 firebase.json
-/functions
+/functions/src
 /src/environments/api-config.ts
 
 # compiled output
