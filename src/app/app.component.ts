@@ -1,13 +1,14 @@
 import { Component, OnDestroy } from '@angular/core';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
-
-import { enLang, frLang, Permission, Role } from './core/';
+import { enLang, frLang, Permissions, Roles } from './core/';
 import { TranslationService } from './core/services/translation.service';
 import { NgxPermissionsService, NgxRolesService } from 'ngx-permissions';
-import { PermissionService } from './core/services/permission.service';
-import { RoleService } from './core/services/role.service';
-import { Subscription } from 'rxjs';
+import { PermissionsService } from './core/services/permissions.service';
+import { RolesService } from './core/services/roles.service';
+import { Observable, Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, getAllPermissions, getAllRoles } from './store';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,8 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnDestroy {
   title = 'Viodiz';
   logo = 'assets/img/brand/logo-viodiz.png';
-  roles: Role[];
-  permissions: Permission[];
+  roles$: Observable<Roles[]>;
+  permissions: Observable<Permissions[]>;
   roleSubscription: Subscription;
   permissionSubscription: Subscription;
 
@@ -29,8 +30,9 @@ export class AppComponent implements OnDestroy {
    * @param translationService: translationService
    * @param ngxPermissionsService: NgxPermissionsService
    * @param ngxRolesService: NgxRolesService
-   * @param permissionService: PermissionService
+   * @param permissionService: PermissionsService
    * @param roleService: RoleService
+   * @param store: Store
    */
   constructor(
     private loader: LoadingBarService,
@@ -38,29 +40,28 @@ export class AppComponent implements OnDestroy {
     private translationService: TranslationService,
     private ngxPermissionsService: NgxPermissionsService,
     private ngxRolesService: NgxRolesService,
-    private permissionService: PermissionService,
-    private roleService: RoleService,
+    private permissionService: PermissionsService,
+    private roleService: RolesService,
+    private store: Store<AppState>,
   ) {
-    // Chargement des rôles
-    this.roleSubscription = this.roleService.roleSubject.subscribe((role: Role[]) => {
-      this.roles = role;
-      this.roles.map(res => {
+    // Chargement des permssions avec ngrx
+    this.permissions = this.store.select(getAllPermissions);
+    this.permissionSubscription = this.permissions.subscribe(permissions => {
+      const permTitle = permissions.map(res => {
+        return res.title;
+      });
+      this.ngxPermissionsService.addPermission(permTitle);
+    });
+
+    // Chargement des rôles avec ngrx
+    this.roles$ = this.store.select(getAllRoles);
+    this.roleSubscription = this.roles$.subscribe(roles => {
+      roles.map(res => {
         if (res.name === 'ADMIN') {
           return this.ngxRolesService.addRole(res.name, res.permissions);
         }
       });
     });
-    this.roleService.emitRole();
-
-    // Chargement des permssions
-    this.permissionSubscription = this.permissionService.permissionSubject.subscribe((permissions: []) => {
-      this.permissions = permissions;
-      const permTitle = this.permissions.map(res => {
-        return res.title;
-      });
-      this.ngxPermissionsService.addPermission(permTitle);
-    });
-    this.permissionService.emitPermission();
 
     // Chargement de la traduction
     this.translationService.loadTranslations(enLang, frLang);

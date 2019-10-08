@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { NgxRolesService } from 'ngx-permissions';
 
 @Component({
   selector: 'app-navbar-front',
@@ -22,7 +23,7 @@ export class NavbarFrontComponent implements OnInit {
   onResize() {
     this.innerWidth = window.innerWidth;
   }
-  constructor(public location: Location, private router: Router) {}
+  constructor(public location: Location, private router: Router, private ngxRolesService: NgxRolesService) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
