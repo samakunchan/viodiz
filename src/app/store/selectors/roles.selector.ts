@@ -1,7 +1,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppStateRole, RolesStateEntity } from '../reducers/roles.reducer';
+import { AppState } from '../index';
+import { RolesStateEntity } from '../reducers/roles.reducer';
 
-const selectRolesState = createFeatureSelector<AppStateRole, RolesStateEntity>('roles');
+
+const selectRolesState = createFeatureSelector<AppState, RolesStateEntity>('roles');
 
 export const selectRoleLoading = createSelector(
   selectRolesState,
