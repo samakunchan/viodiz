@@ -1,4 +1,4 @@
-export class Permission {
+export class Permissions {
   id: number;
   title: string;
   level: number;
