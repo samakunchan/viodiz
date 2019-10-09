@@ -4,7 +4,7 @@ export class SocialsNetworks {
   linkedin: string;
   instagram: string;
 
-  clear?() {
+  clear() {
     this.facebook = '';
     this.twitter = '';
     this.linkedin = '';

@@ -8,23 +8,29 @@ import { AuthUser } from '../models/auth.model';
 import { Roles } from '..';
 import { Address } from '../models/auth-partials/address.model';
 import { SocialsNetworks } from '../models/auth-partials/socials-networks.model';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   user: AuthUser;
-  role: Roles;
-  address: Address;
-  socialsNetworks: SocialsNetworks;
   constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore, private router: Router) {
     this.user = new AuthUser();
     this.user.clear();
-    this.role = new Roles();
-    this.role.clear();
-    this.address = new Address();
-    this.socialsNetworks = new SocialsNetworks();
-    this.socialsNetworks.clear();
+  }
+
+  getUserByTokenFromCloud(): Observable<AuthUser> {
+    const userToken = localStorage.getItem(environment.authTokenKey);
+    return new Observable(observer => {
+      const tokenFromCloud = firebase.functions().httpsCallable('getUserWithToken');
+      tokenFromCloud({ token: userToken })
+        .then(result => {
+          return observer.next(result.data);
+        })
+        .catch(error => observer.error(error));
+    });
   }
 
   async signInWithGoogle() {
@@ -51,9 +57,9 @@ export class AuthService {
                     companyName: '',
                     phone: '',
                     website: '',
-                    addressString: JSON.stringify(this.address),
-                    socialNetworks: JSON.stringify(this.socialsNetworks),
-                    role: JSON.stringify(this.role)
+                    addressString: JSON.stringify(this.user.address),
+                    socialNetworks: JSON.stringify(this.user.socialsNetworks),
+                    role: JSON.stringify(this.user.role),
                   });
               }
             });
@@ -109,9 +115,9 @@ export class AuthService {
                     companyName: '',
                     phone: '',
                     website: '',
-                    addressString: JSON.stringify(this.address),
-                    socialNetworks: JSON.stringify(this.socialsNetworks),
-                    role: JSON.stringify(this.role)
+                    addressString: JSON.stringify(this.user.address),
+                    socialNetworks: JSON.stringify(this.user.socialsNetworks),
+                    role: JSON.stringify(this.user.role),
                   });
               }
             });

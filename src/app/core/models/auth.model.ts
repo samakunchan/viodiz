@@ -26,9 +26,11 @@ export class AuthUser {
     this.email = '';
     this.emailVerified = false;
     this.address = new Address();
+    this.address.clear();
     this.job = '';
     this.phone = '';
     this.socialsNetworks = new SocialsNetworks();
+    this.socialsNetworks.clear();
     this.website = '';
     this.role = new Roles();
   }

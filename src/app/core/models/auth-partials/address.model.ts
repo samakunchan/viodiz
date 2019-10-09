@@ -3,7 +3,7 @@ export class Address {
   city: string;
   postCode: string;
 
-  clear?() {
+  clear() {
     this.addressLine = '';
     this.city = '';
     this.postCode = '';
