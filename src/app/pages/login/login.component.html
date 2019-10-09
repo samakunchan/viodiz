@@ -1,6 +1,6 @@
 <!-- Page content -->
 <div class="d-flex justify-content-between w-100">
-  <div class="d-none d-md-block  w-75 pt-5 bg-primary left-side" [ngStyle]="{'background': 'url('+front.bg.src+') center/cover no-repeat'}">
+  <div class="d-none d-md-block  w-75 pt-5 bg-primary left-side" [ngStyle]="{ background: 'url(' + front.bg.src + ') center/cover no-repeat' }">
     <div>
       <a class="p-4" [routerLink]="['/home']">
         <img [src]="front.logo.src" [alt]="front.logo.alt" width="100" />
@@ -16,7 +16,7 @@
             <small>Sign in with</small>
           </div>
           <div class="btn-wrapper text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <a (click)="onFacebookSignIn($event)" href="javascript:void(0)" class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
                 <i class="flaticon-facebook-letter-logo"></i>
               </span>
@@ -77,7 +77,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     bg: {
       src: '../assets/img/misc/bg-2.jpg',
       ill: '../assets/img/ill/ill-2.svg',
-      google: '../assets/img/icons/common/google.svg'
-    }
+      google: '../assets/img/icons/common/google.svg',
+    },
   };
   constructor(private authService: AuthService, private store: Store<AppState>, private router: Router) {}
 
@@ -32,13 +32,25 @@ export class LoginComponent implements OnInit, OnDestroy {
   onGoogleSignIn(event) {
     event.preventDefault();
     this.loadingGoogle = true;
-    this.authService.signInWithGoogle().then(user => {
+    this.authService.signInWithGoogle()
+      .then(user => {
       if (user) {
         this.store.dispatch(new Login({ authToken: user.idToken }));
         this.router.navigate(['admin', 'dashboard']); // Main page
       }
-    });
+    }).catch(error => console.log(error));
   }
 
+  onFacebookSignIn (event) {
+    event.preventDefault();
+    this.loadingFacebook = true;
+    this.authService.signInWithFacebook()
+      .then(user => {
+        if (user) {
+          this.store.dispatch(new Login({ authToken: user.idToken }));
+          this.router.navigate(['admin', 'dashboard']); // Main page
+        }
+    }).catch(error => console.log(error));
+  }
   ngOnDestroy() {}
 }
