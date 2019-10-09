@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { AuthUser } from '../models/auth.model';
 import { Observable } from 'rxjs';
@@ -13,7 +12,7 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
   user: AuthUser;
-  constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore, private router: Router) {
+  constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore) {
     this.user = new AuthUser();
     this.user.clear();
   }
@@ -137,5 +136,9 @@ export class AuthService {
     } else {
       await this.afauth.auth.signOut();
     }
+  }
+
+  signOut() {
+    return this.afauth.auth.signOut();
   }
 }
