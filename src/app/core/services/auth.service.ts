@@ -30,7 +30,8 @@ export class AuthService {
   }
 
   signIn(email: string, password: string) {
-    return this.afauth.auth.signInWithEmailAndPassword(email, password)
+    return this.afauth.auth
+      .signInWithEmailAndPassword(email, password)
       .then(credential => {
         return this.afauth.auth.currentUser
           .getIdToken(true)
@@ -40,7 +41,8 @@ export class AuthService {
           .catch(error => {
             console.log(error);
           });
-      }).catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
   }
   async signInWithGoogle() {
     if (!this.afauth.auth.currentUser) {

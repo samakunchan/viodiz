@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +20,7 @@ export class RegisterComponent implements OnInit {
       google: '../assets/img/icons/common/google.svg',
     },
   };
-  constructor() {}
+  constructor(private authService: AuthService, private store: Store<AppState>, private router: Router, private formbuilder: FormBuilder) {}
 
   ngOnInit() {}
 }
