@@ -3,7 +3,6 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../store';
 import { Router } from '@angular/router';
-import { Login } from '../../../store/actions/auth.actions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,8 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./password.component.scss'],
 })
 export class PasswordComponent implements OnInit {
-  loadingGoogle = false;
-  loadingFacebook = false;
   pwfForm: FormGroup;
   public front = {
     logo: {
@@ -34,34 +31,6 @@ export class PasswordComponent implements OnInit {
 
   initForm() {
     this.pwfForm = this.formBuilder.group({ email: ['', [Validators.email, Validators.required]] });
-  }
-
-  onGoogleSignIn(event) {
-    event.preventDefault();
-    this.loadingGoogle = true;
-    this.authService
-      .signInWithGoogle()
-      .then(user => {
-        if (user) {
-          this.store.dispatch(new Login({ authToken: user.idToken }));
-          this.router.navigate(['admin', 'dashboard']);
-        }
-      })
-      .catch(error => console.log(error));
-  }
-
-  onFacebookSignIn(event) {
-    event.preventDefault();
-    this.loadingFacebook = true;
-    this.authService
-      .signInWithFacebook()
-      .then(user => {
-        if (user) {
-          this.store.dispatch(new Login({ authToken: user.idToken }));
-          this.router.navigate(['admin', 'dashboard']);
-        }
-      })
-      .catch(error => console.log(error));
   }
 
   onPasswordForgot() {

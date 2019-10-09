@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from '../../store/effects/auth.effects';
 import { PasswordComponent } from '../../pages/auth/password/password.component';
+import { SocialsSigninComponent } from '../../pages/auth/partials/socials-signin/socials-signin.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +19,6 @@ import { PasswordComponent } from '../../pages/auth/password/password.component'
     TranslateModule,
     EffectsModule.forFeature([AuthEffects]),
   ],
-  declarations: [LoginComponent, RegisterComponent, PasswordComponent],
+  declarations: [LoginComponent, RegisterComponent, PasswordComponent, SocialsSigninComponent],
 })
 export class AuthLayoutModule {}
