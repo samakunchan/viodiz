@@ -1,18 +1,18 @@
 import { Action } from '@ngrx/store';
+import { AuthUser } from '../../core/models/auth.model';
 
 export enum AuthActionTypes {
   Login = '[Login] Action',
   Logout = '[Logout] Action',
   Register = '[Register] Action',
-  UserRequested = '[Request User] Action',
-  UserLoaded = '[Load User] Auth API',
-  CurrentUserUpdatePhoto = '[Update current user photo] Auth API',
-  CurrentUserUpdateAddInfos = '[Update current user additionnal information] Auth API',
+  AuthUserRequested = '[Request User] Action',
+  AuthUserLoaded = '[Load User] Auth API Firebase',
+  CurrentUserUpdatePhoto = '[Update current user photo] Auth API Firebase',
+  CurrentUserUpdateAddInfos = '[Update current user additionnal information] Auth API Firebase',
 }
 
 export class Login implements Action {
   readonly type = AuthActionTypes.Login;
-  // Etape 3 de l'initialisation de l'app. Ensuite => auth.reducer.ts ligne 22
   constructor(public payload: { authToken: string }) {}
 }
 
@@ -25,22 +25,22 @@ export class Register implements Action {
   constructor(public payload: { authToken: string }) {}
 }
 
-export class UserRequested implements Action {
-  readonly type = AuthActionTypes.UserRequested;
+export class AuthUserRequested implements Action {
+  readonly type = AuthActionTypes.AuthUserRequested;
 }
 
-export class UserLoaded implements Action {
-  readonly type = AuthActionTypes.UserLoaded;
-  constructor(public payload: { user }) {} // rajouter le type User
+export class AuthUserLoaded implements Action {
+  readonly type = AuthActionTypes.AuthUserLoaded;
+  constructor(public payload: { user: AuthUser }) {}
 }
 
 export class CurrentUserUpdatePhoto implements Action {
   readonly type = AuthActionTypes.CurrentUserUpdatePhoto;
-  constructor(public payload: { user }) {} // rajouter le type User
+  constructor(public payload: { user: AuthUser }) {}
 }
 
 export class CurrentUserUpdateAddInfos {
   readonly type = AuthActionTypes.CurrentUserUpdateAddInfos;
-  constructor(public payload: { user }) {} // rajouter le type User
+  constructor(public payload: { user: AuthUser }) {}
 }
-export type AuthActions = Login | Logout | Register | UserRequested | UserLoaded | CurrentUserUpdatePhoto | CurrentUserUpdateAddInfos;
+export type AuthActions = Login | Logout | Register | AuthUserRequested | AuthUserLoaded | CurrentUserUpdatePhoto | CurrentUserUpdateAddInfos;

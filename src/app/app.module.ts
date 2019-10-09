@@ -20,9 +20,11 @@ import { AppFirebaseModule } from './app-firebase.module';
 import { RolesService } from './core/services/roles.service';
 import { PermissionsService } from './core/services/permissions.service';
 import { EffectsModule } from '@ngrx/effects';
-import { permissionsReducer, rolesReducer } from './store';
+import { authReducer, permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -38,11 +40,12 @@ import { PermissionsEffects } from './store/effects/permissions.effects';
     TranslateModule.forRoot(),
     EffectsModule.forRoot([RolesEffects, PermissionsEffects]),
     NgxPermissionsModule.forRoot(),
-    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer }),
+    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer, authUser: authReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
     AppFirebaseModule,
+    AngularFireStorageModule
   ],
   providers: [RolesService, PermissionsService],
   bootstrap: [AppComponent],

@@ -1,6 +1,6 @@
 export class Roles {
   name: string;
-  permissions: [];
+  permissions: string[];
 
   clear?(): void {
     this.name = '';
