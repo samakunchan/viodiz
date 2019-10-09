@@ -16,7 +16,13 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location, private element: ElementRef, private router: Router, private authService: AuthService, private store: Store<AppState>) {
+  constructor(
+    location: Location,
+    private element: ElementRef,
+    private router: Router,
+    private authService: AuthService,
+    private store: Store<AppState>,
+  ) {
     this.location = location;
   }
 
@@ -42,8 +48,11 @@ export class NavbarComponent implements OnInit {
 
   onSignOut(event) {
     event.preventDefault();
-    return this.authService.signOut().then(() => {
-      this.store.dispatch(new Logout());
-    }).catch(error => console.log(error));
+    return this.authService
+      .signOut()
+      .then(() => {
+        this.store.dispatch(new Logout());
+      })
+      .catch(error => console.log(error));
   }
 }
