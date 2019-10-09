@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -23,7 +22,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { authReducer, permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
-import { AuthEffects } from './store/effects/auth.effects';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
@@ -45,7 +43,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
       maxAge: 25, // Retains last 25 states
     }),
     AppFirebaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [RolesService, PermissionsService],
   bootstrap: [AppComponent],

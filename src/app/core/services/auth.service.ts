@@ -5,9 +5,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { AuthUser } from '../models/auth.model';
-import { Roles } from '..';
-import { Address } from '../models/auth-partials/address.model';
-import { SocialsNetworks } from '../models/auth-partials/socials-networks.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -76,9 +73,6 @@ export class AuthService {
         })
         .catch(error => {
           const errorCode = error.code;
-          const errorMessage = error.message;
-          const email = error.email;
-          const credential = error.credential;
           if (errorCode === 'auth/account-exists-with-different-credential') {
             alert('You have already signed up with a different auth provider for that email.');
           } else {
@@ -91,7 +85,6 @@ export class AuthService {
   }
 
   async signInWithFacebook() {
-    // Mettre en observable
     if (!this.afauth.auth.currentUser) {
       const provider = new firebase.auth.FacebookAuthProvider();
 
@@ -135,9 +128,6 @@ export class AuthService {
         })
         .catch(error => {
           const errorCode = error.code;
-          const errorMessage = error.message;
-          const email = error.email;
-          const credential = error.credential;
           if (errorCode === 'auth/account-exists-with-different-credential') {
             alert('You have already signed up with a different auth provider for that email.');
           } else {
