@@ -24,6 +24,7 @@ import { permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
 
+
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
   imports: [

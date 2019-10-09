@@ -1,9 +1,9 @@
 export class Roles {
   name: string;
-  permissions: string[];
+  permissions: [];
 
   clear?(): void {
     this.name = '';
-    this.permissions = [''];
+    this.permissions = [];
   }
 }
