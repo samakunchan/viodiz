@@ -8,10 +8,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-socials-signin',
   templateUrl: './socials-signin.component.html',
-  styleUrls: ['./socials-signin.component.scss']
+  styleUrls: ['./socials-signin.component.scss'],
 })
 export class SocialsSigninComponent implements OnInit {
-
   loadingGoogle = false;
   loadingFacebook = false;
   public front = {
@@ -21,8 +20,7 @@ export class SocialsSigninComponent implements OnInit {
   };
   constructor(private authService: AuthService, private store: Store<AppState>, private router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onGoogleSignIn(event) {
     event.preventDefault();
@@ -51,5 +49,4 @@ export class SocialsSigninComponent implements OnInit {
       })
       .catch(error => console.log(error));
   }
-
 }

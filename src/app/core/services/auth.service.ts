@@ -12,9 +12,11 @@ import { environment } from '../../../environments/environment';
 })
 export class AuthService {
   user: AuthUser;
+  private defaultRole: string;
   constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore) {
     this.user = new AuthUser();
     this.user.clear();
+    this.defaultRole = 'USER';
   }
 
   getUserByTokenFromCloud(): Observable<AuthUser> {
@@ -155,6 +157,43 @@ export class AuthService {
     return this.afauth.auth.signOut();
   }
 
+  register(user: AuthUser): Promise<any> {
+    return this.afauth.auth
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(result => {
+        // Update immédiat du profil pour le displayName
+        this.afauth.auth.currentUser.updateProfile({ displayName: user.displayName });
+
+        // Ajout du User dans la collection Users pour les informations additionnels.
+        this.db
+          .collection<AuthUser>('Users')
+          .doc(result.user.uid)
+          .set({
+            firstname: '',
+            lastname: '',
+            occupation: '',
+            companyName: '',
+            phone: '',
+            website: '',
+            addressString: JSON.stringify(this.user.address),
+            socialNetworks: JSON.stringify(this.user.socialsNetworks),
+            role: this.defaultRole,
+          });
+
+        // Création du token pour le cloud function afin de gérer la reconnextion.
+        return this.afauth.auth.currentUser
+          .getIdToken(true)
+          .then(() => {
+            return { data: result.user };
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   passwordForgot(email: string) {
     return this.afauth.auth.sendPasswordResetEmail(email);
   }
