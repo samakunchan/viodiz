@@ -29,6 +29,19 @@ export class AuthService {
     });
   }
 
+  signIn(email: string, password: string) {
+    return this.afauth.auth.signInWithEmailAndPassword(email, password)
+      .then(credential => {
+        return this.afauth.auth.currentUser
+          .getIdToken(true)
+          .then(idToken => {
+            return { data: credential.user, idToken };
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }).catch(error => console.log(error));
+  }
   async signInWithGoogle() {
     if (!this.afauth.auth.currentUser) {
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -82,7 +95,6 @@ export class AuthService {
       await this.afauth.auth.signOut();
     }
   }
-
   async signInWithFacebook() {
     if (!this.afauth.auth.currentUser) {
       const provider = new firebase.auth.FacebookAuthProvider();
@@ -137,11 +149,11 @@ export class AuthService {
       await this.afauth.auth.signOut();
     }
   }
+  signOut() {
+    return this.afauth.auth.signOut();
+  }
 
   passwordForgot(email: string) {
     return this.afauth.auth.sendPasswordResetEmail(email);
-  }
-  signOut() {
-    return this.afauth.auth.signOut();
   }
 }

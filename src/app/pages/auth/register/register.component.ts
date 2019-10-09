@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   public front = {
@@ -12,12 +12,10 @@ export class RegisterComponent implements OnInit {
       alt: 'Logo',
     },
     bg: {
-      google: '../assets/img/icons/common/google.svg'
-    }
+      google: '../assets/img/icons/common/google.svg',
+    },
   };
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

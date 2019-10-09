@@ -9,9 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+  styleUrls: ['./password.component.scss'],
 })
-export class PasswordComponent implements OnInit{
+export class PasswordComponent implements OnInit {
   loadingGoogle = false;
   loadingFacebook = false;
   pwfForm: FormGroup;
@@ -33,7 +33,7 @@ export class PasswordComponent implements OnInit{
   }
 
   initForm() {
-    this.pwfForm = this.formBuilder.group({email: ['', [Validators.email, Validators.required]]});
+    this.pwfForm = this.formBuilder.group({ email: ['', [Validators.email, Validators.required]] });
   }
 
   onGoogleSignIn(event) {
@@ -44,7 +44,7 @@ export class PasswordComponent implements OnInit{
       .then(user => {
         if (user) {
           this.store.dispatch(new Login({ authToken: user.idToken }));
-          this.router.navigate(['admin', 'dashboard']); // Main page
+          this.router.navigate(['admin', 'dashboard']);
         }
       })
       .catch(error => console.log(error));
@@ -58,25 +58,26 @@ export class PasswordComponent implements OnInit{
       .then(user => {
         if (user) {
           this.store.dispatch(new Login({ authToken: user.idToken }));
-          this.router.navigate(['admin', 'dashboard']); // Main page
+          this.router.navigate(['admin', 'dashboard']);
         }
       })
       .catch(error => console.log(error));
   }
 
   onPasswordForgot() {
-    return this.authService.passwordForgot(this.pwfForm.value['email'])
-      .then(res => {
-      alert('Votre compte a été mis à jour avec succès.');
-    }).catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === 'auth/invalid-email') {
-        alert(errorMessage);
-      } else if (errorCode === 'auth/user-not-found') {
-        alert(errorMessage);
-      }
-    });
+    return this.authService
+      .passwordForgot(this.pwfForm.value['email'])
+      .then(() => {
+        alert('Votre compte a été mis à jour avec succès.');
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        if (errorCode === 'auth/invalid-email') {
+          alert(errorMessage);
+        } else if (errorCode === 'auth/user-not-found') {
+          alert(errorMessage);
+        }
+      });
   }
-
 }
