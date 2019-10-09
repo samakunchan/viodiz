@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { AuthActionTypes, AuthUserRequested, Login, Logout } from '../actions/auth.actions';
+import { AuthActionTypes, AuthUserRequested, Login, Logout, Register } from '../actions/auth.actions';
 import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AppState, currentUser } from '../index';
@@ -27,7 +27,13 @@ export class AuthEffects implements OnInitEffects {
       this.router.navigate(['auth', 'login']);
     }),
   );
-
+  @Effect({ dispatch: false })
+  register$ = this.actions$.pipe(
+    ofType<Register>(AuthActionTypes.Register),
+    tap(action => {
+      localStorage.setItem(environment.authTokenKey, action.payload.authToken);
+    }),
+  );
   authUserRequest$ = this.actions$.pipe(
     ofType<AuthUserRequested>(AuthActionTypes.AuthUserRequested),
     withLatestFrom(this.store.select(currentUser)),

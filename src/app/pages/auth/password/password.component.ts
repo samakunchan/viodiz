@@ -38,6 +38,7 @@ export class PasswordComponent implements OnInit {
       .passwordForgot(this.pwfForm.value['email'])
       .then(() => {
         alert('Votre compte a été mis à jour avec succès.');
+        this.router.navigate(['auth', 'login']);
       })
       .catch(error => {
         const errorCode = error.code;

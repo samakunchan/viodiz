@@ -1,6 +1,5 @@
 import { Address } from './auth-partials/address.model';
 import { SocialsNetworks } from './auth-partials/socials-networks.model';
-import { Roles } from './roles.model';
 
 export class AuthUser {
   uid: number;
@@ -9,13 +8,14 @@ export class AuthUser {
   lastname: string;
   photoUrl: string;
   email: string;
+  password: string;
   emailVerified: boolean;
   address: Address;
   job: string;
   phone: string;
   socialsNetworks: SocialsNetworks;
   website: string;
-  role: Roles;
+  role: string;
 
   clear() {
     this.uid = undefined;
@@ -24,6 +24,7 @@ export class AuthUser {
     this.lastname = '';
     this.photoUrl = '';
     this.email = '';
+    this.password = '';
     this.emailVerified = false;
     this.address = new Address();
     this.address.clear();
@@ -32,6 +33,6 @@ export class AuthUser {
     this.socialsNetworks = new SocialsNetworks();
     this.socialsNetworks.clear();
     this.website = '';
-    this.role = new Roles();
+    this.role = '';
   }
 }
