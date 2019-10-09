@@ -138,6 +138,9 @@ export class AuthService {
     }
   }
 
+  passwordForgot(email: string) {
+    return this.afauth.auth.sendPasswordResetEmail(email);
+  }
   signOut() {
     return this.afauth.auth.signOut();
   }

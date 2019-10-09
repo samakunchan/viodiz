@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../../core/services/auth.service';
-import { Login } from '../../store/actions/auth.actions';
+import { AuthService } from '../../../core/services/auth.service';
+import { Login } from '../../../store/actions/auth.actions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store';
+import { AppState } from '../../../store';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent {
   loading = false;
   loadingGoogle = false;
   loadingFacebook = false;
@@ -27,30 +27,35 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
   constructor(private authService: AuthService, private store: Store<AppState>, private router: Router) {}
 
-  ngOnInit() {}
-
   onGoogleSignIn(event) {
     event.preventDefault();
     this.loadingGoogle = true;
-    this.authService.signInWithGoogle()
-      .then(user => {
-      if (user) {
-        this.store.dispatch(new Login({ authToken: user.idToken }));
-        this.router.navigate(['admin', 'dashboard']); // Main page
-      }
-    }).catch(error => console.log(error));
-  }
-
-  onFacebookSignIn (event) {
-    event.preventDefault();
-    this.loadingFacebook = true;
-    this.authService.signInWithFacebook()
+    this.authService
+      .signInWithGoogle()
       .then(user => {
         if (user) {
           this.store.dispatch(new Login({ authToken: user.idToken }));
           this.router.navigate(['admin', 'dashboard']); // Main page
         }
-    }).catch(error => console.log(error));
+      })
+      .catch(error => console.log(error));
   }
-  ngOnDestroy() {}
+
+  onFacebookSignIn(event) {
+    event.preventDefault();
+    this.loadingFacebook = true;
+    this.authService
+      .signInWithFacebook()
+      .then(user => {
+        if (user) {
+          this.store.dispatch(new Login({ authToken: user.idToken }));
+          this.router.navigate(['admin', 'dashboard']); // Main page
+        }
+      })
+      .catch(error => console.log(error));
+  }
+
+  onPasswordForgot(event) {
+    event.preventDefault();
+  }
 }
