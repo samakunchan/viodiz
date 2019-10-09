@@ -10,20 +10,14 @@ import { Address } from '../models/auth-partials/address.model';
 import { SocialsNetworks } from '../models/auth-partials/socials-networks.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   user: AuthUser;
   role: Roles;
   address: Address;
   socialsNetworks: SocialsNetworks;
-  constructor(
-    private afauth: AngularFireAuth,
-    private afstorage: AngularFireStorage,
-    private db: AngularFirestore,
-    private router: Router,
-  ) {
+  constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore, private router: Router) {
     this.user = new AuthUser();
     this.user.clear();
     this.role = new Roles();
@@ -59,6 +53,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.address),
                     socialNetworks: JSON.stringify(this.socialsNetworks),
+                    role: JSON.stringify(this.role)
                   });
               }
             });
@@ -116,6 +111,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.address),
                     socialNetworks: JSON.stringify(this.socialsNetworks),
+                    role: JSON.stringify(this.role)
                   });
               }
             });
