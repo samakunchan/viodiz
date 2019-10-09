@@ -22,13 +22,17 @@ export class AuthEffects implements OnInitEffects {
     ofType<AuthUserRequested>(AuthActionTypes.AuthUserRequested),
     withLatestFrom(this.store.select(currentUser)),
     filter(([_, loaded]) => !loaded),
-    switchMap(() => this.authService.getUserByTokenFromCloud().pipe(map(authUser => {
-      if (authUser) {
-        console.log(authUser);
-      } else {
-        this.store.dispatch(new Logout());
-      }
-    })))
+    switchMap(() =>
+      this.authService.getUserByTokenFromCloud().pipe(
+        map(authUser => {
+          if (authUser) {
+            console.log(authUser);
+          } else {
+            this.store.dispatch(new Logout());
+          }
+        }),
+      ),
+    ),
   );
   constructor(private actions$: Actions, private store: Store<AppState>, private authService: AuthService) {}
 
