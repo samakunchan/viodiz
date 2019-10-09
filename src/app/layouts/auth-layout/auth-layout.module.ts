@@ -10,7 +10,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from '../../store/effects/auth.effects';
 import { PasswordComponent } from '../../pages/auth/password/password.component';
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(AuthLayoutRoutes), FormsModule, TranslateModule, EffectsModule.forFeature([AuthEffects])],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(AuthLayoutRoutes),
+    FormsModule,
+    TranslateModule,
+    EffectsModule.forFeature([AuthEffects]),
+  ],
   declarations: [LoginComponent, RegisterComponent, PasswordComponent],
 })
 export class AuthLayoutModule {}
