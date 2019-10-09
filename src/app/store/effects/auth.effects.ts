@@ -6,6 +6,7 @@ import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AppState, currentUser } from '../index';
 import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects implements OnInitEffects {
@@ -15,6 +16,15 @@ export class AuthEffects implements OnInitEffects {
     tap(action => {
       localStorage.setItem(environment.authTokenKey, action.payload.authToken);
       this.store.dispatch(new AuthUserRequested());
+    }),
+  );
+  @Effect({ dispatch: false })
+  logout$ = this.actions$.pipe(
+    ofType<Logout>(AuthActionTypes.Logout),
+    tap(() => {
+      localStorage.removeItem(environment.authTokenKey);
+      this.authService.signOut();
+      this.router.navigate(['auth', 'login']);
     }),
   );
 
@@ -34,7 +44,7 @@ export class AuthEffects implements OnInitEffects {
       ),
     ),
   );
-  constructor(private actions$: Actions, private store: Store<AppState>, private authService: AuthService) {}
+  constructor(private actions$: Actions, private store: Store<AppState>, private authService: AuthService, private router: Router) {}
 
   ngrxOnInitEffects(): Action {
     const userToken = localStorage.getItem(environment.authTokenKey);
