@@ -4,6 +4,6 @@ export class Roles {
 
   clear?(): void {
     this.name = '';
-    this.permissions = [''];
+    this.permissions = [];
   }
 }

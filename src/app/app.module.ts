@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
@@ -20,9 +19,10 @@ import { AppFirebaseModule } from './app-firebase.module';
 import { RolesService } from './core/services/roles.service';
 import { PermissionsService } from './core/services/permissions.service';
 import { EffectsModule } from '@ngrx/effects';
-import { permissionsReducer, rolesReducer } from './store';
+import { authReducer, permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -38,11 +38,12 @@ import { PermissionsEffects } from './store/effects/permissions.effects';
     TranslateModule.forRoot(),
     EffectsModule.forRoot([RolesEffects, PermissionsEffects]),
     NgxPermissionsModule.forRoot(),
-    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer }),
+    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer, authUser: authReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
     AppFirebaseModule,
+    AngularFireStorageModule,
   ],
   providers: [RolesService, PermissionsService],
   bootstrap: [AppComponent],
