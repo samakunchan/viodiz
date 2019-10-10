@@ -1,9 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
-import { NgxRolesService } from 'ngx-permissions';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../store';
+import { AppState, currentUser } from '../../store';
+import { Observable } from 'rxjs';
+import { AuthUser } from '../../core/models/auth.model';
 
 @Component({
   selector: 'app-navbar-front',
@@ -21,6 +22,7 @@ export class NavbarFrontComponent implements OnInit {
       alt: 'Logo',
     },
   };
+  public user$: Observable<AuthUser>;
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.innerWidth = window.innerWidth;
@@ -28,6 +30,7 @@ export class NavbarFrontComponent implements OnInit {
   constructor(public location: Location, private router: Router, private store: Store<AppState>) {}
 
   ngOnInit() {
+    this.user$ = this.store.select(currentUser);
     this.router.events.subscribe(event => {
       this.isCollapsed = true;
       if (event instanceof NavigationStart) {

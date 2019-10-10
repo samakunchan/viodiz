@@ -48,12 +48,6 @@
             <span class="nav-link-inner--text">Examples</span>
           </a>
         </li>
-        <li class="nav-item dropdown" *ngxPermissionsOnly="['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER']">
-          <a class="nav-link no-caret" routerLink="/admin/dashboard">
-            <i [ngStyle]="{ 'font-size': '25px' }" class="ni ni-tablet-button d-lg-none text-orange"></i>
-            <span class="nav-link-inner--text" [translate]="'FRONT.HOME.DASHBOARD'"></span>
-          </a>
-        </li>
       </ul>
     </div>
     <ul class="navbar-nav flex-direction-initial align-items-lg-center ml-lg-auto">
@@ -96,12 +90,22 @@
       <app-language-selector [position]="'bottom-left'"></app-language-selector>
     </div>
     <div class="nav-item d-none d-lg-block ml-lg-4">
-      <a [routerLink]="['/auth']" class="btn btn-neutral btn-icon">
+      <ng-container *ngIf="user$ | async; else noUserConnected">
+        <a [routerLink]="['/admin/dashboard']" class="btn btn-neutral btn-icon" *ngxPermissionsOnly="['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER']">
+        <span class="btn-inner--icon">
+          <i class="flaticon-dashboard mr-2"></i>
+        </span>
+          <span class="nav-link-inner--text" [translate]="'FRONT.HOME.DASHBOARD'"></span>
+        </a>
+      </ng-container>
+      <ng-template #noUserConnected>
+        <a [routerLink]="['/auth']" class="btn btn-neutral btn-icon">
         <span class="btn-inner--icon">
           <i class="flaticon-logout mr-2"></i>
         </span>
-        <span class="nav-link-inner--text" [translate]="'FRONT.MENU.START'"></span>
-      </a>
+          <span class="nav-link-inner--text" [translate]="'FRONT.MENU.START'"></span>
+        </a>
+      </ng-template>
     </div>
     <button
       class="navbar-toggler"
