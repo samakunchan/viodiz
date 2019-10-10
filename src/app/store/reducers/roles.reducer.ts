@@ -14,7 +14,7 @@ export const initialRolesState: RolesStateEntity = {
   rolesLoaded: false,
   rolesLoading: false,
   data: null,
-  roleSelected: undefined
+  roleSelected: undefined,
 };
 
 export function rolesReducer(state = initialRolesState, action: RolesActions): RolesStateEntity {
