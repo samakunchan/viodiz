@@ -6,8 +6,6 @@ import { AuthLayoutRoutes } from './auth-layout.routing';
 import { LoginComponent } from '../../pages/auth/login/login.component';
 import { RegisterComponent } from '../../pages/auth/register/register.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from '../../store/effects/auth.effects';
 import { PasswordComponent } from '../../pages/auth/password/password.component';
 import { SocialsSigninComponent } from '../../pages/auth/partials/socials-signin/socials-signin.component';
 @NgModule({
@@ -17,7 +15,6 @@ import { SocialsSigninComponent } from '../../pages/auth/partials/socials-signin
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
     TranslateModule,
-    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [LoginComponent, RegisterComponent, PasswordComponent, SocialsSigninComponent],
 })
