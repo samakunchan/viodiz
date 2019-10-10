@@ -9,13 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PasswordComponent } from '../../pages/auth/password/password.component';
 import { SocialsSigninComponent } from '../../pages/auth/partials/socials-signin/socials-signin.component';
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(AuthLayoutRoutes),
-    FormsModule,
-    TranslateModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(AuthLayoutRoutes), FormsModule, TranslateModule],
   declarations: [LoginComponent, RegisterComponent, PasswordComponent, SocialsSigninComponent],
 })
 export class AuthLayoutModule {}

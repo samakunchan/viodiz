@@ -53,11 +53,17 @@ export class AuthEffects implements OnInitEffects {
           } else {
             this.store.dispatch(new Logout());
           }
-        })
+        }),
       ),
     ),
   );
-  constructor(private actions$: Actions, private store: Store<AppState>, private authService: AuthService, private router: Router, private ngxRolesService: NgxRolesService) {}
+  constructor(
+    private actions$: Actions,
+    private store: Store<AppState>,
+    private authService: AuthService,
+    private router: Router,
+    private ngxRolesService: NgxRolesService,
+  ) {}
 
   ngrxOnInitEffects(): Action {
     const userToken = localStorage.getItem(environment.authTokenKey);

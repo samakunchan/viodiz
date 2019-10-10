@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { NavigationCancel, NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
 import { enLang, frLang } from './core/';
@@ -19,11 +19,7 @@ export class AppComponent {
    * @param router: Router
    * @param translationService: translationService
    */
-  constructor(
-    private loader: LoadingBarService,
-    private router: Router,
-    private translationService: TranslationService,
-  ) {
+  constructor(private loader: LoadingBarService, private router: Router, private translationService: TranslationService) {
     // Chargement de la traduction
     this.translationService.loadTranslations(enLang, frLang);
 
@@ -45,5 +41,4 @@ export class AppComponent {
       }
     });
   }
-
 }

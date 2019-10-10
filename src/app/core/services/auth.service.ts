@@ -72,7 +72,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
-                    role: this.defaultRole
+                    role: this.defaultRole,
                   });
               }
             });
@@ -125,7 +125,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
-                    role: this.defaultRole
+                    role: this.defaultRole,
                   });
               }
             });
@@ -177,7 +177,7 @@ export class AuthService {
             website: '',
             addressString: JSON.stringify(this.user.address),
             socialNetworks: JSON.stringify(this.user.socialsNetworks),
-            role: this.defaultRole
+            role: this.defaultRole,
           });
 
         // Création du token pour le cloud function afin de gérer la reconnextion.
