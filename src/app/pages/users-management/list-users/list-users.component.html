@@ -1,9 +1,9 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
   <h2>Users List</h2>
-  <div *ngxPermissionsOnly="['ADMIN']">
+  <div *ngxPermissionsOnly="['CONSTRUCTOR', 'ADMIN']">
     <div class="text-white">Bravo, vous avez un accès lvl 4: accessUserManagement. Vous êtes au maximum un Admin</div>
   </div>
-  <div *ngxPermissionsOnly="['ADMIN', 'MODERATOR']">
+  <div *ngxPermissionsOnly="['CONSTRUCTOR', 'ADMIN', 'MODERATOR']">
     <div class="text-white">
       Bravo, vous avez un accès lvl 4 et 3: accessUserManagement, canReadUserManagement. Vous êtes au maximum un Modérateur
     </div>

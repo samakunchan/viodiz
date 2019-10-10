@@ -2,7 +2,7 @@ import { Address } from './auth-partials/address.model';
 import { SocialsNetworks } from './auth-partials/socials-networks.model';
 
 export class AuthUser {
-  uid: number;
+  uid: string;
   displayName: string;
   firstname: string;
   lastname: string;
@@ -12,6 +12,7 @@ export class AuthUser {
   emailVerified: boolean;
   address: Address;
   job: string;
+  companyName: string;
   phone: string;
   socialsNetworks: SocialsNetworks;
   website: string;
@@ -29,6 +30,7 @@ export class AuthUser {
     this.address = new Address();
     this.address.clear();
     this.job = '';
+    this.companyName = '';
     this.phone = '';
     this.socialsNetworks = new SocialsNetworks();
     this.socialsNetworks.clear();

@@ -23,6 +23,7 @@ import { authReducer, permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AuthEffects } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -36,7 +37,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AppRoutingModule,
     LoadingBarModule,
     TranslateModule.forRoot(),
-    EffectsModule.forRoot([RolesEffects, PermissionsEffects]),
+    EffectsModule.forRoot([RolesEffects, PermissionsEffects, AuthEffects]),
     NgxPermissionsModule.forRoot(),
     StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer, authUser: authReducer }),
     StoreDevtoolsModule.instrument({

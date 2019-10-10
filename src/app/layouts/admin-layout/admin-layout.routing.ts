@@ -17,7 +17,7 @@ export const AdminLayoutRoutes: Routes = [
     canActivate: [NgxPermissionsGuard],
     data: {
       permissions: {
-        only: ['ADMIN', 'MODERATOR'],
+        only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
         except: ['GUEST'],
         redirectTo: 'admin/dashboard',
       },
@@ -31,7 +31,7 @@ export const AdminLayoutRoutes: Routes = [
     canActivate: [NgxPermissionsGuard],
     data: {
       permissions: {
-        only: ['ADMIN'],
+        only: ['CONSTRUCTOR', 'ADMIN'],
         except: ['GUEST'],
         redirectTo: 'admin/dashboard',
       },

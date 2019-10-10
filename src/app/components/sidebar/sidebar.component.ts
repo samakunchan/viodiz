@@ -6,42 +6,42 @@ declare interface RouteInfo {
   title: string;
   icon: string;
   class: string;
-  permissionOnly: [string?, string?, string?, string?];
+  permissionOnly: string[];
 }
 export const ROUTES: RouteInfo[] = [
   {
     path: 'dashboard',
     title: 'BACK.SIDE.DASHBOARD',
     icon: 'ni-tv-2 text-primary',
-    permissionOnly: ['ADMIN', 'MODERATOR', 'USER', 'GUEST'],
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER', 'GUEST'],
     class: '',
   },
   {
     path: 'icons',
     title: 'BACK.SIDE.ICON',
     icon: 'ni-planet text-blue',
-    permissionOnly: ['ADMIN', 'MODERATOR', 'USER'],
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER'],
     class: '',
   },
   {
     path: 'maps',
     title: 'BACK.SIDE.MAP',
     icon: 'ni-pin-3 text-orange',
-    permissionOnly: ['ADMIN', 'MODERATOR', 'USER', 'GUEST'],
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER', 'GUEST'],
     class: '',
   },
   {
     path: 'users-management/list-users',
     title: 'BACK.SIDE.LISTUSERS',
     icon: 'ni-single-02 text-info',
-    permissionOnly: ['ADMIN', 'MODERATOR'],
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
     class: '',
   },
   {
     path: 'tables',
     title: 'BACK.SIDE.TABLE',
     icon: 'ni-bullet-list-67 text-red',
-    permissionOnly: ['ADMIN', 'MODERATOR'],
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
     class: '',
   },
 ];
