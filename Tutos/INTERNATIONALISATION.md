@@ -66,10 +66,10 @@ NB sur les modules:
 
 Créer un service Translation qui utilise le service Translate de ngx. On y créé des méthodes utiles pour plus tard.
 
-# /services/tranlation.service.ts
+    #/services/tranlation.service.ts
 
-import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+    import { Injectable } from '@angular/core';
+    import { TranslateService } from '@ngx-translate/core';
 
     export interface Locale {
       lang: string;

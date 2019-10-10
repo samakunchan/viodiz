@@ -1,10 +1,11 @@
-#Configuration
-##Menu
+# Configuration
+
+## Menu
 
 - Installation: [Installation](https://github.com/samakunchan/viodiz/tree/master/Tutos/Ngrx/1PREREQUIS.md)
 - Configuration: [Configuration](https://github.com/samakunchan/viodiz/tree/master/Tutos/Ngrx/2CONFIGURATION.md)
 
-##Initialisation
+## Initialisation
 
 On commence par le cas ou l'on charge les données dès l'ouverture de l'app.
 Ne pas oublier d'avoir un `roles.model.ts` sous la main.
@@ -28,17 +29,18 @@ Ne pas oublier d'avoir un `roles.model.ts` sous la main.
     })
     export class AppModule {}
 
-#####IMPORTANT
-Même si on possède un module et que la documentation nous de faire ça:
+IMPORTANT: Même si on possède un module et que la documentation nous de faire ça:
 
     StoreModule.forFeature(roleFeatureKey, rolesReducer),
     EffectsModule.forFeature([RolesEffects]),
 
-Cela ne fonctionnera pas lors pour ce cas ci. On trouvera un bug de boucle infini
+Cela ne fonctionnera pas lors pour ce cas ci. On trouvera un bug de boucle infini. L'initialisation se passe dans l'app. Les actions plus classique n'auront aucun problème.
 
-##Actions
-  
- Rappel commande
+Actions
+
+-
+
+Rappel commande
 ng generate action store/actions/roles
 
 ---
@@ -69,9 +71,11 @@ ng generate action store/actions/roles
        | ErrorLoadRole
        ;
 
-##Effects
-  
- Rappel commande
+Effects
+
+-
+
+Rappel commande
 ng generate effect store/effects/roles
 
 ---
@@ -112,9 +116,10 @@ ng generate effect store/effects/roles
       }
     }
 
-##Reducers
-Rappel commande
-ng generate reducer store/effect/roles
+## Reducers
+
+    Rappel commande
+    ng generate reducer store/effect/roles
 
 ---
 
@@ -159,7 +164,8 @@ ng generate reducer store/effect/roles
       }
     }
 
-##Selectors
+## Selectors
+
 Il n'existe pas de commande pour le selector, il faut le créer à la main. Puis:
 
     #store/selectors/role.selectors.ts
@@ -180,9 +186,10 @@ Cela retourne un observable utile par exemple pour le `role.component.html`.
 
     <ul><li *ngFor="let role of roles$ | async">{{ role.name }}</li></ul>
 
-##Effects
-Rappel commande
-ng generate effect store/effects/auth
+## Effects
+
+    Rappel commande
+    ng generate effect store/effects/auth
 
 ---
 
@@ -213,7 +220,7 @@ ng generate effect store/effects/auth
 
     }
 
-##Index
+## Index
 
     #store/index.ts
 

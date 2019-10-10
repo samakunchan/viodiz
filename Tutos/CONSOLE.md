@@ -1,6 +1,6 @@
-#Console JS
+# Console JS
 
-##console.log
+## console.log
 
 ![log](https://cdn-media-1.freecodecamp.org/images/1*FvyeehvzCpelNj-pKSHPcg.png 'console.log')
 
@@ -9,26 +9,28 @@ Ou
 console.log({ user, project })
 ES6: console.log(`user: ${user}`);
 
-##console.warn
+## console.warn
 
 ![warn](https://cdn-media-1.freecodecamp.org/images/1*XNH6EhI8d-V0-Le7dP7gAA.png 'console.warn')
 
-##console.error
+## console.error
 
 ![error](https://cdn-media-1.freecodecamp.org/images/1*jPEvpMtNVWWIu_EvyegIiw.png 'console.error')
-##console.assert
+console.assert -
 const isLoggin = false;
 console.assert(isLoggin, 'Il est connecter')
 NB: La console s'affiche uniquement si c'est faux et ne montre rien si c'est vrai.
-##console.dir
+console.dir -
 console.dir(document.body);
 NB: Affiche une liste d'object
 
-##console.table
+## console.table
+
 console.table(['Javascript', 'PHP', 'Perl', 'C++']);
 NB: Ne marche que pour les tableaux
 
-##console.group/console.groupEnd
+## console.group/console.groupEnd
+
 console.group();
 console.log('I will output');
 console.group();
@@ -38,8 +40,7 @@ console.log('ohh look a bear');
 console.groupEnd();
 NB: Copier tout le code dans la console pour voir l'effet.
 Elle sert à indenter en tree.
-##Styliser le texte de la console
-
+Styliser le texte de la console -
 ![formating](https://cdn-media-1.freecodecamp.org/images/1*DOCtgY_O8f_1mAq3UzLtIQ.png 'formating')
 
 Et aussi utiliser le css avec une variable.
@@ -47,7 +48,7 @@ Et aussi utiliser le css avec une variable.
 
 # Utilisation avancé
 
-##Substitution
+## Substitution
 
 Règles:
 
@@ -75,7 +76,7 @@ Pour les nombres:
 - `%i` or `%d` for integers,
 - `%f` for floating-points.
 
-##Exemple
+## Exemple
 
     const success = [ 'background: green', 'color: white', 'display: block', 'text-align: center'].join(';');
     const failure = [ 'background: red', 'color: white', 'display: block', 'text-align: center'].join(';');

@@ -33,15 +33,18 @@ export class RegisterComponent implements OnInit {
   }
 
   initForm() {
-    this.registerForm = this.formbuilder.group({
-      email: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(320)]],
-      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      agree: ['', [Validators.required]],
-    }, {
-      validator: ConfirmPasswordValidator.MatchPassword
-    });
+    this.registerForm = this.formbuilder.group(
+      {
+        email: ['', [Validators.required, Validators.email, Validators.minLength(3), Validators.maxLength(320)]],
+        username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+        password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+        agree: ['', [Validators.required]],
+      },
+      {
+        validator: ConfirmPasswordValidator.MatchPassword,
+      },
+    );
   }
 
   onRegister() {
@@ -55,16 +58,19 @@ export class RegisterComponent implements OnInit {
     this.user.displayName = this.registerForm.value['username'];
     this.user.email = this.registerForm.value['email'];
     this.user.password = this.registerForm.value['password'];
-    this.authService.register(this.user).then(user => {
-      if (user) {
-        this.store.dispatch(new Register({ authToken: user.idToken }));
-        // pass notice message to the login page
-        alert('Votre compte a été créé.');
-        this.router.navigate(['auth', 'login']);
-        this.loading = false;
-      } else {
-        alert('Un problème est survenu lors de la création de votre compte.');
-      }
-    }).catch(error => console.log(error));
+    this.authService
+      .register(this.user)
+      .then(user => {
+        if (user) {
+          this.store.dispatch(new Register({ authToken: user.idToken }));
+          // pass notice message to the login page
+          alert('Votre compte a été créé.');
+          this.router.navigate(['auth', 'login']);
+          this.loading = false;
+        } else {
+          alert('Un problème est survenu lors de la création de votre compte.');
+        }
+      })
+      .catch(error => console.log(error));
   }
 }
