@@ -29,9 +29,14 @@ export class PermissionsEffects implements OnInitEffects {
         });
         this.ngxPermissionsService.addPermission(permTitle);
       });
-    })
+    }),
   );
-  constructor(private actions$: Actions, private permissionsService: PermissionsService, private store: Store<AppState>, private ngxPermissionsService: NgxPermissionsService) {}
+  constructor(
+    private actions$: Actions,
+    private permissionsService: PermissionsService,
+    private store: Store<AppState>,
+    private ngxPermissionsService: NgxPermissionsService,
+  ) {}
 
   ngrxOnInitEffects(): Action {
     return { type: PermissionsActionTypes.RequestLoadPermissions };

@@ -62,13 +62,12 @@
 
 Exemple: docs: update Readme
 
-## Autre règle d'écriture
+## Autres règles d'écriture
 
-Header: Nombre de lettre compris entre 0 et 72.
-lowCase
-Ne surtout pas terminé par un point
-Sauter une ligne pour écrire le reste du commit
-Le commit ne doit jamais être vide
-Ajouter un espace juste après le ':' de la variable de convention
-... (le reste voir lien ci dessous)
-[https://commitlint.js.org/#/reference-rules](https://commitlint.js.org/#/reference-rules)
+- Header: Nombre de lettre compris entre 0 et 72.
+  lowCase
+- Ne surtout pas terminé par un point
+- Sauter une ligne pour écrire le reste du commit
+- Le commit ne doit jamais être vide
+- Ajouter un espace juste après le ':' de la variable de convention
+- le reste voir lien ci joint: [https://commitlint.js.org/#/reference-rules](https://commitlint.js.org/#/reference-rules)

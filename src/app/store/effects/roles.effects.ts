@@ -31,9 +31,14 @@ export class RolesEffects implements OnInitEffects {
           }
         });
       });
-    })
+    }),
   );
-  constructor(private actions$: Actions, private store: Store<AppState>, private rolesService: RolesService, private ngxRolesService: NgxRolesService) {}
+  constructor(
+    private actions$: Actions,
+    private store: Store<AppState>,
+    private rolesService: RolesService,
+    private ngxRolesService: NgxRolesService,
+  ) {}
 
   ngrxOnInitEffects(): Action {
     return { type: RolesActionTypes.RequestLoadRoles };
