@@ -18,3 +18,7 @@ export const getAllRoles = createSelector(
   selectRolesState,
   roles => roles.data,
 );
+export const getCurrentRole = createSelector(
+  selectRolesState,
+  roles => roles.roleSelected,
+);

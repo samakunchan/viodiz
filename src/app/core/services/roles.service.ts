@@ -9,6 +9,10 @@ export class RolesService {
   roleSubject = new Subject<Roles[]>();
   private roles: Roles[] = [
     {
+      name: 'CONSTRUCTOR',
+      permissions: ['fullAccessUserManagement', 'canDeleteUserManagement', 'canUpdateUserManagement', 'canReadUserManagement'],
+    },
+    {
       name: 'ADMIN',
       permissions: ['fullAccessUserManagement', 'canDeleteUserManagement', 'canUpdateUserManagement', 'canReadUserManagement'],
     },

@@ -7,12 +7,14 @@ export interface RolesStateEntity {
   rolesLoaded: boolean;
   rolesLoading: boolean;
   data: Roles[] | null;
+  roleSelected: string;
 }
 
 export const initialRolesState: RolesStateEntity = {
   rolesLoaded: false,
   rolesLoading: false,
   data: null,
+  roleSelected: undefined
 };
 
 export function rolesReducer(state = initialRolesState, action: RolesActions): RolesStateEntity {
@@ -21,6 +23,13 @@ export function rolesReducer(state = initialRolesState, action: RolesActions): R
       return {
         ...state,
         data: action.payload.roles,
+        rolesLoading: false,
+        rolesLoaded: true,
+      };
+    case RolesActionTypes.RoleSelected:
+      return {
+        ...state,
+        roleSelected: action.payload.currentRole,
         rolesLoading: false,
         rolesLoaded: true,
       };

@@ -72,7 +72,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
-                    role: JSON.stringify(this.user.role),
+                    role: this.defaultRole
                   });
               }
             });
@@ -125,7 +125,7 @@ export class AuthService {
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
-                    role: JSON.stringify(this.user.role),
+                    role: this.defaultRole
                   });
               }
             });
@@ -177,7 +177,7 @@ export class AuthService {
             website: '',
             addressString: JSON.stringify(this.user.address),
             socialNetworks: JSON.stringify(this.user.socialsNetworks),
-            role: this.defaultRole,
+            role: this.defaultRole
           });
 
         // Création du token pour le cloud function afin de gérer la reconnextion.
@@ -196,5 +196,45 @@ export class AuthService {
   }
   passwordForgot(email: string) {
     return this.afauth.auth.sendPasswordResetEmail(email);
+  }
+
+  getAuthUser() {
+    return new Observable(observer => {
+      this.afauth.authState.subscribe(
+        userCred => {
+          if (userCred) {
+            this.user.clear();
+            this.db
+              .collection<AuthUser>('Users')
+              .doc(userCred.uid)
+              .get()
+              .subscribe(
+                res => {
+                  this.user.uid = userCred.uid;
+                  this.user.displayName = userCred.displayName;
+                  this.user.email = userCred.email;
+                  this.user.emailVerified = userCred.emailVerified;
+                  this.user.photoUrl = userCred.photoURL;
+                  this.user.firstname = res.data().firstname;
+                  this.user.lastname = res.data().lastname;
+                  this.user.job = res.data().occupation;
+                  this.user.phone = res.data().phone;
+                  this.user.companyName = res.data().companyName;
+                  this.user.address = JSON.parse(res.data().addressString);
+                  this.user.socialsNetworks = JSON.parse(res.data().socialNetworks);
+                  this.user.role = res.data().role;
+                  observer.next(this.user);
+                },
+                error1 => {
+                  observer.error(error1);
+                },
+              );
+          } else {
+            observer.error('Missing user');
+          }
+        },
+        error => observer.error(error),
+      );
+    });
   }
 }
