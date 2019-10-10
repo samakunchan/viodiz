@@ -7,43 +7,46 @@
 
 ## package.json
 
-      "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
-        ...
-        ...
-      },
-      "husky": {
-        "hooks": {
-          "pre-commit": "npm test",
-          "pre-push": "npm test"
-        }
-      },
+    "scripts": {
+      "ng": "ng",
+      "start": "ng serve",
+      "build": "ng build",
+      ...
+      ...
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "npm test",
+        "pre-push": "npm test"
+      }
+    },
 
-#CommintLint
+# CommintLint
 
-##Dépendence
-npm install -g @commitlint/cli
-npm install --save-dev @commitlint/config-conventional @commitlint/cli
-echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+## Dépendence
 
-#commitlint.config.js
-module.exports = {
-rules: {
-'body-leading-blank': [1, 'always'],
-'footer-leading-blank': [1, 'always'],
-'header-max-length': [2, 'always', 72],
-'scope-case': [2, 'always', 'lower-case'],
-'subject-case': [2, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
-'subject-empty': [2, 'never'],
-'subject-full-stop': [2, 'never', '.'],
-'type-case': [2, 'always', 'lower-case'],
-'type-empty': [2, 'never'],
-'type-enum': [2, 'always', ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']],
-},
-};
-##Convention
+    npm install -g @commitlint/cli
+    npm install --save-dev @commitlint/config-conventional @commitlint/cli
+    echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+
+# commitlint.config.js
+
+    module.exports = {
+    rules: {
+    'body-leading-blank': [1, 'always'],
+    'footer-leading-blank': [1, 'always'],
+    'header-max-length': [2, 'always', 72],
+    'scope-case': [2, 'always', 'lower-case'],
+    'subject-case': [2, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']],
+    'subject-empty': [2, 'never'],
+    'subject-full-stop': [2, 'never', '.'],
+    'type-case': [2, 'always', 'lower-case'],
+    'type-empty': [2, 'never'],
+    'type-enum': [2, 'always', ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']],
+    },
+    };
+
+## Convention
 
 - build
 - ci

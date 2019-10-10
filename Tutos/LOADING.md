@@ -12,9 +12,7 @@
         ...
     }
 
-AppModule
-
--
+## AppModule
 
     #app.module.ts
     ...
