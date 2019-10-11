@@ -1,5 +1,5 @@
 <!-- Page content -->
-<div class="container pb-5">
+<div class="container pb-5 mt-4">
   <!-- Table -->
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
@@ -9,7 +9,7 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign up with credentials</small>
+            <small [translate]="'AUTH.REGISTER.CRED'">Or sign up with credentials</small>
           </div>
           <form [formGroup]="registerForm" (ngSubmit)="onRegister()" role="form">
             <div class="form-group">
@@ -53,13 +53,15 @@
                 <div class="custom-control custom-control-alternative custom-checkbox">
                   <input class="custom-control-input" id="customCheckRegister" type="checkbox" formControlName="agree" />
                   <label class="custom-control-label" for="customCheckRegister">
-                    <span class="text-muted">I agree with the <a href="#!">Privacy Policy</a></span>
+                    <span class="text-muted" [translate]="'AUTH.REGISTER.AGREE'"
+                      >I agree with the <a href="#!" [translate]="'AUTH.REGISTER.POLICY'"></a
+                    ></span>
                   </label>
                 </div>
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid">Create account</button>
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid" [translate]="'AUTH.REGISTER.BTN'"></button>
             </div>
           </form>
         </div>

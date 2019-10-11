@@ -16,8 +16,7 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
-            <small>julie@test.com</small>
+            <small [translate]="'AUTH.LOGIN.CRED'"></small>
           </div>
           <form [formGroup]="signInForm" (ngSubmit)="onSignIn()" role="form">
             <div class="form-group mb-3">
@@ -41,23 +40,23 @@
             <div class="custom-control custom-control-alternative custom-checkbox">
               <input class="custom-control-input" id=" customCheckLogin" type="checkbox" formControlName="rememberMe" />
               <label class="custom-control-label" for=" customCheckLogin">
-                <span class="text-muted">Remember me</span>
+                <span class="text-muted" [translate]="'AUTH.LOGIN.REMEMBER'">Remember me</span>
               </label>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4" [disabled]="signInForm.invalid">Sign in</button>
+              <button type="submit" class="btn btn-primary my-4" [disabled]="signInForm.invalid" [translate]="'AUTH.LOGIN.SIGININ'">Sign in</button>
             </div>
           </form>
         </div>
         <div class="row mt-3 pb-3">
           <div class="col-6 text-center">
             <a [routerLink]="['/auth/password']" class="text-light">
-              <span class="text-tertiary">Forgot password?</span>
+              <span class="text-tertiary" [translate]="'AUTH.LOGIN.PASSWORD.FORGOT'">Forgot password?</span>
             </a>
           </div>
           <div class="col-6 text-center">
             <a [routerLink]="['/auth/register']" class="text-light">
-              <span class="text-tertiary">Create new account</span>
+              <span class="text-tertiary" [translate]="'AUTH.LOGIN.NEWACC'">Create new account</span>
             </a>
           </div>
         </div>
