@@ -3,10 +3,9 @@ import { Observable } from 'rxjs';
 import * as firebase from 'firebase';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
-
   constructor() {}
 
   loadAllUsers() {

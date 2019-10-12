@@ -44,9 +44,9 @@ import { UsersService } from '../../core/services/users.service';
     SeeUserComponent,
     AddUserComponent,
     UpdateUserComponent,
-    FirstLetterPipe
+    FirstLetterPipe,
   ],
   providers: [NgxPermissionsService, UsersService],
-  exports: [FirstLetterPipe]
+  exports: [FirstLetterPipe],
 })
 export class AdminLayoutModule {}
