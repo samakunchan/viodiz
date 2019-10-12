@@ -7,6 +7,7 @@
         <div class="card-header bg-transparent pb-5">
           <app-socials-signin></app-socials-signin>
         </div>
+        <app-auth-notice></app-auth-notice>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
             <small [translate]="'AUTH.REGISTER.CRED'">Or sign up with credentials</small>
@@ -29,7 +30,7 @@
               </div>
             </div>
             <div class="text-muted font-italic">
-              <small>password strength: <span class="text-success font-weight-700">strong</span></small>
+              <small>minimum 6 letters</small>
             </div>
             <div class="form-group">
               <div class="input-group input-group-alternative">
@@ -61,7 +62,10 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid" [translate]="'AUTH.REGISTER.BTN'"></button>
+              <button type="submit" class="btn btn-primary mt-4" [disabled]="registerForm.invalid" [translate]="'AUTH.REGISTER.BTN'">
+                Create account
+                <span [ngClass]="{ 'loading-spinner float-right bt-blue ml-2': loading }"></span>
+              </button>
             </div>
           </form>
         </div>

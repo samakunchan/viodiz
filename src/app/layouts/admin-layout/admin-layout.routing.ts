@@ -9,7 +9,7 @@ import { ListUsersComponent } from '../../pages/users-management/list-users/list
 import { NgxPermissionsGuard } from 'ngx-permissions';
 
 export const AdminLayoutRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, data: { animation: 'toLeft' } },
   { path: 'user-profile', component: UserProfileComponent },
   {
     path: 'tables',
@@ -21,10 +21,11 @@ export const AdminLayoutRoutes: Routes = [
         except: ['GUEST'],
         redirectTo: 'admin/dashboard',
       },
+      animation: 'toLeft1',
     },
   },
-  { path: 'icons', component: IconsComponent },
-  { path: 'maps', component: MapsComponent },
+  { path: 'icons', component: IconsComponent, data: { animation: 'toLeft2' } },
+  { path: 'maps', component: MapsComponent, data: { animation: 'toLeft3' } },
   {
     path: 'users-management/list-users',
     component: ListUsersComponent,
@@ -35,6 +36,7 @@ export const AdminLayoutRoutes: Routes = [
         except: ['GUEST'],
         redirectTo: 'admin/dashboard',
       },
+      animation: 'toLeft4',
     },
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
