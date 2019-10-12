@@ -139,26 +139,26 @@ Admettons l'utilisation d'un observable dans un service
 - Component
 
     
-    import { UsersService } from '../../../core/services/users.service';
-    import { Observable } from 'rxjs';
-    
-    @Component({
-      selector: 'app-list-users',
-      templateUrl: './list-users.component.html',
-      styleUrls: ['./list-users.component.scss'],
-    })
-    export class ListUsersComponent implements OnInit {
-      public user$: Observable<any>;
-      constructor(private userService: UsersService) {}
-      ...
-      ...    
-      onSubmit() {
+      import { UsersService } from '../../../core/services/users.service';
+      import { Observable } from 'rxjs';
+
+      @Component({
+        selector: 'app-list-users',
+        templateUrl: './list-users.component.html',
+        styleUrls: ['./list-users.component.scss'],
+      })
+      export class ListUsersComponent implements OnInit {
+        public user$: Observable<any>;
+        constructor(private userService: UsersService) {}
         ...
-        ...
-        const email = 'max@test.com'
-        this.userService.adminRoleManager(email).then(res => {
-            // retoune un message de succès
-        }).catch(error => console.error(error))
+        ...    
+        onSubmit() {
+          ...
+          ...
+          const email = 'max@test.com'
+          this.userService.adminRoleManager(email).then(res => {
+              // retoune un message de succès
+          }).catch(error => console.error(error))
+        }
       }
-    }
 
