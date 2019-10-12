@@ -42,6 +42,7 @@
     "clipboard": "2.0.4",
     "core-js": "2.6.4",
     "firebase": "^7.0.0",
+    "firebase-admin": "^8.6.0",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ng2-nouislider": "1.7.13",
     "ngx-clipboard": "12.1.1",
