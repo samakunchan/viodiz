@@ -6,3 +6,5 @@ import * as functions from 'firebase-functions';
 // export const helloWorld = functions.https.onRequest((request, response) => {
 //  response.send("Hello from Firebase!");
 // });
+
+// Start listing users from the beginning, 1000 at a time.

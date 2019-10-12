@@ -6,7 +6,6 @@ import { AuthNotice } from '../../../../core/auth-notice/auth-notice.interface';
 @Component({
   selector: 'app-auth-notice',
   templateUrl: './auth-notice.component.html',
-  styleUrls: ['./auth-notice.component.scss'],
 })
 export class AuthNoticeComponent implements OnInit, OnDestroy {
   @Output() type: any;

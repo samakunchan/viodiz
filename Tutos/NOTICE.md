@@ -8,7 +8,6 @@ Interface
       type?: string;
       message: string;
     }
-
 Service
 -
     #notice/notice.service.ts
@@ -18,11 +17,11 @@ Service
     ...
     export class NoticeService {
       onNoticeChanged$: BehaviorSubject<Notice>;
-    
+
       constructor() {
         this.onNoticeChanged$ = new BehaviorSubject(null);
       }
-    
+
       setNotice(message: string, type?: string) {
         const notice: Notice = {
           message: message,
@@ -31,9 +30,9 @@ Service
         this.onNoticeChanged$.next(notice);
       }
     }
-
 Component
 -
+
     import { ChangeDetectorRef, Component, OnDestroy, OnInit, Output } from '@angular/core';
     import { Subscription } from 'rxjs';
     import { NoticeService } from '../../../../core/notice/notice.service';
@@ -47,10 +46,10 @@ Component
     export class NoticeComponent implements OnInit, OnDestroy {
       @Output() type: any;
       @Output() message: any = '';
-    
+
       // Private properties
       private subscriptions: Subscription[] = [];
-    
+
       /**
        * Component Constructor
        *
@@ -58,11 +57,10 @@ Component
        * @param cdr: ChangeDetectorRef
        */
       constructor(public noticeService: NoticeService, private cdr: ChangeDetectorRef) {}
-    
+
       /*
        * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
        */
-    
       /**
        * On init
        */
@@ -76,7 +74,7 @@ Component
           }),
         );
       }
-    
+
       /**
        * On destroy
        */

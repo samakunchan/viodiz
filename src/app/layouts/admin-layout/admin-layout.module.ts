@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -20,6 +20,7 @@ import { SeeUserComponent } from '../../pages/users-management/see-user/see-user
 import { AddUserComponent } from '../../pages/users-management/add-user/add-user.component';
 import { UpdateUserComponent } from '../../pages/users-management/update-user/update-user.component';
 import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
+import { UsersService } from '../../core/services/users.service';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -43,9 +44,9 @@ import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
     SeeUserComponent,
     AddUserComponent,
     UpdateUserComponent,
-    FirstLetterPipe
+    FirstLetterPipe,
   ],
-  providers: [NgxPermissionsService],
-  exports: [FirstLetterPipe]
+  providers: [NgxPermissionsService, UsersService],
+  exports: [FirstLetterPipe],
 })
 export class AdminLayoutModule {}

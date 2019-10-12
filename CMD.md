@@ -23,6 +23,7 @@
 C'est le firebase CLI
 
     npm install -g firebase-tools
+    npm install firebase-admin --save
 
     firebase login (ouvre une page pour se logger a google)
 
@@ -99,15 +100,15 @@ Dans le sous routing, voici le pattern:
 
 #Auto return url paypal
 
-Log into https://developer.paypal.com
-Click Applications
-Click Sandbox accounts
-Expand the account in question
-Click Sandbox site
-Login to the test account
-Copy and paste "https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-payments" into your browser
-Enable Auto Return and click Save
-Enter the Auto Return URL and click Save
+    Log into https://developer.paypal.com
+    Click Applications
+    Click Sandbox accounts
+    Expand the account in question
+    Click Sandbox site
+    Login to the test account
+    Copy and paste "https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-payments" into your browser
+    Enable Auto Return and click Save
+    Enter the Auto Return URL and click Save
 
 #Build Prod
 
