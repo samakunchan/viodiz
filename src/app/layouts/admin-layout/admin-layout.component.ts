@@ -6,9 +6,7 @@ import { slider } from '../../core/animations/slider.animation';
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss'],
-  animations: [
-    slider
-  ],
+  animations: [slider],
 })
 export class AdminLayoutComponent implements OnInit {
   forRetractedSideBar: boolean;
