@@ -16,7 +16,7 @@
 }
 @media (min-width: 1025px) {
   :host ::ng-deep .kt-header__topbar,
-:host ::ng-deep .kt-header__topbar-item-wrapper {
+  :host ::ng-deep .kt-header__topbar-item-wrapper {
     height: 100%;
   }
 }

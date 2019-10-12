@@ -1,16 +1,15 @@
-Notice
-=
+# Notice
 
-Interface
--
+## Interface
+
     #notice/notice.interface.ts
     export interface Notice {
       type?: string;
       message: string;
     }
 
-Service
--
+## Service
+
     #notice/notice.service.ts
     import { BehaviorSubject } from 'rxjs';
     import { Notice } from './chemin/vers/notice.interface';
@@ -18,11 +17,11 @@ Service
     ...
     export class NoticeService {
       onNoticeChanged$: BehaviorSubject<Notice>;
-    
+
       constructor() {
         this.onNoticeChanged$ = new BehaviorSubject(null);
       }
-    
+
       setNotice(message: string, type?: string) {
         const notice: Notice = {
           message: message,
@@ -32,13 +31,13 @@ Service
       }
     }
 
-Component
--
+## Component
+
     import { ChangeDetectorRef, Component, OnDestroy, OnInit, Output } from '@angular/core';
     import { Subscription } from 'rxjs';
     import { NoticeService } from '../../../../core/notice/notice.service';
     import { Notice } from '../../../../core/notice/notice.interface';
-    
+
     @Component({
       selector: 'app-notice',
       templateUrl: './notice.component.html',
@@ -47,10 +46,10 @@ Component
     export class NoticeComponent implements OnInit, OnDestroy {
       @Output() type: any;
       @Output() message: any = '';
-    
+
       // Private properties
       private subscriptions: Subscription[] = [];
-    
+
       /**
        * Component Constructor
        *
@@ -58,11 +57,11 @@ Component
        * @param cdr: ChangeDetectorRef
        */
       constructor(public noticeService: NoticeService, private cdr: ChangeDetectorRef) {}
-    
+
       /*
        * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
        */
-    
+
       /**
        * On init
        */
@@ -76,7 +75,7 @@ Component
           }),
         );
       }
-    
+
       /**
        * On destroy
        */
@@ -85,8 +84,8 @@ Component
       }
     }
 
-HTML
--
+## HTML
+
     <div [hidden]="!message" class="alert alert-{{ type }}" role="alert" #alertNotice>
       <div class="alert-text" [innerHTML]="message"></div>
     </div>
