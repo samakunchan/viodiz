@@ -163,21 +163,24 @@
       </form>
       <!-- /Form -->
       <!-- Navigation -->
-      <ul class="navbar-nav">
-        <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
-          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngxPermissionsOnly="menuItem.permissionOnly">
-            <i
-              [ngClass]="{
-                'inscrease-icon-size': false,
-                'inscrease-icon-size': forRetractedSideBar === false,
-                'decrease-icon-size': forRetractedSideBar === true
-              }"
-              class="ni {{ menuItem.icon }}"
-            ></i>
-            <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
-          </a>
-        </li>
-      </ul>
+      <ng-container *ngIf="role$ | async; else loader">
+        <ul class="navbar-nav">
+          <li *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+            <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngxPermissionsOnly="menuItem.permissionOnly">
+              <i
+                [ngClass]="{
+                  'inscrease-icon-size': false,
+                  'inscrease-icon-size': forRetractedSideBar === false,
+                  'decrease-icon-size': forRetractedSideBar === true
+                }"
+                class="ni {{ menuItem.icon }}"
+              ></i>
+              <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
+            </a>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-template #loader>...Loading</ng-template>
       <!-- /Navigation -->
 
       <!-- Divider -->

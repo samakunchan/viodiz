@@ -24,6 +24,7 @@ import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthEffects } from './store/effects/auth.effects';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
@@ -45,6 +46,7 @@ import { AuthEffects } from './store/effects/auth.effects';
     }),
     AppFirebaseModule,
     AngularFireStorageModule,
+    ToastrModule.forRoot(),
   ],
   providers: [RolesService, PermissionsService],
   bootstrap: [AppComponent],

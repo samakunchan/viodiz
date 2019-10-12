@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PasswordComponent implements OnInit {
   pwfForm: FormGroup;
+  loading = false;
   public front = {
     logo: {
       src: './assets/img/brand/logo-viodiz-mini.png',
@@ -34,20 +35,14 @@ export class PasswordComponent implements OnInit {
   }
 
   onPasswordForgot() {
+    this.loading = true;
     return this.authService
       .passwordForgot(this.pwfForm.value['email'])
       .then(() => {
         alert('Votre compte a été mis à jour avec succès.');
         this.router.navigate(['auth', 'login']);
       })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        if (errorCode === 'auth/invalid-email') {
-          alert(errorMessage);
-        } else if (errorCode === 'auth/user-not-found') {
-          alert(errorMessage);
-        }
-      });
+      .catch(() => {})
+      .then(() => (this.loading = false));
   }
 }

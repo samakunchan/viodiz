@@ -1,13 +1,10 @@
 <!-- Sidenav -->
 <app-sidebar [forRetractedSideBar]="forRetractedSideBar" (infoRetracted)="onInfoRetracted($event)"></app-sidebar>
-<div
-  class="main-content"
-  [ngClass]="{'content-expanded': false, 'content-expanded': forExpandedContent === false}">
+<div class="main-content" [ngClass]="{ 'content-expanded': false, 'content-expanded': forExpandedContent === false }">
   <!-- Top navbarfront -->
   <app-navbar></app-navbar>
   <!-- Pages -->
-  <router-outlet></router-outlet>
-  <div class="container-fluid">
-    <app-footer></app-footer>
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
   </div>
 </div>

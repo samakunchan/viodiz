@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmPasswordValidator } from './confirm-password.validator';
 import { AuthUser } from '../../../core/models/auth.model';
 import { Register } from '../../../store/actions/auth.actions';
+import { AuthNoticeService } from '../../../core/auth-notice/auth-notice.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +17,8 @@ import { Register } from '../../../store/actions/auth.actions';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  loading = false;
   user: AuthUser;
+  loading = false;
   public front = {
     logo: {
       src: './assets/img/brand/logo-viodiz-mini.png',
@@ -26,7 +28,15 @@ export class RegisterComponent implements OnInit {
       google: '../assets/img/icons/common/google.svg',
     },
   };
-  constructor(private authService: AuthService, private store: Store<AppState>, private router: Router, private formbuilder: FormBuilder) {}
+  count;
+  constructor(
+    private authService: AuthService,
+    private store: Store<AppState>,
+    private router: Router,
+    private formbuilder: FormBuilder,
+    private authNoticeService: AuthNoticeService,
+    private translate: TranslateService,
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -49,7 +59,7 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (!this.registerForm.value['agree']) {
-      alert('Coche la case');
+      this.authNoticeService.setNotice(this.translate.instant('AUTH.NOTIFICATIONS.REGISTER.AGREE'), 'warning');
       return;
     }
     this.loading = true;
@@ -62,15 +72,16 @@ export class RegisterComponent implements OnInit {
       .register(this.user)
       .then(user => {
         if (user) {
-          this.store.dispatch(new Register({ authToken: user.idToken }));
-          // pass notice message to the login page
-          alert('Votre compte a été créé.');
-          this.router.navigate(['auth', 'login']);
+          this.authNoticeService.setNotice(this.translate.instant('AUTH.NOTIFICATIONS.REGISTER.SUCCESS'), 'success');
           this.loading = false;
-        } else {
-          alert('Un problème est survenu lors de la création de votre compte.');
+          this.store.dispatch(new Register({ authToken: user.idToken }));
+          setTimeout(() => this.router.navigate(['auth', 'login']), 1000);
         }
       })
       .catch(error => console.log(error));
+  }
+
+  get control() {
+    return this.registerForm.controls;
   }
 }

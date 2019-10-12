@@ -6,6 +6,9 @@ import * as firebase from 'firebase';
 import { AuthUser } from '../models/auth.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import * as toastr from '../../../assets/js/toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { AuthNoticeService } from '../auth-notice/auth-notice.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +16,17 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
   user: AuthUser;
   private defaultRole: string;
-  constructor(private afauth: AngularFireAuth, private afstorage: AngularFireStorage, private db: AngularFirestore) {
+  constructor(
+    private afauth: AngularFireAuth,
+    private afstorage: AngularFireStorage,
+    private db: AngularFirestore,
+    private translate: TranslateService,
+    private authNoticeService: AuthNoticeService,
+  ) {
     this.user = new AuthUser();
     this.user.clear();
     this.defaultRole = 'USER';
+    this.loadToastrOptions();
   }
 
   getUserByTokenFromCloud(): Observable<AuthUser> {
@@ -40,11 +50,17 @@ export class AuthService {
           .then(idToken => {
             return { data: credential.user, idToken };
           })
-          .catch(error => {
-            console.log(error);
+          .catch(() => {
+            return toastr.info(this.translate.instant('AUTH.NOTIFICATIONS.LOGIN.DATAFAILURE'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
           });
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        if (error.code === 'auth/user-not-found') {
+          toastr.info(this.translate.instant('AUTH.NOTIFICATIONS.LOGIN.FAILURE'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
+        } else {
+          toastr.info(error.message, this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
+        }
+      });
   }
   async signInWithGoogle() {
     if (!this.afauth.auth.currentUser) {
@@ -90,9 +106,9 @@ export class AuthService {
         .catch(error => {
           const errorCode = error.code;
           if (errorCode === 'auth/account-exists-with-different-credential') {
-            alert('You have already signed up with a different auth provider for that email.');
+            toastr.info(this.translate.instant('AUTH.NOTIFICATIONS.LOGIN.ACCOUNTEXIST'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
           } else {
-            console.error(error);
+            toastr.info(error.message, this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
           }
         });
     } else {
@@ -144,9 +160,9 @@ export class AuthService {
         .catch(error => {
           const errorCode = error.code;
           if (errorCode === 'auth/account-exists-with-different-credential') {
-            alert('You have already signed up with a different auth provider for that email.');
+            toastr.info(this.translate.instant('AUTH.NOTIFICATIONS.LOGIN.ACCOUNTEXIST'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
           } else {
-            console.error(error);
+            toastr.info(error.message, this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
           }
         });
     } else {
@@ -192,10 +208,27 @@ export class AuthService {
       })
       .catch(error => {
         console.log(error);
+        if (error.code === 'auth/email-already-in-use') {
+          this.authNoticeService.setNotice(this.translate.instant('AUTH.NOTIFICATIONS.REGISTER.USED'), 'danger');
+        } else {
+          this.authNoticeService.setNotice(error.message, 'danger');
+        }
       });
   }
   passwordForgot(email: string) {
-    return this.afauth.auth.sendPasswordResetEmail(email);
+    return this.afauth.auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        toastr.success(this.translate.instant('AUTH.NOTIFICATIONS.PASSWORD.SUCCESS'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        if (errorCode === 'auth/invalid-email') {
+          toastr.warning(this.translate.instant('AUTH.NOTIFICATIONS.PASSWORD.INVALIDEMAIL'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
+        } else if (errorCode === 'auth/user-not-found') {
+          toastr.warning(this.translate.instant('AUTH.NOTIFICATIONS.PASSWORD.INVALIDUSER'), this.translate.instant('AUTH.NOTIFICATIONS.TITLE'));
+        }
+      });
   }
 
   getAuthUser() {
@@ -235,6 +268,26 @@ export class AuthService {
         },
         error => observer.error(error),
       );
+    });
+  }
+
+  loadToastrOptions() {
+    return (toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: true,
+      progressBar: false,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
     });
   }
 }
