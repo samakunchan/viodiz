@@ -1,5 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import { Observable } from 'rxjs';
+import { getCurrentRole } from '../../store/selectors/roles.selector';
 
 declare interface RouteInfo {
   path: string;
@@ -55,6 +59,8 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
   public innerWidth: any;
+  public role$: Observable<any>;
+  public loading = true;
   @Input() forRetractedSideBar;
   @Output() infoRetracted = new EventEmitter<boolean>();
   @HostListener('window:resize', ['$event'])
@@ -62,13 +68,14 @@ export class SidebarComponent implements OnInit {
     this.innerWidth = window.innerWidth;
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.router.events.subscribe(event => {
       this.isCollapsed = true;
     });
+    this.role$ = this.store.select(getCurrentRole);
   }
 
   onToggleSideBar() {

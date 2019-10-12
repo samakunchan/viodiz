@@ -7,11 +7,13 @@
       <i class="flaticon-facebook-letter-logo"></i>
     </span>
     <span class="btn-inner--text">Facebook</span>
+    <span [ngClass]="{ 'loading-spinner float-right bt-blue': loadingFacebook }"></span>
   </a>
   <a (click)="onGoogleSignIn($event)" href="javascript:void(0)" class="btn btn-neutral btn-icon">
     <span class="btn-inner--icon">
       <img [src]="front.bg.google" alt="google" />
     </span>
     <span class="btn-inner--text">Google</span>
+    <span [ngClass]="{ 'loading-spinner float-right bt-blue': loadingGoogle }"></span>
   </a>
 </div>

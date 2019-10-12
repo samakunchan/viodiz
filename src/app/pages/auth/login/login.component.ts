@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -41,14 +40,17 @@ export class LoginComponent implements OnInit {
 
   onSignIn() {
     this.loading = true;
-    this.authService.signIn(this.signInForm.value['email'], this.signInForm.value['password']).then(user => {
-      if (user) {
-        this.store.dispatch(new Login({ authToken: user.idToken }));
-        this.router.navigate(['admin', 'dashboard']);
-        this.loading = false;
-      } else {
-        alert('Email ou mot de passe incorrect.');
-      }
-    });
+    this.authService
+      .signIn(this.signInForm.value['email'], this.signInForm.value['password'])
+      .then(user => {
+        console.log(user);
+        if (user) {
+          this.store.dispatch(new Login({ authToken: user.idToken }));
+          this.router.navigate(['admin', 'dashboard']);
+          this.loading = false;
+        }
+      })
+      .catch(() => {})
+      .then(() => (this.loading = false));
   }
 }

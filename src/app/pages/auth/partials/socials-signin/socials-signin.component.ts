@@ -19,7 +19,6 @@ export class SocialsSigninComponent implements OnInit {
     },
   };
   constructor(private authService: AuthService, private store: Store<AppState>, private router: Router) {}
-
   ngOnInit() {}
 
   onGoogleSignIn(event) {
@@ -33,7 +32,8 @@ export class SocialsSigninComponent implements OnInit {
           this.router.navigate(['admin', 'dashboard']);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .then(() => (this.loadingGoogle = false));
   }
 
   onFacebookSignIn(event) {
@@ -47,6 +47,7 @@ export class SocialsSigninComponent implements OnInit {
           this.router.navigate(['admin', 'dashboard']);
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .then(() => (this.loadingFacebook = false));
   }
 }

@@ -26,7 +26,7 @@
                     <i class="ni ni-email-83"></i>
                   </span>
                 </div>
-                <input class="form-control" placeholder="Email" type="email" formControlName="email" />
+                <input id="email" class="form-control" placeholder="Email" type="email" formControlName="email" />
               </div>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                 </div>
-                <input class="form-control" placeholder="Password" type="password" formControlName="password" />
+                <input id="password" class="form-control" placeholder="Password" type="password" formControlName="password" />
               </div>
             </div>
             <div class="custom-control custom-control-alternative custom-checkbox">
@@ -44,7 +44,10 @@
               </label>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4" [disabled]="signInForm.invalid" [translate]="'AUTH.LOGIN.SIGININ'">Sign in</button>
+              <button type="submit" class="btn btn-primary my-4" [disabled]="signInForm.invalid" [translate]="'AUTH.LOGIN.SIGININ'">
+                Sign in
+                <span [ngClass]="{ 'loading-spinner float-right bt-blue ml-2': loading }"></span>
+              </button>
             </div>
           </form>
         </div>

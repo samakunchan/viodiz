@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { slider } from '../../core/animations/slider.animation';
 
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
   styleUrls: ['./admin-layout.component.scss'],
+  animations: [
+    slider
+  ],
 })
 export class AdminLayoutComponent implements OnInit {
   forRetractedSideBar: boolean;
@@ -22,5 +27,8 @@ export class AdminLayoutComponent implements OnInit {
   onInfoRetracted(info: boolean) {
     this.forExpandedContent = info;
     return info;
+  }
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

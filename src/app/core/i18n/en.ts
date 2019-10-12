@@ -26,6 +26,25 @@ export const locale = {
         POLICY: 'Private Policy',
         BTN: 'Create account',
       },
+      NOTIFICATIONS: {
+        TITLE: 'Authentication service',
+        LOGIN: {
+          FAILURE: 'Incorrect email or password',
+          DATAFAILURE: 'Error detected by loading your datas',
+          ACCOUNTEXIST: 'You have already signed up with a different auth provider for that email.',
+        },
+        PASSWORD: {
+          SUCCESS: 'We send a link to your email address. Check your mail box please.',
+          INVALIDEMAIL: 'This email is invalid.',
+          INVALIDUSER: 'This user was not found.',
+        },
+        REGISTER: {
+          AGREE: 'You must agree the terms and condition.',
+          SUCCESS: 'Your account has been created',
+          FAILURE: 'An error has been detected by sending your email.',
+          USED: 'This email is already used.',
+        },
+      },
     },
     FRONT: {
       MENU: {
