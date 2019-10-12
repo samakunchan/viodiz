@@ -79,22 +79,23 @@ Attention
 -
 
 - Concernant `(data, context) => {...}`, il n'y aura aucun problème concernant l'utilisation de `data`, mais si on utilise le `context`, l'utilisation de la commande `firebase deploy --only functions
-` va générer une érreur. L'érreur est générer par le `/functions/tsconfig.ts` (vois ci-dessous).
+` va générer une érreur. L'érreur est générer par le `/functions/tsconfig.ts` (voir ci-dessous).
 
-    {
-      "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitReturns": true,
-        "noUnusedLocals": true,
-        "outDir": "lib",
-        "sourceMap": true,
-        "strict": true, <= A cause de lui
-        "target": "es2017"
-      },
-      "compileOnSave": true,
-      "include": ["src"]
-    }
 
+      {
+        "compilerOptions": {
+          "module": "commonjs",
+          "noImplicitReturns": true,
+          "noUnusedLocals": true,
+          "outDir": "lib",
+          "sourceMap": true,
+          "strict": true, <= A cause de lui
+          "target": "es2017"
+        },
+        "compileOnSave": true,
+        "include": ["src"]
+      }
+      
 En supprimant cette ligne on regle le problème. Si cette solution ne convient pas voir le stackflow ci-joint : [autres solutions](https://stackoverflow.com/questions/55167069/firebase-cloud-functions-object-possibly-undefined)
 
 - Une fois que les clouds functions sont enregistrés, il ne sert à rien de les concervés dans l'application. Firebase fournis des méthodes pour les utilisés.
