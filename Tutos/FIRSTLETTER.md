@@ -1,10 +1,12 @@
-# First letter
+First letter
+=
 
-## Pipe
+Pipe
+-
 
     #pipe/first-letter.ts
     import { Pipe, PipeTransform } from '@angular/core';
-
+    
     /**
      * Returns only first letter of string
      */
@@ -26,7 +28,8 @@
       }
     }
 
-## Module
+Module
+-
 
     @NgModule({
       imports: [
@@ -41,6 +44,8 @@
       exports: [FirstLetterPipe]
     })
 
-## HTML
+
+HTML
+-
 
      <span>{{ _user.displayName | firstLetter }}</span>

@@ -1,15 +1,15 @@
-# Notice
+Notice
+=
 
-## Interface
-
+Interface
+-
     #notice/notice.interface.ts
     export interface Notice {
       type?: string;
       message: string;
     }
-
-## Service
-
+Service
+-
     #notice/notice.service.ts
     import { BehaviorSubject } from 'rxjs';
     import { Notice } from './chemin/vers/notice.interface';
@@ -30,14 +30,14 @@
         this.onNoticeChanged$.next(notice);
       }
     }
-
-## Component
+Component
+-
 
     import { ChangeDetectorRef, Component, OnDestroy, OnInit, Output } from '@angular/core';
     import { Subscription } from 'rxjs';
     import { NoticeService } from '../../../../core/notice/notice.service';
     import { Notice } from '../../../../core/notice/notice.interface';
-
+    
     @Component({
       selector: 'app-notice',
       templateUrl: './notice.component.html',
@@ -61,7 +61,6 @@
       /*
        * @ Lifecycle sequences => https://angular.io/guide/lifecycle-hooks
        */
-
       /**
        * On init
        */
@@ -84,8 +83,8 @@
       }
     }
 
-## HTML
-
+HTML
+-
     <div [hidden]="!message" class="alert alert-{{ type }}" role="alert" #alertNotice>
       <div class="alert-text" [innerHTML]="message"></div>
     </div>
