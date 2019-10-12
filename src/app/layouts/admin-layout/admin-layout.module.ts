@@ -19,6 +19,7 @@ import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
 import { SeeUserComponent } from '../../pages/users-management/see-user/see-user.component';
 import { AddUserComponent } from '../../pages/users-management/add-user/add-user.component';
 import { UpdateUserComponent } from '../../pages/users-management/update-user/update-user.component';
+import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -42,7 +43,9 @@ import { UpdateUserComponent } from '../../pages/users-management/update-user/up
     SeeUserComponent,
     AddUserComponent,
     UpdateUserComponent,
+    FirstLetterPipe
   ],
   providers: [NgxPermissionsService],
+  exports: [FirstLetterPipe]
 })
 export class AdminLayoutModule {}
