@@ -19,15 +19,18 @@
       </div>
     </form>
     <!-- User -->
-    <ul class="navbar-nav align-items-center d-none d-md-flex">
+    <ul class="navbar-nav align-items-center d-none d-md-flex" *ngIf="user$ | async as _user">
       <li class="nav-item" ngbDropdown placement="bottom-right">
         <a class="nav-link pr-0" role="button" ngbDropdownToggle>
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg" />
+              <span *ngIf="!_user.photoUrl" class="rounded">
+                {{ _user.displayName | firstLetter | titlecase }}
+              </span>
+              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl"  />
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm font-weight-bold">Jessica Jones</span>
+              <span class="mb-0 text-sm font-weight-bold">{{ _user.displayName | titlecase }}</span>
             </div>
           </div>
         </a>
@@ -35,20 +38,13 @@
           <!--begin: Head -->
           <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" [ngClass]="getBg()">
             <div class="kt-user-card__avatar mr-3">
-              <!--
-                <img *ngIf="_user.photoURL" alt="Pic" [attr.src]="_user.photoURL" />
-                <span *ngIf="!_user.photoURL" class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
-                {{ _user.displayName | firstLetter }}
+              <span *ngIf="!_user.photoUrl" class="vio-badge-user text-white">
+                {{ _user.displayName | firstLetter | titlecase }}
                 </span>
-
-               -->
-              <img width="60" alt="Image placeholder" class="rounded" src="assets/img/theme/team-4-800x800.jpg" />
+              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl"  />
             </div>
             <div class="kt-user-card__name text-white">
-              <!--
-                {{ _user.displayName }}
-               -->
-              Jessica Jones
+              {{ _user.displayName | titlecase }}
             </div>
           </div>
           <!--end: Head -->
