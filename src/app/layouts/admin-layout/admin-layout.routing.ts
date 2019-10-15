@@ -39,5 +39,4 @@ export const AdminLayoutRoutes: Routes = [
       animation: 'toLeft4',
     },
   },
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

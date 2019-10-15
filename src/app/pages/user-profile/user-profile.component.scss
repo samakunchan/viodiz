@@ -1,0 +1,60 @@
+.order-card-profil {
+  flex: 0 0 25%;
+  .vio-card-profil {
+    img {
+      max-width: 180px;
+      transition: all 0.15s ease;
+    }
+  }
+}
+.vio-card {
+  position: relative;
+  .vio-lg-3 {
+    @media screen and (min-width: 992px) {
+      .col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 200px;
+      }
+      .card-profile-img {
+        position: relative;
+        img {
+          width: 180px;
+          transform: translate(0px, -45px);
+        }
+      }
+    }
+    &:hover .file-svg-container {
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      transition-duration: 0.5s;
+    }
+  }
+  .email-verified-success {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+  }
+  .file-svg-container {
+    width: 130px;
+    text-align: center;
+    position: absolute;
+    top: -30px;
+    border-radius: 5px;
+    left: 22px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.31);
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.vio-width-card {
+  margin: 0 60px auto;
+}
+.vio-card-link {
+  cursor: pointer;
+  &:hover {
+    transition: color 0.3s ease;
+    color: #2bffc6;
+  }
+}

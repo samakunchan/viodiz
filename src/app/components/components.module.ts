@@ -10,10 +10,10 @@ import { FooterFrontComponent } from './footerfront/footer-front.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from './partials/language-selector/language-selector.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
-// import { NgxPermissionsModule } from 'ngx-permissions';
+import { AdminLayoutModule } from '../layouts/admin-layout/admin-layout.module';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule, TranslateModule, NgxPermissionsModule],
+  imports: [CommonModule, RouterModule, NgbModule, TranslateModule, NgxPermissionsModule, AdminLayoutModule],
   declarations: [FooterComponent, NavbarComponent, SidebarComponent, NavbarFrontComponent, FooterFrontComponent, LanguageSelectorComponent],
   exports: [FooterComponent, NavbarComponent, SidebarComponent, NavbarFrontComponent, FooterFrontComponent],
 })

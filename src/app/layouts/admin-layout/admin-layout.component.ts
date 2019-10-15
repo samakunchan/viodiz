@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slider } from '../../core/animations/slider.animation';
+import { slider } from '../../core/animations/animation';
 
 @Component({
   selector: 'app-admin-layout',

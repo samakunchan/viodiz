@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthNoticeService } from '../auth-notice/auth-notice.service';
+import { Sha256 } from '../_class/sha256';
 
 @Injectable({
   providedIn: 'root',
@@ -82,13 +83,14 @@ export class AuthService {
                   .set({
                     firstname: '',
                     lastname: '',
-                    occupation: '',
+                    job: '',
                     companyName: '',
                     phone: '',
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
                     role: this.defaultRole,
+                    aboutMe: '',
                   });
               }
             });
@@ -135,13 +137,14 @@ export class AuthService {
                   .set({
                     firstname: '',
                     lastname: '',
-                    occupation: '',
+                    job: '',
                     companyName: '',
                     phone: '',
                     website: '',
                     addressString: JSON.stringify(this.user.address),
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
                     role: this.defaultRole,
+                    aboutMe: '',
                   });
               }
             });
@@ -187,13 +190,14 @@ export class AuthService {
           .set({
             firstname: '',
             lastname: '',
-            occupation: '',
+            job: '',
             companyName: '',
             phone: '',
             website: '',
             addressString: JSON.stringify(this.user.address),
             socialNetworks: JSON.stringify(this.user.socialsNetworks),
             role: this.defaultRole,
+            aboutMe: '',
           });
 
         // Création du token pour le cloud function afin de gérer la reconnextion.
@@ -230,6 +234,110 @@ export class AuthService {
         }
       });
   }
+  sendMailVerification() {
+    return new Promise((resolve, reject) => {
+      this.afauth.auth.currentUser
+        .sendEmailVerification()
+        .then(() => {
+          resolve();
+        })
+        .catch(err => reject(err));
+    });
+  }
+  buildingBeforeUpdate(_user) {
+    return new Promise((resolve, reject) => {
+      this.getAuthUser().subscribe(
+        (userData: AuthUser) => {
+          _user.uid = userData.uid;
+          _user.email = userData.email;
+          _user.displayName = userData.displayName;
+          _user.emailVerified = userData.emailVerified;
+          resolve(_user);
+        },
+        error => {
+          reject(error);
+        },
+      );
+    });
+  }
+  updateAuthUserProfil(_user): Observable<AuthUser> {
+    console.log(_user);
+    return new Observable<AuthUser>(observer => {
+      this.db
+        .collection<AuthUser>('Users')
+        .doc(_user.uid)
+        .update({
+          firstname: _user.firstname,
+          lastname: _user.lastname,
+          job: _user.job,
+          companyName: _user.companyName,
+          phone: _user.phone,
+          website: _user.website,
+          addressString: JSON.stringify(_user.address),
+          socialsNetworks: JSON.stringify(_user.socialsNetworks),
+          aboutMe: _user.aboutMe,
+        })
+        .then(() => observer.next(_user))
+        .catch(err => {
+          observer.error(err);
+        });
+    });
+  }
+  updateUserProfilPhoto(_user: AuthUser): Observable<any> {
+    return new Observable(observer => {
+      this.afauth.authState.subscribe(
+        user => {
+          user
+            .updateProfile({
+              photoURL: _user.photoUrl,
+            })
+            .then(res => observer.next(res))
+            .catch(err => {
+              observer.error(err);
+            });
+        },
+        error => observer.error(error),
+      );
+    });
+  }
+  uploadFile(file, path, email) {
+    return new Promise((resolve, reject) => {
+      const photoNameHashed = new Sha256();
+      photoNameHashed.hashString(email);
+      const upload = firebase
+        .storage()
+        .ref('/images')
+        .child(`users/${path}-${photoNameHashed.result}`)
+        .put(file);
+      return upload.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        () => {
+          console.log('Chargement…');
+        },
+        error => {
+          console.log('Erreur de chargement ! : ' + error.message);
+          reject(error.message);
+        },
+        () => {
+          return upload.snapshot.ref
+            .getDownloadURL()
+            .then(photoUrl => {
+              this.getAuthUser().subscribe(
+                (userData: AuthUser) => {
+                  userData.photoUrl = photoUrl;
+
+                  resolve(userData);
+                },
+                error => reject(error),
+              );
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+      );
+    });
+  }
 
   getAuthUser() {
     return new Observable(observer => {
@@ -250,12 +358,13 @@ export class AuthService {
                   this.user.photoUrl = userCred.photoURL;
                   this.user.firstname = res.data().firstname;
                   this.user.lastname = res.data().lastname;
-                  this.user.job = res.data().occupation;
+                  this.user.job = res.data().job;
                   this.user.phone = res.data().phone;
                   this.user.companyName = res.data().companyName;
                   this.user.address = JSON.parse(res.data().addressString);
-                  this.user.socialsNetworks = JSON.parse(res.data().socialNetworks);
+                  this.user.socialsNetworks = JSON.parse(res.data().socialsNetworks);
                   this.user.role = res.data().role;
+                  this.user.aboutMe = res.data().aboutMe;
                   observer.next(this.user);
                 },
                 error1 => {
