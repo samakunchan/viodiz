@@ -44,6 +44,10 @@ export const locale = {
           FAILURE: 'An error has been detected by sending your email.',
           USED: 'This email is already used.',
         },
+        PROFIL: {
+          SUCCESS: 'Your account has been updated.',
+          FAILURE: 'An error has occured. Please reload or try later.',
+        },
       },
     },
     FRONT: {

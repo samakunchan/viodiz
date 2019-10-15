@@ -30,5 +30,3 @@ export const currentUser = createSelector(
   selectAuthState,
   auth => auth.user,
 );
-
-// A faire le currentRole avant le push sur github

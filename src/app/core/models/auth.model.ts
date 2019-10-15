@@ -17,6 +17,7 @@ export class AuthUser {
   socialsNetworks: SocialsNetworks;
   website: string;
   role: string;
+  aboutMe: string;
 
   clear() {
     this.uid = undefined;
@@ -36,5 +37,6 @@ export class AuthUser {
     this.socialsNetworks.clear();
     this.website = '';
     this.role = '';
+    this.aboutMe = '';
   }
 }

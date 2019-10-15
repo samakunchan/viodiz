@@ -1,165 +1,181 @@
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-  <!-- Mask -->
-  <span class="mask bg-gradient-danger opacity-8"></span>
-  <!-- Header container -->
-  <div class="container-fluid d-flex align-items-center">
-    <div class="row">
-      <div class="col-lg-7 col-md-10">
-        <h1 class="display-2 text-white">Hello Jesse</h1>
-        <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Edit profile</a>
+<section *ngIf="user$ | async as _user">
+  <div
+    class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+    [ngStyle]="{
+      'min-height': '600px',
+      'background-image': 'url(' + _user.photoUrl + ')',
+      'background-size': 'cover',
+      'background-position': 'center top'
+    }"
+  >
+    <!-- Mask -->
+    <span class="mask opacity-8" [ngClass]="{ 'bg-gradient-info': !_user.photoUrl }"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-7 col-md-10">
+          <h1 class="display-2 text-white">Hello {{ _user.displayName | titlecase }}</h1>
+          <p class="text-white mt-0 mb-5">
+            This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks
+          </p>
+          <a href="javascript:void(0)" class="btn btn-info" (click)="onIsEdit()">Edit profile</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container-fluid mt--7">
-  <div class="row">
-    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
-      <div class="card card-profile shadow">
-        <div class="row justify-content-center">
-          <div class="col-lg-3 order-lg-2">
-            <div class="card-profile-image">
-              <a href="javascript:void(0)">
-                <img src="assets/img/theme/team-4-800x800.jpg" class="rounded-circle">
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
-            <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
-          </div>
-        </div>
-        <div class="card-body pt-0 pt-md-4">
-          <div class="row">
-            <div class="col">
-              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                <div>
-                  <span class="heading">22</span>
-                  <span class="description">Friends</span>
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow vio-card">
+          <span *ngIf="_user.emailVerified"><i class="flaticon2-correct text-success email-verified-success"></i></span>
+          <form [formGroup]="userAvatarForm">
+            <div class="row justify-content-center">
+              <div class="vio-lg-3 order-lg-2">
+                <div class="card-profile-img">
+                  <a href="javascript:void(0)">
+                    <img *ngIf="!_user.photoUrl" alt="current user" class="rounded" [attr.src]="'assets/img/misc/default-welcomer.png'" />
+                    <img *ngIf="_user.photoUrl" alt="current user" class="rounded" [attr.src]="_user.photoUrl" />
+                    <label for="loadAvatar" class="file-svg-container">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="80px" height="80px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                          <rect x="0" y="0" width="24" height="24" />
+                          <path
+                            d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z"
+                            fill="#fff"
+                            fill-rule="nonzero"
+                            opacity="0.3"
+                          />
+                          <rect
+                            fill="#fff"
+                            opacity="0.3"
+                            transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) "
+                            x="11"
+                            y="1"
+                            width="2"
+                            height="14"
+                            rx="1"
+                          />
+                          <path
+                            d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z"
+                            fill="#fff"
+                            fill-rule="nonzero"
+                            transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) "
+                          />
+                        </g>
+                      </svg>
+                    </label>
+                    <input
+                      id="loadAvatar"
+                      (change)="detectFiles($event, _user.email)"
+                      formControlName="avatar"
+                      type="file"
+                      name="profile_avatar"
+                      accept=".png, .jpg, .jpeg"
+                      [ngStyle]="{ display: 'none' }"
+                    />
+                  </a>
                 </div>
-                <div>
-                  <span class="heading">10</span>
-                  <span class="description">Photos</span>
-                </div>
-                <div>
-                  <span class="heading">89</span>
-                  <span class="description">Comments</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <h3>
-              Jessica Jones<span class="font-weight-light">, 27</span>
-            </h3>
-            <div class="h5 font-weight-300">
-              <i class="ni location_pin mr-2"></i>Bucharest, Romania
-            </div>
-            <div class="h5 mt-4">
-              <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-            </div>
-            <div>
-              <i class="ni education_hat mr-2"></i>University of Computer Science
-            </div>
-            <hr class="my-4" />
-            <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-            <a href="javascript:void(0)">Show more</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-8 order-xl-1">
-      <div class="card bg-secondary shadow">
-        <div class="card-header bg-white border-0">
-          <div class="row align-items-center">
-            <div class="col-8">
-              <h3 class="mb-0">My account</h3>
-            </div>
-            <div class="col-4 text-right">
-              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-            </div>
-          </div>
-        </div>
-        <div class="card-body">
-          <form>
-            <h6 class="heading-small text-muted mb-4">User information</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4" />
-            <!-- Address -->
-            <h6 class="heading-small text-muted mb-4">Contact information</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Address</label>
-                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-city">City</label>
-                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-country">Country</label>
-                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-country">Postal code</label>
-                    <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr class="my-4" />
-            <!-- Description -->
-            <h6 class="heading-small text-muted mb-4">About me</h6>
-            <div class="pl-lg-4">
-              <div class="form-group">
-                <label>About Me</label>
-                <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
               </div>
             </div>
           </form>
+          <div class="card-body">
+            <div
+              class="row"
+              *ngIf="
+                _user.socialsNetworks.facebook || _user.socialsNetworks.twitter || _user.socialsNetworks.instagram || _user.socialsNetworks.linkedin
+              "
+            >
+              <div class="col">
+                <div class="d-flex justify-content-center mb-2">
+                  <div class="p-2">
+                    <span class="description">
+                      <a *ngIf="_user.socialsNetworks.facebook" [href]="_user.socialsNetworks.facebook" class="btn btn-facebook" target="_blank"
+                        ><i class="fa fa-facebook"></i
+                      ></a>
+                    </span>
+                  </div>
+                  <div class="p-2">
+                    <span class="description">
+                      <a *ngIf="_user.socialsNetworks.twitter" [href]="_user.socialsNetworks.twitter" class="btn btn-twitter" target="_blank"
+                        ><i class="fa fa-twitter"></i
+                      ></a>
+                    </span>
+                  </div>
+                  <div class="p-2">
+                    <span class="description">
+                      <a *ngIf="_user.socialsNetworks.instagram" [href]="_user.socialsNetworks.instagram" class="btn btn-instagram" target="_blank"
+                        ><i class="fa fa-instagram"></i
+                      ></a>
+                    </span>
+                  </div>
+                  <div class="p-2">
+                    <span class="description">
+                      <a *ngIf="_user.socialsNetworks.linkedin" [href]="_user.socialsNetworks.linkedin" class="btn btn-twitter" target="_blank"
+                        ><i class="fa fa-linkedin"></i
+                      ></a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="vio-width-card">
+              <h3 class="text-center">
+                {{ _user.displayName | titlecase }}
+              </h3>
+              <div class="mt-4 d-flex justify-content-between">
+                <span class="h5 ">Email: </span>
+                <span class="h5 vio-card-link">
+                  {{ _user.email }}
+                </span>
+              </div>
+              <div class="mt-4 d-flex justify-content-between">
+                <span class="h5">Job: </span>
+                <span class="h5">{{ _user.job }}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="h5">Phone:</span>
+                <span class="h5">{{ _user.phone }}</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="h5">Location: </span>
+                <span class="h5" *ngIf="_user.address.city">{{ _user.address.city }}, {{ _user.address.postCode }}</span>
+              </div>
+              <div class="d-flex justify-content-between mt4">
+                <span class="h5">Website:</span>
+                <span class="h5">{{ _user.website }}</span>
+              </div>
+              <div *ngIf="!_user.emailVerified">
+                <p class="text-warning">Email not verified</p>
+                <a href="javascript:void(0)" class="btn btn-info" (click)="onSendEmailVerification()">Send email verification</a>
+              </div>
+              <hr class="my-4" />
+              <p *ngIf="!_user.aboutMe">
+                Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.
+              </p>
+              <p *ngIf="_user.aboutMe">{{ _user.aboutMe }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My account</h3>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div *ngIf="isEdit">
+              <app-form-profile [authUser]="_user"></app-form-profile>
+            </div>
+            <div class="pl-lg-4" *ngIf="!isEdit">
+              <app-card-course></app-card-course>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
