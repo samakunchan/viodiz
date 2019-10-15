@@ -71,10 +71,12 @@ Ensuite, ecrire la commade pour enregistrer les clouds functions
     firebase deploy --only functions
     Pour deploy les fonctions
     NB: En supprimant une fonction dans l'index, il supprime aussi dans la cloud.
+    
+Attention
+-
 
-## Attention
-
-- Concernant `(data, context) => {...}`, il n'y aura aucun problème concernant l'utilisation de `data`, mais si on utilise le `context`, l'utilisation de la commande `firebase deploy --only functions` va générer une érreur. L'érreur est générer par le `/functions/tsconfig.ts` (voir ci-dessous).
+- Concernant `(data, context) => {...}`, il n'y aura aucun problème concernant l'utilisation de `data`, mais si on utilise le `context`, l'utilisation de la commande `firebase deploy --only functions
+` va générer une érreur. L'érreur est générer par le `/functions/tsconfig.ts` (voir ci-dessous).
 
 
       {
@@ -134,6 +136,7 @@ Admettons l'utilisation d'un observable dans un service
 
 - Component
 
+
       import { UsersService } from '../../../core/services/users.service';
       import { Observable } from 'rxjs';
 
@@ -147,6 +150,7 @@ Admettons l'utilisation d'un observable dans un service
         constructor(private userService: UsersService) {}
         ...
         ...
+
         onSubmit() {
           ...
           ...
