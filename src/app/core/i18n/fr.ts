@@ -34,7 +34,7 @@ export const locale = {
           ACCOUNTEXIST: 'Vous vous êtes déjà inscrit auprès d`un autre fournisseur d`authentification pour cet email.',
         },
         PASSWORD: {
-          SUCCESS: 'Un nouveau lien a été envoyé à votre adresse email. Vérifier votre boite mail. Cordialement.',
+          SUCCESS: 'Un lien a été envoyé à votre adresse email. Vérifier votre boite mail. Cordialement.',
           INVALIDEMAIL: 'L`email utilisé est invalide.',
           INVALIDUSER: 'L`utilisateur n`a pas été trouvé.',
         },
@@ -43,6 +43,10 @@ export const locale = {
           SUCCESS: 'Votre compte a bien été créé.',
           FAILURE: 'Une érreur est survenu lors de la création de votre compte.',
           USED: 'Cet email est déjà utilisé.',
+        },
+        PROFIL: {
+          SUCCESS: 'Votre compte a bien été mis à jour.',
+          FAILURE: 'Une érreur est survenu. Recharger la page ou réessayer plus tard.',
         },
       },
     },

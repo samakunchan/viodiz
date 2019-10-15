@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ClipboardModule } from 'ngx-clipboard';
 
@@ -21,6 +21,8 @@ import { AddUserComponent } from '../../pages/users-management/add-user/add-user
 import { UpdateUserComponent } from '../../pages/users-management/update-user/update-user.component';
 import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
 import { UsersService } from '../../core/services/users.service';
+import { FormProfileComponent } from '../../pages/partials/form-profile/form-profile.component';
+import { CardCourseComponent } from '../../pages/partials/card-course/card-course.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -33,6 +35,7 @@ import { UsersService } from '../../core/services/users.service';
     ClipboardModule,
     TranslateModule,
     NgxPermissionsModule.forChild(),
+    ReactiveFormsModule,
   ],
   declarations: [
     DashboardComponent,
@@ -45,6 +48,8 @@ import { UsersService } from '../../core/services/users.service';
     AddUserComponent,
     UpdateUserComponent,
     FirstLetterPipe,
+    FormProfileComponent,
+    CardCourseComponent,
   ],
   providers: [NgxPermissionsService, UsersService],
   exports: [FirstLetterPipe],

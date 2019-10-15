@@ -6,9 +6,9 @@ export enum AuthActionTypes {
   Logout = '[Logout] Action',
   Register = '[Register] Action',
   AuthUserRequested = '[Request User] Action',
-  AuthUserLoaded = '[Load User] Auth API Firebase',
+  AuthUserLoaded = '[Loaded User] Auth API Firebase',
   CurrentUserUpdatePhoto = '[Update current user photo] Auth API Firebase',
-  CurrentUserUpdateAddInfos = '[Update current user additionnal information] Auth API Firebase',
+  AuthUserUpdateAddInfos = '[Update current user additionnal information] Auth API Firebase',
 }
 
 export class Login implements Action {
@@ -39,8 +39,9 @@ export class CurrentUserUpdatePhoto implements Action {
   constructor(public payload: { user: AuthUser }) {}
 }
 
-export class CurrentUserUpdateAddInfos {
-  readonly type = AuthActionTypes.CurrentUserUpdateAddInfos;
+export class AuthUserUpdateAddInfos {
+  readonly type = AuthActionTypes.AuthUserUpdateAddInfos;
   constructor(public payload: { user: AuthUser }) {}
 }
-export type AuthActions = Login | Logout | Register | AuthUserRequested | AuthUserLoaded | CurrentUserUpdatePhoto | CurrentUserUpdateAddInfos;
+
+export type AuthActions = Login | Logout | Register | AuthUserRequested | AuthUserLoaded | CurrentUserUpdatePhoto | AuthUserUpdateAddInfos;

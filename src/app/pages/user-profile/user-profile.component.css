@@ -1,0 +1,38 @@
+.order-card-profil {
+  flex: 0 0 25%;
+}
+.order-card-profil .vio-card-profil img {
+  max-width: 180px;
+  transition: all 0.15s ease;
+}
+
+.vio-card {
+  position: relative;
+}
+.vio-card .email-verified-success {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+}
+.vio-card .file-svg-container {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  display: none;
+}
+
+.vio-width-card {
+  margin: 0 60px auto;
+}
+
+.vio-card-link {
+  cursor: pointer;
+}
+.vio-card-link:hover {
+  transition: color 0.3s ease;
+  color: #2bffc6;
+}
+
+/*# sourceMappingURL=user-profile.component.css.map */

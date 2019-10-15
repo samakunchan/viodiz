@@ -25,9 +25,9 @@
           <div class="media align-items-center">
             <span class="avatar avatar-sm rounded-circle">
               <span *ngIf="!_user.photoUrl" class="rounded">
-                {{ _user.displayName | firstLetter | titlecase }}
+                {{ _user.displayName | firstLetter | uppercase }}
               </span>
-              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl"  />
+              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl" />
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
               <span class="mb-0 text-sm font-weight-bold">{{ _user.displayName | titlecase }}</span>
@@ -39,9 +39,9 @@
           <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" [ngClass]="getBg()">
             <div class="kt-user-card__avatar mr-3">
               <span *ngIf="!_user.photoUrl" class="vio-badge-user text-white">
-                {{ _user.displayName | firstLetter | titlecase }}
-                </span>
-              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl"  />
+                {{ _user.displayName | firstLetter | uppercase }}
+              </span>
+              <img *ngIf="_user.photoUrl" width="60" alt="current user" class="rounded" [attr.src]="_user.photoUrl" />
             </div>
             <div class="kt-user-card__name text-white">
               {{ _user.displayName | titlecase }}
