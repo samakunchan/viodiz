@@ -181,51 +181,41 @@
         </ul>
       </ng-container>
       <ng-template #loader>...Loading</ng-template>
-      <!-- /Navigation -->
-
       <!-- Divider -->
       <hr class="my-3" />
-      <!-- Heading -->
-      <h6 class="navbar-heading text-muted" *ngIf="forRetractedSideBar">Documentation</h6>
-      <!-- Navigation -->
-      <ul class="navbar-nav mb-md-3">
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/tutorial">
+      <!-- /Navigation -->
+      <h6 class="navbar-heading text-muted" *ngIf="forRetractedSideBar">Administration</h6>
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of adminOnly" class="{{ menuItem.class }} nav-item">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngxPermissionsOnly="menuItem.permissionOnly">
             <i
               [ngClass]="{
                 'inscrease-icon-size': false,
                 'inscrease-icon-size': forRetractedSideBar === false,
                 'decrease-icon-size': forRetractedSideBar === true
               }"
-              class="ni ni-spaceship"
+              class="ni {{ menuItem.icon }}"
             ></i>
-            <span *ngIf="forRetractedSideBar">Getting started</span>
+            <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/colors">
+      </ul>
+      <!-- Divider -->
+      <hr class="my-3" />
+      <!-- /Navigation -->
+      <h6 class="navbar-heading text-muted" *ngIf="forRetractedSideBar">Basics</h6>
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of basics" class="{{ menuItem.class }} nav-item">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" *ngxPermissionsOnly="menuItem.permissionOnly">
             <i
               [ngClass]="{
                 'inscrease-icon-size': false,
                 'inscrease-icon-size': forRetractedSideBar === false,
                 'decrease-icon-size': forRetractedSideBar === true
               }"
-              class="ni ni-palette"
+              class="ni {{ menuItem.icon }}"
             ></i>
-            <span *ngIf="forRetractedSideBar">Foundation</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard-angular/documentation/alerts">
-            <i
-              [ngClass]="{
-                'inscrease-icon-size': false,
-                'inscrease-icon-size': forRetractedSideBar === false,
-                'decrease-icon-size': forRetractedSideBar === true
-              }"
-              class="ni ni-ui-04"
-            ></i>
-            <span *ngIf="forRetractedSideBar">Components</span>
+            <span *ngIf="forRetractedSideBar" [translate]="menuItem.title"></span>
           </a>
         </li>
       </ul>

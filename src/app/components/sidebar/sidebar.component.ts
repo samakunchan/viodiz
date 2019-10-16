@@ -17,9 +17,67 @@ export const ROUTES: RouteInfo[] = [
     path: 'dashboard',
     title: 'BACK.SIDE.DASHBOARD',
     icon: 'ni-tv-2 text-primary',
-    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'USER', 'GUEST'],
+    permissionOnly: [],
     class: '',
   },
+  {
+    path: 'user-profile',
+    title: 'Profile',
+    icon: 'ni-circle-08 text-info',
+    permissionOnly: [],
+    class: '',
+  },
+  {
+    path: 'catalog',
+    title: 'Catalog',
+    icon: 'ni-collection text-danger',
+    permissionOnly: [],
+    class: '',
+  },
+  {
+    path: 'faq',
+    title: 'F.A.Q',
+    icon: 'ni-ui-04 text-info',
+    permissionOnly: [],
+    class: '',
+  },
+  {
+    path: 'comments',
+    title: 'Commentaires',
+    icon: 'ni-chat-round text-warning',
+    permissionOnly: [],
+    class: '',
+  },
+];
+// rajouter "Groupes" pour les animators
+// rajouter "Formation" pour les user premium
+// rajouter "start" pour les infos de départ
+// rajouter "commentaire" pour les récolter les commentaires des users
+export const ROUTESADMINONLY: RouteInfo[] = [
+  {
+    path: 'users-management/users/list',
+    title: 'BACK.SIDE.LISTUSERS',
+    icon: 'fa fa-group text-info',
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE'],
+    class: '',
+  },
+  {
+    path: 'courses',
+    title: 'Courses',
+    icon: 'ni-ruler-pencil text-primary',
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE'],
+    class: '', // Les qcm seront dans la même page
+  },
+  {
+    path: 'products',
+    title: 'Products',
+    icon: 'ni-archive-2 text-orange',
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE'],
+    class: '',
+  },
+  // gestion du "get started"
+];
+export const ROUTESBASIC: RouteInfo[] = [
   {
     path: 'icons',
     title: 'BACK.SIDE.ICON',
@@ -35,13 +93,6 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
-    path: 'users-management/list-users',
-    title: 'BACK.SIDE.LISTUSERS',
-    icon: 'ni-single-02 text-info',
-    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
-    class: '',
-  },
-  {
     path: 'tables',
     title: 'BACK.SIDE.TABLE',
     icon: 'ni-bullet-list-67 text-red',
@@ -49,13 +100,14 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
 ];
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
+  public basics: any[];
+  public adminOnly: any[];
   public menuItems: any[];
   public isCollapsed = true;
   public innerWidth: any;
@@ -72,10 +124,13 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
-    this.router.events.subscribe(event => {
+    this.adminOnly = ROUTESADMINONLY.filter(menuItem => menuItem);
+    this.basics = ROUTESBASIC.filter(menuItem => menuItem);
+    this.router.events.subscribe(() => {
       this.isCollapsed = true;
     });
     this.role$ = this.store.select(getCurrentRole);
+    this.role$.subscribe(res => console.log(res));
   }
 
   onToggleSideBar() {

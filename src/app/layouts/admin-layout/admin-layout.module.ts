@@ -14,16 +14,20 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { ListUsersComponent } from '../../pages/users-management/list-users/list-users.component';
-import { NgxPermissionsModule, NgxPermissionsService } from 'ngx-permissions';
-import { SeeUserComponent } from '../../pages/users-management/see-user/see-user.component';
-import { AddUserComponent } from '../../pages/users-management/add-user/add-user.component';
-import { UpdateUserComponent } from '../../pages/users-management/update-user/update-user.component';
-import { FirstLetterPipe } from '../../core/pipe/first-letter.pipe';
+import { NgxPermissionsService } from 'ngx-permissions';
 import { UsersService } from '../../core/services/users.service';
 import { FormProfileComponent } from '../../pages/partials/form-profile/form-profile.component';
 import { CardCourseComponent } from '../../pages/partials/card-course/card-course.component';
-// import { ToastrModule } from 'ngx-toastr';
+import { ListUsersModule } from '../../pages/users-management/list-users/list-users.module';
+import { CatalogComponent } from '../../pages/catalog/catalog.component';
+import { ProductsComponent } from '../../pages/products/products.component';
+import { CoursesComponent } from '../../pages/courses/courses.component';
+import { FaqComponent } from '../../pages/faq/faq.component';
+import { CommentsComponent } from '../../pages/comments/comments.component';
+import { FormationComponent } from '../../pages/formation/formation.component';
+import { GroupesComponent } from '../../pages/groupes/groupes.component';
+import { WebsiteeditionComponent } from '../../pages/websiteedition/websiteedition.component';
+import { GetstartedComponent } from '../../pages/getstarted/getstarted.component';
 
 @NgModule({
   imports: [
@@ -34,8 +38,8 @@ import { CardCourseComponent } from '../../pages/partials/card-course/card-cours
     NgbModule,
     ClipboardModule,
     TranslateModule,
-    NgxPermissionsModule.forChild(),
     ReactiveFormsModule,
+    ListUsersModule,
   ],
   declarations: [
     DashboardComponent,
@@ -43,15 +47,19 @@ import { CardCourseComponent } from '../../pages/partials/card-course/card-cours
     TablesComponent,
     IconsComponent,
     MapsComponent,
-    ListUsersComponent,
-    SeeUserComponent,
-    AddUserComponent,
-    UpdateUserComponent,
-    FirstLetterPipe,
     FormProfileComponent,
     CardCourseComponent,
+    CatalogComponent,
+    ProductsComponent,
+    CoursesComponent,
+    FaqComponent,
+    CommentsComponent,
+    FormationComponent,
+    GroupesComponent,
+    WebsiteeditionComponent,
+    GetstartedComponent,
   ],
   providers: [NgxPermissionsService, UsersService],
-  exports: [FirstLetterPipe],
+  exports: [],
 })
 export class AdminLayoutModule {}
