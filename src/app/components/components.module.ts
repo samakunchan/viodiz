@@ -10,11 +10,19 @@ import { FooterFrontComponent } from './footerfront/footer-front.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from './partials/language-selector/language-selector.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { AdminLayoutModule } from '../layouts/admin-layout/admin-layout.module';
+import { FirstLetterPipe } from '../core/pipe/first-letter.pipe';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule, TranslateModule, NgxPermissionsModule, AdminLayoutModule],
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, NavbarFrontComponent, FooterFrontComponent, LanguageSelectorComponent],
+  imports: [CommonModule, RouterModule, NgbModule, TranslateModule, NgxPermissionsModule],
+  declarations: [
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    NavbarFrontComponent,
+    FooterFrontComponent,
+    LanguageSelectorComponent,
+    FirstLetterPipe,
+  ],
   exports: [FooterComponent, NavbarComponent, SidebarComponent, NavbarFrontComponent, FooterFrontComponent],
 })
 export class ComponentsModule {}

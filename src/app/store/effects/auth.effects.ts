@@ -20,6 +20,7 @@ import { AuthUser } from '../../core/models/auth.model';
 import { RoleSelected } from '../actions/roles.actions';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
+
 @Injectable()
 export class AuthEffects implements OnInitEffects {
   @Effect({ dispatch: false })
@@ -35,7 +36,9 @@ export class AuthEffects implements OnInitEffects {
     ofType<Logout>(AuthActionTypes.Logout),
     tap(() => {
       localStorage.removeItem(environment.authTokenKey);
-      this.authService.signOut();
+      this.authService.signOut().then(() => {
+        window.location.reload();
+      });
       this.router.navigate(['auth', 'login']);
     }),
   );
@@ -93,7 +96,7 @@ export class AuthEffects implements OnInitEffects {
     private store: Store<AppState>,
     private authService: AuthService,
     private router: Router,
-    private translate: TranslateService,
+    private translate: TranslateService
   ) {}
 
   ngrxOnInitEffects(): Action {
