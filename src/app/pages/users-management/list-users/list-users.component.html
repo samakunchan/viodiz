@@ -23,6 +23,9 @@
   <div *ngFor="let user of listUser$ | async">
     {{ user.email }}
   </div>
+  <a routerLink="users-management/users/add" class="btn btn-primary">Add</a>
+  <a routerLink="users-management/users/see" class="btn btn-primary">See</a>
+  <a routerLink="users-management/users/edit" class="btn btn-primary">Update</a>
   <div class="row">
     <div class="col">
       <div class="card shadow">
