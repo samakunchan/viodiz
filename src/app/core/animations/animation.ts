@@ -1,4 +1,4 @@
-import { trigger, transition, style, query, group, animate, state } from '@angular/animations';
+import { trigger, transition, style, query, group, animate, state, animateChild } from '@angular/animations';
 
 export const slider = trigger('routeAnimations', [transition('* => *', slideTo('right'))]);
 
@@ -10,7 +10,7 @@ export function slideTo(to) {
       [
         style({
           position: 'absolute',
-          top: 0,
+          top: 'inherits',
           [to]: 0,
           width: '100%',
         }),
@@ -25,7 +25,19 @@ export function slideTo(to) {
   ];
 }
 
-const scaler = trigger('heroState', [
+export const routerTransition = trigger('routerTransition', [
+  transition('* => *', [
+    query(':enter, :leave', style({ position: 'fixed', width: '100%', height: '100%' })),
+    query(':enter', style({ transform: 'translateX(100%)' })),
+
+    group([
+      query(':leave', [style({ transform: 'translateX(0%)' }), animate('600ms ease-in-out', style({ transform: 'translate(-100%, -20%)' }))]),
+      query(':enter', [animate('600ms ease-in-out', style({ transform: 'translate(0%, 0%)' })), animateChild()]),
+    ]),
+  ]),
+]);
+
+export const scaler = trigger('heroState', [
   state(
     'inactive',
     style({

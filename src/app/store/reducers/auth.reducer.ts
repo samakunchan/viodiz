@@ -1,5 +1,5 @@
-import { AuthUser } from '../../core/models/auth.model';
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
+import { AuthUser } from '../../core';
+import { AuthActions, AuthActionTypes } from '..';
 
 export const authFeatureKey = 'auth';
 

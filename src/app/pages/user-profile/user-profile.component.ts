@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, currentUser } from '../../store';
+import { AppState, currentUser, CurrentUserUpdatePhoto } from '../../store';
 import { Observable } from 'rxjs';
-import { AuthUser } from '../../core/models/auth.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CurrentUserUpdatePhoto } from '../../store/actions/auth.actions';
 import { AuthService } from '../../core/services/auth.service';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthUser } from '../../core';
 
 @Component({
   selector: 'app-user-profile',
