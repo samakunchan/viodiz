@@ -29,6 +29,10 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],
   imports: [
+    TranslateModule.forRoot(),
+    EffectsModule.forRoot([RolesEffects, PermissionsEffects, AuthEffects]),
+    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer, authUser: authReducer }),
+    NgxPermissionsModule.forRoot(),
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
@@ -37,10 +41,6 @@ import { ToastrModule } from 'ngx-toastr';
     RouterModule,
     AppRoutingModule,
     LoadingBarModule,
-    TranslateModule.forRoot(),
-    EffectsModule.forRoot([RolesEffects, PermissionsEffects, AuthEffects]),
-    NgxPermissionsModule.forRoot(),
-    StoreModule.forRoot({ roles: rolesReducer, permissions: permissionsReducer, authUser: authReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),

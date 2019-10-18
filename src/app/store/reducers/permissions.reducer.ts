@@ -1,5 +1,5 @@
 import { Permissions } from '../../core';
-import { PermissionsActions, PermissionsActionTypes } from '../actions/permissions.actions';
+import { PermissionsActions, PermissionsActionTypes } from '..';
 
 export const permissionFeatureKey = 'permission';
 

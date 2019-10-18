@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthUser } from '../../../core/models/auth.model';
 import { AuthService } from '../../../core/services/auth.service';
-import { AuthUserUpdateAddInfos } from '../../../store/actions/auth.actions';
+
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store';
+import { AppState, AuthUserUpdateAddInfos } from '../../../store';
+import { AuthUser } from '../../../core';
 
 @Component({
   selector: 'app-form-profile',

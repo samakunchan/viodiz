@@ -4,10 +4,9 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { Store } from '@ngrx/store';
-import { AppState, currentUser } from '../../store';
-import { Logout } from '../../store/actions/auth.actions';
+import { AppState, currentUser, Logout } from '../../store';
 import { Observable } from 'rxjs';
-import { AuthUser } from '../../core/models/auth.model';
+import { AuthUser } from '../../core';
 
 @Component({
   selector: 'app-navbar',

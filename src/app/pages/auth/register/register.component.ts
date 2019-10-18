@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../store';
+import { AppState, Register } from '../../../store';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmPasswordValidator } from './confirm-password.validator';
-import { AuthUser } from '../../../core/models/auth.model';
-import { Register } from '../../../store/actions/auth.actions';
 import { AuthNoticeService } from '../../../core/auth-notice/auth-notice.service';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthUser } from '../../../core';
 
 @Component({
   selector: 'app-register',

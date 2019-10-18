@@ -4,7 +4,7 @@ import { Location, PopStateEvent } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { AppState, currentUser } from '../../store';
 import { Observable } from 'rxjs';
-import { AuthUser } from '../../core/models/auth.model';
+import { AuthUser } from '../../core';
 
 @Component({
   selector: 'app-navbar-front',

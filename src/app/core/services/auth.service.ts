@@ -3,13 +3,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
-import { AuthUser } from '../models/auth.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthNoticeService } from '../auth-notice/auth-notice.service';
 import { Sha256 } from '../_class/sha256';
+import { AuthUser } from '..';
 
 @Injectable({
   providedIn: 'root',
