@@ -7,8 +7,6 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { CatalogComponent } from '../../pages/catalog/catalog.component';
-import { ProductsComponent } from '../../pages/products/products.component';
-import { CoursesComponent } from '../../pages/courses/courses.component';
 import { FaqComponent } from '../../pages/faq/faq.component';
 import { CommentsComponent } from '../../pages/comments/comments.component';
 import { GetstartedComponent } from '../../pages/getstarted/getstarted.component';
@@ -33,16 +31,49 @@ export const AdminLayoutRoutes: Routes = [
     },
   },
   { path: 'catalog', component: CatalogComponent, data: { animation: 'toLeft2' } },
-  { path: 'products', component: ProductsComponent, data: { animation: 'toLeft3' } },
-  { path: 'courses', component: CoursesComponent, data: { animation: 'toLeft4' } },
-  { path: 'icons', component: IconsComponent, data: { animation: 'toLeft5' } },
-  { path: 'maps', component: MapsComponent, data: { animation: 'toLeft6' } },
+  { path: 'icons', component: IconsComponent, data: { animation: 'toLeft3' } },
+  { path: 'maps', component: MapsComponent, data: { animation: 'toLeft4' } },
+  {
+    path: 'products-management/products',
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
+        except: ['GUEST'],
+        redirectTo: 'admin/dashboard',
+      },
+      animation: 'toLeft5',
+    },
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../../pages/products-management/products/products.module').then(m => m.ProductsModule),
+      },
+    ],
+  },
+  {
+    path: 'courses-management/courses',
+    canActivate: [NgxPermissionsGuard],
+    // data: {
+    //   permissions: {
+    //     only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
+    //     except: ['GUEST'],
+    //     redirectTo: 'admin/dashboard',
+    //   },
+    // },
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../../pages/courses-management/courses/courses.module').then(m => m.CoursesModule),
+      },
+    ],
+  },
   {
     path: 'users-management/users',
     canActivate: [NgxPermissionsGuard],
     data: {
       permissions: {
-        only: ['CONSTRUCTOR', 'ADMIN'],
+        only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
         except: ['GUEST'],
         redirectTo: 'admin/dashboard',
       },
@@ -51,7 +82,7 @@ export const AdminLayoutRoutes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('../../pages/users-management/list-users/list-users.module').then(m => m.ListUsersModule),
+        loadChildren: () => import('../../pages/users-management/users/list-users.module').then(m => m.ListUsersModule),
       },
     ],
   },
@@ -61,4 +92,5 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'groupes', component: GroupesComponent, data: { animation: 'toLeft11' } },
   { path: 'comments', component: CommentsComponent, data: { animation: 'toLeft12' } },
   { path: 'website-edit', component: WebsiteeditionComponent, data: { animation: 'toLeft13' } },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 ];

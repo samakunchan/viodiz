@@ -13,17 +13,18 @@ const routes: Routes = [
     component: ListUsersComponent,
   },
   {
-    path: 'users-management/users/see',
+    path: 'see',
     component: SeeUserComponent,
   },
   {
-    path: 'users-management/users/add',
+    path: 'add',
     component: AddUserComponent,
   },
   {
-    path: 'users-management/users/edit',
+    path: 'edit',
     component: UpdateUserComponent,
   },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
 ];
 @NgModule({
   declarations: [ListUsersComponent, SeeUserComponent, AddUserComponent, UpdateUserComponent],

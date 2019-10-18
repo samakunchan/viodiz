@@ -13,7 +13,8 @@ import { of, Subject } from 'rxjs';
 export class PermissionsService {
   permissionSubject = new Subject<Permissions[]>();
   private permissions: Permissions[] = [
-    { // user list
+    {
+      // user list
       id: 0,
       title: 'canSeeListUserPage',
       level: 3,
@@ -37,7 +38,8 @@ export class PermissionsService {
       level: 5,
       name: 'User Management del',
     },
-    { // courses admin
+    {
+      // courses admin
       id: 5,
       title: 'canSeeCoursePage',
       level: 3,
@@ -61,7 +63,8 @@ export class PermissionsService {
       level: 5,
       name: 'Course Management del',
     },
-    { // product
+    {
+      // product
       id: 9,
       title: 'canSeeProductPageList',
       level: 3,
@@ -85,7 +88,8 @@ export class PermissionsService {
       level: 5,
       name: 'Product Management del',
     },
-    { // groupes
+    {
+      // groupes
       id: 13,
       title: 'canSeeGroupePage',
       level: 2,
@@ -186,9 +190,9 @@ export class PermissionsService {
       title: 'canEditRoleStatus',
       level: 5,
       name: 'Role Management change role',
-    }
-// possiblement: canSeeInvoicement (facture)
-// possiblement: canCertificate (diplome)
+    },
+    // possiblement: canSeeInvoicement (facture)
+    // possiblement: canCertificate (diplome)
   ];
 
   constructor() {}

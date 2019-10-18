@@ -62,14 +62,14 @@ export const ROUTESADMINONLY: RouteInfo[] = [
     class: '',
   },
   {
-    path: 'courses',
+    path: 'courses-management/courses/list',
     title: 'Courses',
     icon: 'ni-ruler-pencil text-primary',
     permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE'],
     class: '', // Les qcm seront dans la même page
   },
   {
-    path: 'products',
+    path: 'products-management/products/list',
     title: 'Products',
     icon: 'ni-archive-2 text-orange',
     permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE'],
@@ -130,7 +130,6 @@ export class SidebarComponent implements OnInit {
       this.isCollapsed = true;
     });
     this.role$ = this.store.select(getCurrentRole);
-    this.role$.subscribe(res => console.log(res));
   }
 
   onToggleSideBar() {

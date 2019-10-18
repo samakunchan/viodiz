@@ -1,5 +1,5 @@
 import { Roles } from '../../core';
-import { RolesActions, RolesActionTypes } from '../actions/roles.actions';
+import { RolesActions, RolesActionTypes } from '..';
 
 export const roleFeatureKey = 'roles';
 

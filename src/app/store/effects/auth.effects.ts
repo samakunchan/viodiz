@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType, OnInitEffects } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import {
+  AppState,
   AuthActionTypes,
   AuthUserLoaded,
   AuthUserRequested,
@@ -10,16 +13,14 @@ import {
   Login,
   Logout,
   Register,
-} from '../actions/auth.actions';
-import { filter, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
-import { AppState, currentUser } from '../index';
+  RoleSelected,
+  currentUser,
+} from '../index';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { AuthUser } from '../../core/models/auth.model';
-import { RoleSelected } from '../actions/roles.actions';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthUser } from '../../core';
 
 @Injectable()
 export class AuthEffects implements OnInitEffects {
@@ -96,7 +97,7 @@ export class AuthEffects implements OnInitEffects {
     private store: Store<AppState>,
     private authService: AuthService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {}
 
   ngrxOnInitEffects(): Action {

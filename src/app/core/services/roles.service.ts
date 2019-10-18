@@ -127,14 +127,7 @@ export class RolesService {
     },
     {
       name: 'USER PREMIUM',
-      permissions: [
-        'canAccessToGroupe',
-        'canSeeQCMPage',
-        'canAddQCM',
-        'canEditQCM',
-        'canSeeFormationPage',
-        'canEditQCMFormationPage',
-      ],
+      permissions: ['canAccessToGroupe', 'canSeeQCMPage', 'canAddQCM', 'canEditQCM', 'canSeeFormationPage', 'canEditQCMFormationPage'],
     },
   ];
   constructor() {}
