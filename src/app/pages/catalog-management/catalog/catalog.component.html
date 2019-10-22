@@ -1,0 +1,9 @@
+<div
+  class="header bg-gradient-red pb-7 pt-5 pt-md-8"
+  [ngStyle]="{ 'back-ground-image': 'url(https://www.freepik.com/free-photos-vectors/technology)' }"
+>
+  <h2 class="text-center" style="font-size: 40px">Catalogs</h2>
+</div>
+<div [@routeAnimations]="prepareRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

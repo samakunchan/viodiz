@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState, PermStateEntity } from '../index';
+import { AppState } from '../index';
+import { PermStateEntity } from '../reducers/permissions.reducer';
 
 const selectPermissionsState = createFeatureSelector<AppState, PermStateEntity>('permissions');
 

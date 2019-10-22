@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Courses } from '..';
+import { Products } from '..';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CoursesService {
+export class ProductsService {
   constructor(private db: AngularFirestore) {}
 
-  createCourses(courses: Courses) {
-    console.log(courses);
-    return this.db.collection<Courses>('Courses').add({
-      title: courses.title,
-      modules: courses.modules,
+  createProduct(product: Products) {
+    return this.db.collection<Products>('Products').add({
+      title: product.title,
+      coursesId: product.coursesId,
+      timeEstimate: product.timeEstimate,
+      price: product.price,
+      image: product.image,
+      isCertificated: product.isCertificated,
     });
   }
 
-  listCourses() {
+  listProducts() {
     return new Observable(observer => {
       this.db
-        .collection('Courses')
+        .collection('Products')
         .get()
         .subscribe(res => {
           const datas = [];
