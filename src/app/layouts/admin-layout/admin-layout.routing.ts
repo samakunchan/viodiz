@@ -6,7 +6,6 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
-import { CatalogComponent } from '../../pages/catalog/catalog.component';
 import { FaqComponent } from '../../pages/faq/faq.component';
 import { CommentsComponent } from '../../pages/comments/comments.component';
 import { GetstartedComponent } from '../../pages/getstarted/getstarted.component';
@@ -30,20 +29,27 @@ export const AdminLayoutRoutes: Routes = [
       animation: 'toLeft1',
     },
   },
-  { path: 'catalog', component: CatalogComponent, data: { animation: 'toLeft2' } },
+  {
+    path: 'catalog',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../../pages/catalog-management/catalog/catalog.module').then(m => m.CatalogModule),
+      },
+    ],
+  },
   { path: 'icons', component: IconsComponent, data: { animation: 'toLeft3' } },
   { path: 'maps', component: MapsComponent, data: { animation: 'toLeft4' } },
   {
     path: 'products-management/products',
     canActivate: [NgxPermissionsGuard],
-    data: {
-      permissions: {
-        only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
-        except: ['GUEST'],
-        redirectTo: 'admin/dashboard',
-      },
-      animation: 'toLeft5',
-    },
+    // data: {
+    //   permissions: {
+    //     only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR'],
+    //     except: ['GUEST'],
+    //     redirectTo: 'admin/dashboard',
+    //   },
+    // },
     children: [
       {
         path: '',

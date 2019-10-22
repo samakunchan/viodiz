@@ -19,12 +19,14 @@ import { AppFirebaseModule } from './app-firebase.module';
 import { RolesService } from './core/services/roles.service';
 import { PermissionsService } from './core/services/permissions.service';
 import { EffectsModule } from '@ngrx/effects';
-import { authReducer, permissionsReducer, rolesReducer } from './store';
 import { RolesEffects } from './store/effects/roles.effects';
 import { PermissionsEffects } from './store/effects/permissions.effects';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AuthEffects } from './store/effects/auth.effects';
 import { ToastrModule } from 'ngx-toastr';
+import { rolesReducer } from './store/reducers/roles.reducer';
+import { permissionsReducer } from './store/reducers/permissions.reducer';
+import { authReducer } from './store/reducers/auth.reducer';
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, FrontLayoutComponent],

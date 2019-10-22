@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState, CoursesStateEntity } from '../index';
+import { AppState } from '../index';
+import { CoursesStateEntity } from '../reducers/courses.reducer';
 
 const selectCoursesState = createFeatureSelector<AppState, CoursesStateEntity>('courses');
 

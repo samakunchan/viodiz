@@ -17,7 +17,6 @@ import { UsersService } from '../../core/services/users.service';
 import { FormProfileComponent } from '../../pages/partials/form-profile/form-profile.component';
 import { CardCourseComponent } from '../../pages/partials/card-course/card-course.component';
 import { ListUsersModule } from '../../pages/users-management/users/list-users.module';
-import { CatalogComponent } from '../../pages/catalog/catalog.component';
 import { FaqComponent } from '../../pages/faq/faq.component';
 import { CommentsComponent } from '../../pages/comments/comments.component';
 import { FormationComponent } from '../../pages/formation/formation.component';
@@ -27,15 +26,19 @@ import { GetstartedComponent } from '../../pages/getstarted/getstarted.component
 import { CoursesModule } from '../../pages/courses-management/courses/courses.module';
 import { ProductsModule } from '../../pages/products-management/products/products.module';
 import { StoreModule } from '@ngrx/store';
-import { coursesFeatureKey, coursesReducer } from '../../store';
 import { EffectsModule } from '@ngrx/effects';
 import { CoursesEffects } from '../../store/effects/courses.effects';
+import { coursesFeatureKey, coursesReducer } from '../../store/reducers/courses.reducer';
+import { productsFeatureKey, productReducer } from '../../store/reducers/products.reducer';
+import { ProductsEffects } from '../../store/effects/products.effects';
+import { CatalogModule } from '../../pages/catalog-management/catalog/catalog.module';
 
 @NgModule({
   imports: [
     RouterModule.forChild(AdminLayoutRoutes),
     StoreModule.forFeature(coursesFeatureKey, coursesReducer),
-    EffectsModule.forFeature([CoursesEffects]),
+    StoreModule.forFeature(productsFeatureKey, productReducer),
+    EffectsModule.forFeature([CoursesEffects, ProductsEffects]),
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -46,6 +49,7 @@ import { CoursesEffects } from '../../store/effects/courses.effects';
     ListUsersModule,
     CoursesModule,
     ProductsModule,
+    CatalogModule,
   ],
   declarations: [
     DashboardComponent,
@@ -55,7 +59,6 @@ import { CoursesEffects } from '../../store/effects/courses.effects';
     MapsComponent,
     FormProfileComponent,
     CardCourseComponent,
-    CatalogComponent,
     FaqComponent,
     CommentsComponent,
     FormationComponent,
