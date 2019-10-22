@@ -28,7 +28,7 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
-    path: 'catalog',
+    path: 'catalog/list',
     title: 'Catalog',
     icon: 'ni-collection text-danger',
     permissionOnly: [],

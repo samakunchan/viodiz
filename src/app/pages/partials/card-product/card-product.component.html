@@ -1,0 +1,36 @@
+<div class="vio-catalog mb-5 mb-xl-0">
+  <div class="picture" [ngStyle]="{ 'background-image': getUrlImage() }"></div>
+  <div class="detail">
+    <h4>{{ title }}</h4>
+  </div>
+  <div class="vio-catalog-footer">
+    <a href="javascript:void(0)">
+      <p>
+        <i class="flaticon-clock-1 mr-2"></i>
+      </p>
+      <span>{{ timeEstimate }}h</span>
+    </a>
+    <a href="javascript:void(0)">
+      <p>
+        <i class="flaticon-piggy-bank mr-2"></i>
+      </p>
+      <span>{{ price }} €</span>
+    </a>
+    <a href="javascript:void(0)">
+      <p>
+        <i class="flaticon-laptop mr-2"></i>
+      </p>
+      <span>Yes</span>
+    </a>
+    <a href="javascript:void(0)">
+      <p>
+        <i class="flaticon-medal mr-2 text-muted" *ngIf="!isCertificated"></i>
+        <i class="flaticon-medal mr-2 text-warning" *ngIf="isCertificated"></i>
+      </p>
+      <span>Certified</span>
+    </a>
+  </div>
+  <div class="vio-catalog-footer">
+    <a [routerLink]="'../product/' + id" class="btn btn-primary">See more</a>
+  </div>
+</div>

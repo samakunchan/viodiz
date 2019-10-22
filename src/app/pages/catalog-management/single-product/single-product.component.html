@@ -1,0 +1,6 @@
+<a [routerLink]="'../../list'" class="m-4 btn btn-primary">Back to catalog</a>
+<div class="m-4" *ngIf="product$ | async as product">
+  <h2>{{ product.title }}</h2>
+  <p>{{ product.price }}</p>
+  <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>

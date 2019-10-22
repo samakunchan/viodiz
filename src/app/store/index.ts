@@ -2,6 +2,7 @@ import { RolesStateEntity } from './reducers/roles.reducer';
 import { PermStateEntity } from './reducers/permissions.reducer';
 import { AuthStateEntity } from './reducers/auth.reducer';
 import { CoursesStateEntity } from './reducers/courses.reducer';
+import { ProductStateEntity } from './reducers/products.reducer';
 
 // Tout le store est ici
 export interface AppState {
@@ -9,6 +10,7 @@ export interface AppState {
   permissions: PermStateEntity;
   authUser: AuthStateEntity;
   courses: CoursesStateEntity;
+  products: ProductStateEntity;
 }
 // Actions
 export {
@@ -40,12 +42,12 @@ export {
   CoursesActions,
 } from './actions/courses.actions';
 // Reducers
-export { rolesReducer, roleFeatureKey, initialRolesState, RolesStateEntity } from './reducers/roles.reducer';
-export { permissionsReducer, permissionFeatureKey, initialPermissionsState, PermStateEntity } from './reducers/permissions.reducer';
-export { authReducer, authFeatureKey, initialAuthState, AuthStateEntity } from './reducers/auth.reducer';
-export { coursesReducer, coursesFeatureKey, initialCoursesState, CoursesStateEntity } from './reducers/courses.reducer';
+// export { coursesReducer, coursesFeatureKey, initialCoursesState, CoursesStateEntity } from './reducers/courses.reducer';
+// Exporter le contenu des reducers cause un problème de dépendance circulaire: 'circulary dependancy'
+
 // Selectors
 export { selectRoleLoaded, selectRoleLoading, getAllRoles } from './selectors/roles.selector';
 export { selectPermissionsLoaded, selectPermissionsLoading, getAllPermissions } from './selectors/permissions.selector';
 export { currentUser, currentAuthToken, isLoggedIn, isLoggedOut, isUserLoaded } from './selectors/auth.selector';
 export { selectAllCourses, selectCoursesLoaded, selectLoadingCourses } from './selectors/courses.selector';
+export { selectProductLoading, selectProductLoaded, getAllProducts, getCurrentProduct } from './selectors/products.selector';
