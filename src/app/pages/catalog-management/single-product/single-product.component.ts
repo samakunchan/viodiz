@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Products } from '../../../core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { paypalSandbox } from '../../../../environments/api-config';
+import { PaypalInfos } from '../../../core/models/paypalInfos.model';
+import { RequestTransaction } from '../../../store/actions/transactions.actions';
 
 @Component({
   selector: 'app-single-product',
@@ -18,6 +20,7 @@ export class SingleProductComponent implements OnInit {
   public id;
   public product$: Observable<Products>;
   public payPalConfig?: IPayPalConfig;
+  public paypal: PaypalInfos;
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class SingleProductComponent implements OnInit {
     this.product$.subscribe(product => {
       this.payPalConfig = {
         currency: 'EUR',
-        clientId: paypalSandbox.clientId,
+        clientId: paypalSandbox.clientId, // Attention: Paypal change cette clé parfois en sandbox
         createOrderOnClient: () => <ICreateOrderRequest>(<unknown>{
             intent: 'CAPTURE',
             purchase_units: [
@@ -52,7 +55,7 @@ export class SingleProductComponent implements OnInit {
                 },
                 items: [
                   {
-                    name: 'Viodiz e-learning',
+                    name: product.title,
                     quantity: '1',
                     category: 'DIGITAL_GOODS',
                     unit_amount: {
@@ -79,7 +82,18 @@ export class SingleProductComponent implements OnInit {
         },
         onClientAuthorization: data => {
           console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-          // this.showSuccess = true;
+          this.paypal = new PaypalInfos();
+          this.paypal.clear();
+          this.paypal.create_time = data.create_time;
+          this.paypal.id = data.id;
+          this.paypal.status = data.status;
+          this.paypal.payer.payer_id = data.payer.payer_id;
+          this.paypal.payer.email_address = data.payer.email_address;
+          this.paypal.payer.name.given_name = data.payer.name.given_name;
+          this.paypal.payer.name.surname = data.payer.name.surname;
+          this.paypal.payee.email_address = data.purchase_units[0].payee.email_address;
+          this.paypal.payee.merchant_id = data.purchase_units[0].payee.merchant_id;
+          this.store.dispatch(new RequestTransaction({ paypal: this.paypal }));
         },
         onCancel: (data, actions) => {
           console.log('OnCancel', data, actions);

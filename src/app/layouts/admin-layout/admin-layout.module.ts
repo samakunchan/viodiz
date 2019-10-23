@@ -27,18 +27,21 @@ import { CoursesModule } from '../../pages/courses-management/courses/courses.mo
 import { ProductsModule } from '../../pages/products-management/products/products.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { CoursesEffects } from '../../store/effects/courses.effects';
-import { coursesFeatureKey, coursesReducer } from '../../store/reducers/courses.reducer';
-import { productsFeatureKey, productReducer } from '../../store/reducers/products.reducer';
-import { ProductsEffects } from '../../store/effects/products.effects';
 import { CatalogModule } from '../../pages/catalog-management/catalog/catalog.module';
+import { CoursesEffects } from '../../store/effects/courses.effects';
+import { ProductsEffects } from '../../store/effects/products.effects';
+import { TransactionsEffects } from '../../store/effects/transactions.effects';
+import { coursesReducer, coursesFeatureKey } from '../../store/reducers/courses.reducer';
+import { productReducer, productsFeatureKey } from '../../store/reducers/products.reducer';
+import { transactionReducer, transactionsFeatureKey } from '../../store/reducers/transactions.reducer';
 
 @NgModule({
   imports: [
     RouterModule.forChild(AdminLayoutRoutes),
     StoreModule.forFeature(coursesFeatureKey, coursesReducer),
     StoreModule.forFeature(productsFeatureKey, productReducer),
-    EffectsModule.forFeature([CoursesEffects, ProductsEffects]),
+    StoreModule.forFeature(transactionsFeatureKey, transactionReducer),
+    EffectsModule.forFeature([CoursesEffects, ProductsEffects, TransactionsEffects]),
     CommonModule,
     FormsModule,
     HttpClientModule,
