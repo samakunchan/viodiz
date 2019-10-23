@@ -3,6 +3,7 @@ import { PermStateEntity } from './reducers/permissions.reducer';
 import { AuthStateEntity } from './reducers/auth.reducer';
 import { CoursesStateEntity } from './reducers/courses.reducer';
 import { ProductStateEntity } from './reducers/products.reducer';
+import { TransactionStateEntity } from './reducers/transactions.reducer';
 
 // Tout le store est ici
 export interface AppState {
@@ -11,6 +12,7 @@ export interface AppState {
   authUser: AuthStateEntity;
   courses: CoursesStateEntity;
   products: ProductStateEntity;
+  transactions: TransactionStateEntity;
 }
 // Actions
 export {
