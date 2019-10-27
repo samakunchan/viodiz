@@ -1,5 +1,6 @@
 import { Address } from './auth-partials/address.model';
 import { SocialsNetworks } from './auth-partials/socials-networks.model';
+import { Students } from './students.model';
 
 export class AuthUser {
   uid: string;
@@ -18,6 +19,8 @@ export class AuthUser {
   website: string;
   role: string;
   aboutMe: string;
+  isStudent: boolean;
+  student?: Students;
 
   clear() {
     this.uid = undefined;
@@ -38,5 +41,10 @@ export class AuthUser {
     this.website = '';
     this.role = '';
     this.aboutMe = '';
+    this.isStudent = false;
+  }
+  clearStudent() {
+    this.student = new Students();
+    this.student.clear();
   }
 }

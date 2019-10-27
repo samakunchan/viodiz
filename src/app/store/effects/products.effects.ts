@@ -32,6 +32,8 @@ export class ProductsEffects implements OnInitEffects {
       });
     }),
   );
+
+  // Faire product purchased qui s'oocupe de plusieurs product
   constructor(private actions$: Actions, private productsService: ProductsService, private store: Store<AppState>) {}
 
   ngrxOnInitEffects(): Action {

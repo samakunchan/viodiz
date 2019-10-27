@@ -7,6 +7,8 @@ export enum CoursesActionTypes {
   UpdateCourses = '[Courses API] Update Courses',
   DeleteCourses = '[Courses API] Delete Courses',
   AllCoursesLoaded = '[Courses API] All Loaded Courses',
+  RequestOneCourse = '[Request for one course] action',
+  CourseSelected = '[Course current course] Courses selected',
 }
 
 export class RequestLoadCourses implements Action {
@@ -15,6 +17,14 @@ export class RequestLoadCourses implements Action {
 export class AllCoursesLoaded implements Action {
   readonly type = CoursesActionTypes.AllCoursesLoaded;
   constructor(public payload: { courses: Courses[] }) {}
+}
+export class RequestOneCourse implements Action {
+  readonly type = CoursesActionTypes.RequestOneCourse;
+  constructor(public payload: { id: string }) {}
+}
+export class CourseSelected implements Action {
+  readonly type = CoursesActionTypes.CourseSelected;
+  constructor(public payload: { course: Courses }) {}
 }
 export class AddCourses implements Action {
   readonly type = CoursesActionTypes.AddCourses;
@@ -29,4 +39,4 @@ export class DeleteCourses implements Action {
   constructor(public payload: { id: number }) {}
 }
 
-export type CoursesActions = RequestLoadCourses | AddCourses | UpdateCourses | DeleteCourses | AllCoursesLoaded;
+export type CoursesActions = RequestLoadCourses | AddCourses | UpdateCourses | DeleteCourses | AllCoursesLoaded | RequestOneCourse | CourseSelected;

@@ -6,7 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
-import { AuthUser } from '../../core';
+import { AuthUser, Products } from '../../core';
+import { getProductPurchased } from '../../store/selectors/products.selector';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +16,7 @@ import { AuthUser } from '../../core';
 })
 export class UserProfileComponent implements OnInit {
   public user$: Observable<AuthUser>;
+  public products: Observable<Products[]>;
   user: AuthUser;
   userAvatarForm: FormGroup;
   isEdit = false;
@@ -26,6 +28,7 @@ export class UserProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.products = this.store.select(getProductPurchased);
     this.user$ = this.store.select(currentUser);
     this.initForm();
   }

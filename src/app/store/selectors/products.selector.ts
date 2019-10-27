@@ -20,3 +20,7 @@ export const getCurrentProduct = createSelector(
   selectProductState,
   product => product.productSelected,
 );
+export const getProductPurchased = createSelector(
+  selectProductState,
+  product => product.productPurchased,
+);

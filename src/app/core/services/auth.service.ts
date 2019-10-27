@@ -10,6 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthNoticeService } from '../auth-notice/auth-notice.service';
 import { Sha256 } from '../_class/sha256';
 import { AuthUser } from '..';
+import { Students } from '../models/students.model';
 
 @Injectable({
   providedIn: 'root',
@@ -91,6 +92,7 @@ export class AuthService {
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
                     role: this.defaultRole,
                     aboutMe: '',
+                    isStudent: false
                   });
               }
             });
@@ -145,6 +147,7 @@ export class AuthService {
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
                     role: this.defaultRole,
                     aboutMe: '',
+                    isStudent: false,
                   });
               }
             });
@@ -198,6 +201,7 @@ export class AuthService {
             socialNetworks: JSON.stringify(this.user.socialsNetworks),
             role: this.defaultRole,
             aboutMe: '',
+            isStudent: false,
           });
 
         // Création du token pour le cloud function afin de gérer la reconnextion.
@@ -260,30 +264,29 @@ export class AuthService {
       );
     });
   }
-  updateAuthUserProfil(_user): Observable<AuthUser> {
-    console.log(_user);
-    return new Observable<AuthUser>(observer => {
+  createAuthUserStudent(_student): Observable<Students> {
+    return new Observable<Students>(observer => {
       this.db
         .collection<AuthUser>('Users')
-        .doc(_user.uid)
-        .update({
-          firstname: _user.firstname,
-          lastname: _user.lastname,
-          job: _user.job,
-          companyName: _user.companyName,
-          phone: _user.phone,
-          website: _user.website,
-          addressString: JSON.stringify(_user.address),
-          socialsNetworks: JSON.stringify(_user.socialsNetworks),
-          aboutMe: _user.aboutMe,
+        .doc(_student.uid)
+        .collection('Student')
+        .doc(_student.coursesFollowed[0].title)
+        .set({
+          studentUid: _student.uid,
+          coursesFollowed: _student.coursesFollowed,
+          qcmState: JSON.stringify(_student.qcmState),
+          idGroupe: _student.idGroupe,
+          certificat: JSON.stringify(_student.certificat),
+          createAt: _student.createAt,
+          productId: _student.productId
         })
-        .then(() => observer.next(_user))
+        .then(() => observer.next(_student))
         .catch(err => {
           observer.error(err);
         });
     });
   }
-  updateUserProfilPhoto(_user: AuthUser): Observable<any> {
+  updateAuthUserProfilPhoto(_user: AuthUser): Observable<any> {
     return new Observable(observer => {
       this.afauth.authState.subscribe(
         user => {
@@ -298,6 +301,30 @@ export class AuthService {
         },
         error => observer.error(error),
       );
+    });
+  }
+  updateAuthUserProfil(_user): Observable<AuthUser> {
+    return new Observable<AuthUser>(observer => {
+      this.db
+        .collection<AuthUser>('Users')
+        .doc(_user.uid)
+        .update({
+          firstname: _user.firstname ? _user.firstname : '',
+          lastname: _user.lastname,
+          job: _user.job,
+          companyName: _user.companyName,
+          phone: _user.phone,
+          website: _user.website,
+          role: _user.role,
+          addressString: JSON.stringify(_user.address),
+          socialsNetworks: JSON.stringify(_user.socialsNetworks),
+          aboutMe: _user.aboutMe,
+          isStudent: _user.isStudent
+        })
+        .then(() => observer.next(_user))
+        .catch(err => {
+          observer.error(err);
+        });
     });
   }
   uploadFile(file, path, email) {
@@ -365,6 +392,7 @@ export class AuthService {
                   this.user.socialsNetworks = JSON.parse(res.data().socialsNetworks);
                   this.user.role = res.data().role;
                   this.user.aboutMe = res.data().aboutMe;
+                  this.user.isStudent = res.data().isStudent;
                   observer.next(this.user);
                 },
                 error1 => {
@@ -379,7 +407,22 @@ export class AuthService {
       );
     });
   }
-
+  getStudent(_student: AuthUser) {
+    return new Observable(observer => {
+      return this.db
+        .collection<AuthUser>('Users')
+        .doc(_student.uid)
+        .collection('Student')
+        .get()
+        .subscribe(res => {
+          const data = [];
+          res.docs.map(student => {
+            data.push(student.data());
+          });
+          return observer.next(data);
+        });
+    });
+  }
   loadToastrOptions() {
     return (toastr.options = {
       closeButton: true,

@@ -9,6 +9,7 @@ import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { paypalSandbox } from '../../../../environments/api-config';
 import { PaypalInfos } from '../../../core/models/paypalInfos.model';
 import { RequestTransaction } from '../../../store/actions/transactions.actions';
+import { RequestOneCourse } from '../../../store/actions/courses.actions';
 
 @Component({
   selector: 'app-single-product',
@@ -19,6 +20,7 @@ export class SingleProductComponent implements OnInit {
   @ViewChild('paypal', { static: false }) paypalElement: ElementRef;
   public id;
   public product$: Observable<Products>;
+  public product: Products;
   public payPalConfig?: IPayPalConfig;
   public paypal: PaypalInfos;
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
@@ -29,6 +31,9 @@ export class SingleProductComponent implements OnInit {
       if (allProducts) {
         this.store.dispatch(new RequestOneProduct({ id: this.id }));
         this.product$ = this.store.select(getCurrentProduct);
+        this.product$.subscribe((product: Products) => {
+          this.product = product;
+        });
         this.initConfig();
       }
     });
@@ -91,9 +96,9 @@ export class SingleProductComponent implements OnInit {
           this.paypal.payer.email_address = data.payer.email_address;
           this.paypal.payer.name.given_name = data.payer.name.given_name;
           this.paypal.payer.name.surname = data.payer.name.surname;
-          this.paypal.payee.email_address = data.purchase_units[0].payee.email_address;
-          this.paypal.payee.merchant_id = data.purchase_units[0].payee.merchant_id;
+          this.paypal.product.id = this.product.id;
           this.store.dispatch(new RequestTransaction({ paypal: this.paypal }));
+          this.store.dispatch(new RequestOneCourse({ id: this.product.coursesId }));
         },
         onCancel: (data, actions) => {
           console.log('OnCancel', data, actions);

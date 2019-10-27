@@ -17,6 +17,7 @@ export class ProductsService {
       price: product.price,
       image: product.image,
       isCertificated: product.isCertificated,
+      courseInCatalog: product.courseInCatalog
     });
   }
 

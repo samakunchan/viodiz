@@ -1,3 +1,5 @@
+import { Products } from './products.model';
+
 class Name {
   given_name: string;
   surname: string;
@@ -17,27 +19,20 @@ class Payer {
     this.payer_id = '';
   }
 }
-class Payee {
-  email_address: string;
-  merchant_id: string;
-  clear() {
-    this.email_address = '';
-    this.merchant_id = '';
-  }
-}
+
 export class PaypalInfos {
   create_time: string;
   id: string;
   payer: Payer;
-  payee: Payee;
   status: string;
+  product: Products;
   clear() {
     this.create_time = '';
     this.id = '';
     this.status = '';
     this.payer = new Payer();
     this.payer.clear();
-    this.payee = new Payee();
-    this.payee.clear();
+    this.product = new Products();
+    this.product.clear();
   }
 }

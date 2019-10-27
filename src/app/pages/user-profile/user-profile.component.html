@@ -171,7 +171,19 @@
               <app-form-profile [authUser]="_user"></app-form-profile>
             </div>
             <div class="pl-lg-4" *ngIf="!isEdit">
-              <app-card-course></app-card-course>
+              <div class="row">
+                <app-card-course
+                  *ngFor="let product of products | async"
+                  [coursesId]="product.coursesId"
+                  [productId]="product.id"
+                  [productImage]="product.image"
+                  [productIsCertificated]="product.isCertificated"
+                  [productPrice]="product.price"
+                  [productTimeEstimate]="product.timeEstimate"
+                  [productTitle]="product.title"
+                  class="pl-lg-4"
+                ></app-card-course>
+              </div>
             </div>
           </div>
         </div>

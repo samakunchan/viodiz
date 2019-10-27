@@ -14,13 +14,14 @@ import {
   Logout,
   Register,
   RoleSelected,
-  currentUser,
+  currentUser, getAllProducts,
 } from '../index';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import * as toastr from '../../../assets/js/toastr';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthUser } from '../../core';
+import { ProductsPurchased } from '../actions/products.actions';
 
 @Injectable()
 export class AuthEffects implements OnInitEffects {
@@ -61,7 +62,25 @@ export class AuthEffects implements OnInitEffects {
           if (authUser) {
             this.authService.getAuthUser().subscribe((user: AuthUser) => {
               this.store.dispatch(new RoleSelected({ currentRole: user.role }));
-              this.store.dispatch(new AuthUserLoaded({ user }));
+              // Faire aussi if (user.animator) et if (user.animator && user.student)
+              if (user.isStudent) {
+                this.authService.getStudent(user).subscribe((data: any) => {
+                  const products = [];
+                  data.map(result => {
+                    this.store.select(getAllProducts).subscribe(all => {
+                      all.map(prod => {
+                        if (prod.id === result.productId) {
+                          products.push(prod);
+                        }
+                      });
+                    });
+                  });
+                  this.store.dispatch(new ProductsPurchased({ products: products }));
+                  this.store.dispatch(new AuthUserLoaded({ user }));
+                });
+              } else {
+                this.store.dispatch(new AuthUserLoaded({ user }));
+              }
             });
           } else {
             this.store.dispatch(new Logout());
@@ -77,7 +96,6 @@ export class AuthEffects implements OnInitEffects {
       this.authService.updateAuthUserProfil(action.payload.user).pipe(
         map(authUser => {
           if (authUser) {
-            console.log(authUser);
             toastr.success(this.translate.instant('AUTH.NOTIFICATIONS.PROFIL.SUCCESS'), 'Profil');
             this.store.dispatch(new AuthUserLoaded({ user: authUser }));
           } else {
@@ -90,7 +108,7 @@ export class AuthEffects implements OnInitEffects {
   @Effect({ dispatch: false })
   changePhoto$ = this.actions$.pipe(
     ofType<CurrentUserUpdatePhoto>(AuthActionTypes.CurrentUserUpdatePhoto),
-    switchMap(({ payload }) => this.authService.updateUserProfilPhoto(payload.user).pipe(map(photo => console.log(photo)))),
+    switchMap(({ payload }) => this.authService.updateAuthUserProfilPhoto(payload.user).pipe(map(photo => console.log(photo)))),
   );
   constructor(
     private actions$: Actions,
