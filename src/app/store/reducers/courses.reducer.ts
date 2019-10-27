@@ -7,12 +7,14 @@ export interface CoursesStateEntity {
   coursesLoading: boolean;
   coursesloaded: boolean;
   data: Courses[] | null;
+  courseSelected: Courses;
 }
 
 export const initialCoursesState: CoursesStateEntity = {
   coursesLoading: false,
   coursesloaded: false,
   data: undefined,
+  courseSelected: undefined
 };
 
 export function coursesReducer(state = initialCoursesState, action: CoursesActions): CoursesStateEntity {
@@ -23,6 +25,11 @@ export function coursesReducer(state = initialCoursesState, action: CoursesActio
         data: action.payload.courses,
         coursesLoading: false,
         coursesloaded: true,
+      };
+    case CoursesActionTypes.CourseSelected:
+      return {
+        ...state,
+        courseSelected: action.payload.course
       };
     default:
       return state;

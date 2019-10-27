@@ -7,7 +7,8 @@ export interface ProductStateEntity {
   productLoading: boolean;
   productLoaded: boolean;
   data: Products[] | null;
-  productSelected: Products;
+  productPurchased: Products[] | null;
+  productSelected: Products | null;
 }
 
 export const initialState: ProductStateEntity = {
@@ -15,6 +16,7 @@ export const initialState: ProductStateEntity = {
   productLoaded: false,
   data: undefined,
   productSelected: undefined,
+  productPurchased: undefined,
 };
 
 export function productReducer(state = initialState, action: ProductsActions): ProductStateEntity {
@@ -31,6 +33,13 @@ export function productReducer(state = initialState, action: ProductsActions): P
       return {
         ...state,
         productSelected: action.payload.product,
+        productLoading: false,
+        productLoaded: true,
+      };
+      case ProductsActionTypes.ProductsPurchased:
+      return {
+        ...state,
+        productPurchased: action.payload.products,
         productLoading: false,
         productLoaded: true,
       };
