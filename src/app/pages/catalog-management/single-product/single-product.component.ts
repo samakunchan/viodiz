@@ -87,6 +87,7 @@ export class SingleProductComponent implements OnInit {
         },
         onClientAuthorization: data => {
           console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+
           this.paypal = new PaypalInfos();
           this.paypal.clear();
           this.paypal.create_time = data.create_time;
