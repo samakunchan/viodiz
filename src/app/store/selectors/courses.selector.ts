@@ -16,3 +16,7 @@ export const selectAllCourses = createSelector(
   selectCoursesState,
   courses => courses.data,
 );
+export const getCurrentCourse = createSelector(
+  selectCoursesState,
+  product => product.courseSelected,
+);

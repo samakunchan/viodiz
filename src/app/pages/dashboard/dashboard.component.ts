@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store';
+import { Observable } from 'rxjs';
+import { Products } from '../../core';
+import { getProductPurchased } from '../../store/selectors/products.selector';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  public products: Observable<Products[]>;
+  constructor(private store: Store<AppState>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.products = this.store.select(getProductPurchased);
+  }
 }

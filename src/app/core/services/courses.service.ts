@@ -10,7 +10,6 @@ export class CoursesService {
   constructor(private db: AngularFirestore) {}
 
   createCourses(courses: Courses) {
-    console.log(courses);
     return this.db.collection<Courses>('Courses').add({
       title: courses.title,
       modules: courses.modules,

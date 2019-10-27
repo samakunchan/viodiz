@@ -35,6 +35,13 @@ export const ROUTES: RouteInfo[] = [
     class: '',
   },
   {
+    path: 'formation',
+    title: 'Formation',
+    icon: 'ni-ruler-pencil text-success',
+    permissionOnly: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE', 'USER PREMIUM'],
+    class: '',
+  },
+  {
     path: 'faq',
     title: 'F.A.Q',
     icon: 'ni-ui-04 text-info',

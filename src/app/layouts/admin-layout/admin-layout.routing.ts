@@ -92,6 +92,13 @@ export const AdminLayoutRoutes: Routes = [
       },
     ],
   },
+  { path: 'formation', component: FormationComponent, data: {
+      permissions: {
+        only: ['CONSTRUCTOR', 'ADMIN', 'MODERATOR', 'EMPLOYEE', 'USER PREMIUM'],
+        except: ['GUEST'],
+        redirectTo: 'admin/dashboard',
+      },
+    animation: 'toLeft14' } },
   { path: 'faq', component: FaqComponent, data: { animation: 'toLeft8' } },
   { path: 'get-started', component: GetstartedComponent, data: { animation: 'toLeft9' } },
   { path: 'formation', component: FormationComponent, data: { animation: 'toLeft10' } },

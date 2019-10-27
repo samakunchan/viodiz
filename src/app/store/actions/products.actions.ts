@@ -2,13 +2,14 @@ import { Action } from '@ngrx/store';
 import { Products } from '../../core';
 
 export enum ProductsActionTypes {
-  RequestLoadProducts = '[Products] Request Load Products',
-  AllProductsLoaded = '[Products API] All products Loaded',
-  RequestOneProduct = '[Products API] Request one product',
-  ProductSelected = '[Products API] Select the current product',
-  ProductCreated = '[Products] Add a product',
-  ProductUpdated = '[Products] Update the current product',
-  ErrorLoadProduct = '[Products API] Error load products',
+  RequestLoadProducts = '[Request All Products] Request products',
+  AllProductsLoaded = '[All products Loaded] Product API',
+  RequestOneProduct = '[Request one product] Product API',
+  ProductSelected = '[Select the current product] Product API',
+  ProductsPurchased = '[Select the product purchased] Product API',
+  ProductCreated = '[ Add a product] Product API',
+  ProductUpdated = '[Update the current product] Product API',
+  ErrorLoadProduct = '[Error load products] Product API',
 }
 
 export class RequestLoadProducts implements Action {
@@ -25,6 +26,10 @@ export class RequestOneProduct implements Action {
 export class ProductSelected implements Action {
   readonly type = ProductsActionTypes.ProductSelected;
   constructor(public payload: { product: Products }) {}
+}
+export class ProductsPurchased implements Action {
+  readonly type = ProductsActionTypes.ProductsPurchased;
+  constructor(public payload: { products: Products[] }) {}
 }
 export class ProductCreated implements Action {
   readonly type = ProductsActionTypes.ProductCreated;
@@ -43,6 +48,7 @@ export type ProductsActions =
   | AllProductsLoaded
   | RequestOneProduct
   | ProductSelected
+  | ProductsPurchased
   | ProductCreated
   | ProductUpdated
   | ErrorLoadProduct;
