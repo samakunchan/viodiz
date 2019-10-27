@@ -14,7 +14,7 @@ export const initialCoursesState: CoursesStateEntity = {
   coursesLoading: false,
   coursesloaded: false,
   data: undefined,
-  courseSelected: undefined
+  courseSelected: undefined,
 };
 
 export function coursesReducer(state = initialCoursesState, action: CoursesActions): CoursesStateEntity {
@@ -29,7 +29,7 @@ export function coursesReducer(state = initialCoursesState, action: CoursesActio
     case CoursesActionTypes.CourseSelected:
       return {
         ...state,
-        courseSelected: action.payload.course
+        courseSelected: action.payload.course,
       };
     default:
       return state;

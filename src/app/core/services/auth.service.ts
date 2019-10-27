@@ -92,7 +92,7 @@ export class AuthService {
                     socialNetworks: JSON.stringify(this.user.socialsNetworks),
                     role: this.defaultRole,
                     aboutMe: '',
-                    isStudent: false
+                    isStudent: false,
                   });
               }
             });
@@ -278,7 +278,7 @@ export class AuthService {
           idGroupe: _student.idGroupe,
           certificat: JSON.stringify(_student.certificat),
           createAt: _student.createAt,
-          productId: _student.productId
+          productId: _student.productId,
         })
         .then(() => observer.next(_student))
         .catch(err => {
@@ -319,7 +319,7 @@ export class AuthService {
           addressString: JSON.stringify(_user.address),
           socialsNetworks: JSON.stringify(_user.socialsNetworks),
           aboutMe: _user.aboutMe,
-          isStudent: _user.isStudent
+          isStudent: _user.isStudent,
         })
         .then(() => observer.next(_user))
         .catch(err => {

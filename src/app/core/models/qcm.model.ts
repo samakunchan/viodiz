@@ -33,5 +33,3 @@ export class QCMQuestions {
     this.idCorrectResponse = undefined;
   }
 }
-
-
