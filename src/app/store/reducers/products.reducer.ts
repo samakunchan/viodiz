@@ -36,7 +36,7 @@ export function productReducer(state = initialState, action: ProductsActions): P
         productLoading: false,
         productLoaded: true,
       };
-      case ProductsActionTypes.ProductsPurchased:
+    case ProductsActionTypes.ProductsPurchased:
       return {
         ...state,
         productPurchased: action.payload.products,

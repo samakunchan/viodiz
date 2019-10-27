@@ -19,7 +19,6 @@ export class TransactionsEffects {
   transactionComplete$ = this.actions$.pipe(
     ofType<TransactionCompleted>(TransactionsActionTypes.TransactionCompleted),
     tap(action => {
-
       this.store.select(getCurrentCourse).subscribe(res => {
         if (res) {
           this.store.select(currentUser).subscribe(_user => {
@@ -35,12 +34,7 @@ export class TransactionsEffects {
                 console.log('student created');
               }
             });
-            if (
-              _user &&
-              _user.role !== 'CONSTRUCTOR' &&
-              _user.role !== 'ADMIN' &&
-              _user.role !== 'MODERATOR' &&
-              _user.role !== 'EMPLOYEE' ) {
+            if (_user && _user.role !== 'CONSTRUCTOR' && _user.role !== 'ADMIN' && _user.role !== 'MODERATOR' && _user.role !== 'EMPLOYEE') {
               _user.role = 'USER PREMIUM';
               _user.isStudent = true;
               console.log('role updated');
@@ -50,7 +44,7 @@ export class TransactionsEffects {
           });
         }
       });
-    })
+    }),
   );
   constructor(private actions$: Actions, private store: Store<AppState>, private authService: AuthService) {}
 }

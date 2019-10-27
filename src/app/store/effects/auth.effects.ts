@@ -14,7 +14,8 @@ import {
   Logout,
   Register,
   RoleSelected,
-  currentUser, getAllProducts,
+  currentUser,
+  getAllProducts,
 } from '../index';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
