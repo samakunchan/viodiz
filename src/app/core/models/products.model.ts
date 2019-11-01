@@ -10,6 +10,12 @@ export class Products {
   courseInCatalog: Courses;
   id?: string;
 
+  // Ajouter date d'expiration
+  // Ajouter date description
+  // Ajouter barre de progression
+  // Ajouter barre lvl du produit de formation
+  // Faire de petit module avec moteur de recherche
+  // Faire de petit qcm avec moteur de recherche
   clear?(): void {
     this.id = '';
     this.title = '';

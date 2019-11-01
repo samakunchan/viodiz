@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CoursesListComponent } from '../courses-list/courses-list.component';
 import { CoursesComponent } from './courses.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 const routes: Routes = [
   {
@@ -20,6 +21,6 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [CoursesComponent, CoursesEditComponent, CoursesAddComponent, CoursesListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule, AngularDualListBoxModule],
 })
 export class CoursesModule {}
