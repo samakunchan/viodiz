@@ -60,7 +60,8 @@ export class AuthEffects implements OnInitEffects {
     switchMap(() =>
       this.authService.getUserByTokenFromCloud().pipe(
         map(authUser => {
-          if (authUser) {
+          if (authUser.result || authUser.authState) {
+            console.log(authUser);
             this.authService.getAuthUser().subscribe((user: AuthUser) => {
               this.store.dispatch(new RoleSelected({ currentRole: user.role }));
               // Faire aussi if (user.animator) et if (user.animator && user.student)

@@ -3,7 +3,7 @@ import { Modules } from './chapters.model';
 export class Courses {
   title: string;
   modules: Modules;
-  productId: string;
+  productId?: string;
   id?: string;
 
   clear?(): void {
