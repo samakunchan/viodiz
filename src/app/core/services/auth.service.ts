@@ -38,7 +38,7 @@ export class AuthService {
       tokenFromCloud({ token: userToken })
         .then(result => {
           this.afauth.authState.subscribe(authState => {
-            return observer.next({result: result.data, authState});
+            return observer.next({ result: result.data, authState });
           });
         })
         .catch(error => observer.error(error));

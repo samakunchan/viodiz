@@ -60,10 +60,8 @@ export class UserProfileComponent implements OnInit {
 
   onIsEdit() {
     if (this.isEdit) {
-      console.log(this.isEdit);
       return (this.isEdit = false);
     } else if (!this.isEdit) {
-      console.log(this.isEdit);
       return (this.isEdit = true);
     }
   }
