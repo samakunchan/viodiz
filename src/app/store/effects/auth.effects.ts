@@ -64,9 +64,13 @@ export class AuthEffects implements OnInitEffects {
             console.log(authUser);
             this.authService.getAuthUser().subscribe((user: AuthUser) => {
               this.store.dispatch(new RoleSelected({ currentRole: user.role }));
-              // Faire aussi if (user.animator) et if (user.animator && user.student)
+              // TODO: Faire aussi if (user.animator) et if (user.animator && user.student)
+              // Quand l'étudiant est définis ...
               if (user.isStudent) {
+                // ... lance de firebase student pour récupérer les données étudiantes
                 this.authService.getStudent(user).subscribe((data: any) => {
+                  // TODO: Le landing remonte une érreur. Le data de getAllProducts n'est pas définis quand on charge la page. Ceci est du parce
+                  //  que nous sommes dans auth.effect qui se situe dans l'app.module
                   const products = [];
                   data.map(result => {
                     this.store.select(getAllProducts).subscribe(all => {
