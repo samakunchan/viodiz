@@ -31,13 +31,15 @@ export class AuthService {
     this.loadToastrOptions();
   }
 
-  getUserByTokenFromCloud(): Observable<AuthUser> {
+  getUserByTokenFromCloud(): Observable<any> {
     const userToken = localStorage.getItem(environment.authTokenKey);
     return new Observable(observer => {
       const tokenFromCloud = firebase.functions().httpsCallable('getUserWithToken');
       tokenFromCloud({ token: userToken })
         .then(result => {
-          return observer.next(result.data);
+          this.afauth.authState.subscribe(authState => {
+            return observer.next({ result: result.data, authState });
+          });
         })
         .catch(error => observer.error(error));
     });

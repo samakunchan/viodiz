@@ -1,4 +1,15 @@
-<div class="p-3 m-2 bg-white">
-  <h3>Edit courses</h3>
-  <p>courses-edit works!</p>
-</div>
+<article [@zoomInOnEnter] [@zoomOutOnLeave]>
+  <a routerLink="../../../add" class="btn btn-primary">Back</a>
+  <ng-container *ngIf="action === 'video'">
+    <div class="p-3 m-2 bg-white">
+      <h3>Edit video</h3>
+      <p>courses-edit works!</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="action === 'qcm'">
+    <div class="p-3 m-2 bg-white">
+      <h3>Edit qcm</h3>
+      <p>courses-edit works!</p>
+    </div>
+  </ng-container>
+</article>

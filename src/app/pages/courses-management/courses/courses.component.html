@@ -1,8 +1,8 @@
-<div class="header bg-gradient-success pb-7 pt-5 pt-md-8">
+<section class="header bg-gradient-success pb-7 pt-5 pt-md-8">
   <p>courses works!</p>
   <a [routerLink]="['list']" class="btn btn-primary">List</a>
   <a [routerLink]="['add']" class="btn btn-primary">Add</a>
-</div>
-<div [@routeAnimations]="prepareRoute(outlet)">
+</section>
+<section [@zoomInOnEnter]="'zoomIn'" [@zoomOutOnLeave]="'zoomOut'">
   <router-outlet #outlet="outlet"></router-outlet>
-</div>
+</section>

@@ -1,7 +1,9 @@
-<div class="p-3 m-2 bg-white">
-  <h3>List courses</h3>
-  <p>courses-list works!</p>
-</div>
-<div class="row p-3" *ngFor="let course of courses$ | async; let i = index">
-  <h3>{{ course.title }}</h3>
-</div>
+<article @zoomInOnEnter @zoomOutOnLeave>
+  <div class="p-3 m-2 bg-white">
+    <h3>List courses</h3>
+    <p>courses-list works!</p>
+  </div>
+  <div class="row p-3" *ngFor="let course of courses$ | async; let i = index">
+    <h3>{{ course.title }}</h3>
+  </div>
+</article>
