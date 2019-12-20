@@ -1,0 +1,159 @@
+div.record-picker {
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  position: relative;
+  cursor: pointer;
+  font-family: sans-serif;
+  scrollbar-base-color: indigo;
+  scrollbar-3dlight-color: indigo;
+  scrollbar-highlight-color: indigo;
+  scrollbar-track-color: #eee;
+  scrollbar-arrow-color: gray;
+  scrollbar-shadow-color: gray;
+  scrollbar-dark-shadow-color: gray;
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+  &::-webkit-scrollbar-track {
+    background: #eee;
+    box-shadow: 0 0 3px #dfdfdf inset;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: indigo;
+    border: thin solid gray;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: purple;
+  }
+  ul {
+    margin: 0;
+    padding: 0 0 1px 0;
+    li {
+      border-top: thin solid #ddd;
+      border-bottom: 1px solid #ddd;
+      display: block;
+      padding: 2px 2px 2px 10px;
+      margin-bottom: -1px;
+      font-size: 0.85em;
+      cursor: pointer;
+      white-space: nowrap;
+      min-height: 16px;
+      text-align: left;
+      &:first-child {
+        border-top: none;
+      }
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+.record-picker .record-picker ul.over {
+  background-color: lightgray;
+}
+
+.dual-list {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: space-evenly;
+}
+
+.dual-list .listbox {
+  width: 35%;
+  margin: 0;
+  flex-grow: 2;
+}
+
+.buttonbox {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hover {
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.75);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.toggle {
+  display: none;
+}
+
+.option {
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.title,
+.content {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: all 0.2s;
+}
+$font-color: #7a7572;
+.title {
+  background: #fff;
+  padding: 1em;
+  display: block;
+  color: $font-color;
+  font-weight: bold;
+  margin: 0;
+}
+.title:after,
+.title:before {
+  content: '';
+  position: absolute;
+  right: 1.25em;
+  top: 1.25em;
+  width: 2px;
+  height: 0.75em;
+  background-color: $font-color;
+  transition: all 0.2s;
+}
+.title:after {
+  transform: rotate(90deg);
+}
+
+.content {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #fff;
+  p {
+    margin: 0;
+    padding: 0.5em 1em 1em;
+    font-size: 0.9em;
+    line-height: 1.5;
+  }
+}
+
+.toggle:checked {
+  & + .title,
+  & + .title + .content {
+    box-shadow: 3px 3px 6px #ddd, -3px 3px 6px #ddd;
+  }
+  & + .title + .content {
+    max-height: 700px;
+  }
+  & + .title:before {
+    transform: rotate(90deg) !important;
+  }
+}
+.option {
+  label {
+    &:hover {
+      background-color: #1da1f290;
+    }
+  }
+}

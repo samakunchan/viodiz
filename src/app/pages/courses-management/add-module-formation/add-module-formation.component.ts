@@ -4,6 +4,9 @@ import { CoursesService } from '../../../core/services/courses.service';
 import { flipInXOnEnterAnimation, zoomInOnEnterAnimation, zoomOutOnLeaveAnimation } from 'angular-animations';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Courses } from '../../../core';
+import { Quizz } from '../../../core/models/quizz.model';
+import { VideosService } from '../../../core/services/videos.service';
+import { QuizzService } from '../../../core/services/quizz.service';
 
 @Component({
   selector: 'app-add-module-formation',
@@ -23,7 +26,12 @@ export class AddModuleFormationComponent implements OnInit {
   coursesForm: FormGroup;
   course: Courses;
   title: string;
-  constructor(private coursesServices: CoursesService, private formBuilder: FormBuilder) {}
+  constructor(
+    private coursesServices: CoursesService,
+    private videosService: VideosService,
+    private quizzService: QuizzService,
+    private formBuilder: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
     this.title = 'Hello, there';
@@ -32,24 +40,17 @@ export class AddModuleFormationComponent implements OnInit {
     this.active1 = true;
     this.active2 = false;
     this.height = '300px';
-    this.coursesServices.listVideos().subscribe((res: any) => {
+    this.videosService.listVideos().subscribe((res: any) => {
       if (res.datas && res.arrayTitle) {
         this.sources = res.datas;
-        console.log(this.sources);
       }
     });
-    this.sources1 = [ // TODO faire le system de QCM a remplacer pour la source1 = allqcms, pareil pour source = allvideos
-      {
-        title: 'Q.C.M 1',
-        id: '1',
-        type: 'qcm'
-      },
-      {
-        title: 'Q.C.M 2',
-        id: '2',
-        type: 'qcm'
-      },
-    ];
+    this.quizzService.listQuizz().subscribe((res: any) => {
+      if (res.datas && res.arrayTitle) {
+        this.sources1 = res.datas;
+        console.log(this.sources1);
+      }
+    });
     this.initForm();
   }
   initForm() {
@@ -83,7 +84,6 @@ export class AddModuleFormationComponent implements OnInit {
   addVideoQcm(ix) {
     const control = (<FormArray>this.coursesForm.controls['modulesCourses']).at(ix).get('videoQcmSelected') as FormArray;
     control.push(this.createVideoQcm());
-    console.log(this.target);
   }
   removeVideoQcm(ix, iy) {
     const control = (<FormArray>this.coursesForm.controls['modulesCourses']).at(ix).get('videoQcmSelected') as FormArray;
@@ -128,7 +128,11 @@ export class AddModuleFormationComponent implements OnInit {
   }
   onDeleteVideo(video: Videos) {
     this.sources = this.arrayRemove(this.sources, video);
-    this.coursesServices.deleteVideos(video);
+    this.videosService.deleteVideos(video);
+  }
+  onDeleteQuizz(quizz: Quizz) {
+    this.sources1 = this.arrayRemove(this.sources1, quizz);
+    this.quizzService.deleteQuizz(quizz);
   }
   arrayRemove(arr, value) {
     return arr.filter(ele => {
@@ -143,6 +147,7 @@ export class AddModuleFormationComponent implements OnInit {
     this.active1 = false;
     this.active2 = true;
   }
+  // TODO Faire l'update des vidéos et quizz
   onSubmit() {
     console.log(this.coursesForm.value);
     console.table(this.coursesForm.value.modulesCourses[0].videoQcmSelected);

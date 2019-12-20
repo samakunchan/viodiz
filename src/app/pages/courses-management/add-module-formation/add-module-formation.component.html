@@ -1,18 +1,16 @@
 <article>
   <form [formGroup]="coursesForm" (ngSubmit)="onSubmit()">
-    <input type="submit" value="Save" class="btn btn-success">
+    <input type="submit" value="Save" class="btn btn-success" />
     <div class="form-group">
       <label class="form-control-label" for="input-title-module">Module's Title</label>
       <input type="text" id="input-title-module" class="form-control form-control-alternative" formControlName="headTitle" />
     </div>
     <div class="option" formArrayName="modulesCourses">
       <div *ngFor="let courseModule of coursesForm['controls'].modulesCourses['controls']; let ix = index">
-
         <div [formGroupName]="ix">
-
           <input type="checkbox" id="toggle{{ ix }}" class="toggle" />
           <label class="title d-flex" for="toggle{{ ix }}">
-            <input type="text" class="form-text" formControlName="title">
+            <input type="text" class="form-text" formControlName="title" />
             <i class="flaticon2-trash ml-2 btn btn-danger" (click)="removeModulesCourses(ix)"></i>
           </label>
           <div class="content p-3">
@@ -29,17 +27,17 @@
                       [index]="i"
                       (dropped)="onDropped($event, ix)"
                       formArrayName="videoQcmSelected"
-                      [ngClass]="{'bg-warning': videoqcm.type === 'qcm'}"
+                      [ngClass]="{ 'bg-warning': videoqcm.type === 'quizz' }"
                     >
                       <div [formGroupName]="i">
                         <div class="float-left mr-2" *ngIf="videoqcm.type === 'video'">Chap: {{ i + 1 }}</div>
-                        <div class="float-left mr-2" *ngIf="videoqcm.type === 'qcm'">Q.C.M: </div>
+                        <div class="float-left mr-2" *ngIf="videoqcm.type === 'quizz'">Q.C.M:</div>
                         <span *ngIf="videoqcm.type === 'video'">{{ videoqcm.title }}</span>
-                        <span *ngIf="videoqcm.type === 'qcm'" class="bg-warning">{{ videoqcm.title }}</span>
+                        <span *ngIf="videoqcm.type === 'quizz'" class="bg-warning">{{ videoqcm.headTitle }}</span>
                         <div class="float-right pl-2 pr-2 mr-2 btn-danger" (click)="onCancel(ix, i)">cancel</div>
-                        <input type="hidden" formControlName="id" ngModel="{{ videoqcm.title }}">
-                        <input type="hidden" formControlName="videoTitle" ngModel="{{ videoqcm.title }}">
-                        <input type="hidden" formControlName="videoUrl" ngModel="{{ videoqcm.url }}">
+                        <input type="hidden" formControlName="id" ngModel="{{ videoqcm.title }}" />
+                        <input type="hidden" formControlName="videoTitle" ngModel="{{ videoqcm.title }}" />
+                        <input type="hidden" formControlName="videoUrl" ngModel="{{ videoqcm.url }}" />
                       </div>
                     </li>
                   </ul>
@@ -51,28 +49,28 @@
               <div class="listbox">
                 <nav class="nav nav-tabs position-relative">
                   <div class="nav-item" (click)="onTabVideo()">
-                <span
-                  id="listVideos"
-                  class="nav-link p-2 cursor-pointer"
-                  data-toggle="tab"
-                  role="tab"
-                  aria-controls="contentVideo"
-                  aria-selected="true"
-                  [ngClass]="{ active: active1 }"
-                >Videos's list
-                </span>
+                    <span
+                      id="listVideos"
+                      class="nav-link p-2 cursor-pointer"
+                      data-toggle="tab"
+                      role="tab"
+                      aria-controls="contentVideo"
+                      aria-selected="true"
+                      [ngClass]="{ active: active1 }"
+                      >Videos's list
+                    </span>
                   </div>
                   <div class="nav-item" (click)="onTabQcm()">
-                <span
-                  id="listQCM"
-                  class="nav-link p-2 cursor-pointer"
-                  data-toggle="tab"
-                  role="tab"
-                  aria-controls="contentQCM"
-                  aria-selected="true"
-                  [ngClass]="{ active: active2 }"
-                >Q.C.M
-                </span>
+                    <span
+                      id="listQCM"
+                      class="nav-link p-2 cursor-pointer"
+                      data-toggle="tab"
+                      role="tab"
+                      aria-controls="contentQCM"
+                      aria-selected="true"
+                      [ngClass]="{ active: active2 }"
+                      >Q.C.M
+                    </span>
                   </div>
                   <div class="position-absolute right-0">
                     <label for="video{{ ix }}"><i class="flaticon-search p-2 font-weight-bold"></i></label>
@@ -105,14 +103,14 @@
                     role="tabpanel"
                     aria-labelledby="listQCM"
                   >
-                    <div class="p-2" *ngFor="let qcm of sources1 | filter: searchText">
-                      <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left" (click)="selectItem(sources, qcm, ix)">
+                    <div class="p-2" *ngFor="let quizz of sources1 | filter: searchText">
+                      <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left" (click)="selectItem(sources, quizz, ix)">
                         <i class="fa fa-arrow-left"></i>
                       </div>
-                      <span>Q.C.M 1</span>
+                      <span>{{ quizz.headTitle }}</span>
                       <div class="float-right pl-2 pr-2 mr-2">
-                        <a routerLink="../../edit/qcm/1"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
-                        <i class="flaticon2-trash p-2 btn-danger"></i>
+                        <a routerLink="../../edit/qcm/{{ quizz.id }}"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
+                        <i class="flaticon2-trash p-2 btn-danger" (click)="onDeleteQuizz(quizz)"></i>
                       </div>
                     </div>
                   </div>
@@ -125,194 +123,5 @@
     </div>
   </form>
   <input type="button" (click)="addModulesCourses()" value="Add module" class="btn btn-primary" />
-
 </article>
 
-<!--
-<ngb-accordion [closeOthers]="true" activeIds="ngb-panel-0">
-  <ngb-panel title="Module 1">
-    <ng-template ngbPanelContent>
-        <div class="dual-list mt-4">
-          <form class="listbox">
-<p>Selected videos</p>
-<div class="record-picker">
-  <ul [ngStyle]="{ 'max-height': height, 'min-height': height }">
-    <li class="p-2" *ngFor="let video of target; let i = index" megaSimpleDndList [items]="target" [index]="i" (dropped)="onDropped($event)">
-      <div class="float-left mr-2">Chap: {{ i + 1 }}</div>
-      <span>{{ video.title }}</span>
-      <div class="float-right pl-2 pr-2 mr-2 btn-danger" (click)="onCancel(i)">
-        cancel
-      </div>
-    </li>
-  </ul>
-</div>
-<button type="submit" class="btn btn-success">Save</button>
-</form>
-
-<aside class="buttonbox"></aside>
-
-<div class="listbox">
-  <nav class="nav nav-tabs position-relative" role="tablist">
-    <div class="nav-item" (click)="onTabVideo()">
-      <a
-        id="listVideos"
-        class="nav-link p-2 cursor-pointer"
-        data-toggle="tab"
-        role="tab"
-        aria-controls="contentVideo"
-        aria-selected="true"
-        [ngClass]="{ active: active1 }"
-      >Videos's list
-      </a>
-    </div>
-    <div class="nav-item" (click)="onTabQcm()">
-      <a
-        id="listQCM"
-        class="nav-link p-2 cursor-pointer"
-        data-toggle="tab"
-        role="tab"
-        aria-controls="contentQCM"
-        aria-selected="true"
-        [ngClass]="{ active: active2 }"
-      >Q.C.M
-      </a>
-    </div>
-    <div class="position-absolute right-0">
-      <label for="video"><i class="flaticon-search p-2 font-weight-bold"></i></label>
-      <input type="text" id="video" autocomplete="off" name="search" [(ngModel)]="searchText" />
-    </div>
-  </nav>
-  <div class="record-picker tab-content">
-    <div
-      [ngStyle]="{ 'max-height': height, 'min-height': height }"
-      [ngClass]="{ 'tab-pane fade': true, 'show active': active1 }"
-      id="contentVideo"
-      role="tabpanel"
-      aria-labelledby="listVideos"
-    >
-      <div class="p-2" *ngFor="let video of sources | filter: searchText">
-        <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left" (click)="selectItem(sources, video)">
-          <i class="fa fa-arrow-left"></i>
-        </div>
-        <span>{{ video.title }}</span>
-        <div class="float-right pl-2 pr-2 mr-2">
-          <a routerLink="../../edit/video/{{ video.id }}"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
-          <i class="flaticon2-trash p-2 btn-danger" (click)="onDeleteVideo(video)"></i>
-        </div>
-      </div>
-    </div>
-    <div
-      [ngStyle]="{ 'max-height': height, 'min-height': height }"
-      [ngClass]="{ 'tab-pane fade': true, 'show active': active2 }"
-      id="contentQCM"
-      role="tabpanel"
-      aria-labelledby="listQCM"
-    >
-      <div class="p-2">
-        <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left">
-          <i class="fa fa-arrow-left"></i>
-        </div>
-        <span>Q.C.M 1</span>
-        <div class="float-right pl-2 pr-2 mr-2">
-          <a routerLink="../../edit/qcm/1"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
-          <i class="flaticon2-trash p-2 btn-danger"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</ng-template>
-</ngb-panel>
-<ngb-panel title="Module 2">
-  <ng-template ngbPanelContent>
-    <div class="dual-list mt-4" [@flipInXOnEnter]>
-      <form class="listbox">
-        <p>Selected videos</p>
-        <div class="record-picker">
-          <ul [ngStyle]="{ 'max-height': height, 'min-height': height }">
-            <li class="p-2" *ngFor="let video of target; let i = index" megaSimpleDndList [items]="target" [index]="i" (dropped)="onDropped($event)">
-              <div class="float-left mr-2">Chap: {{ i + 1 }}</div>
-              <span>{{ video.title }}</span>
-              <div class="float-right pl-2 pr-2 mr-2 btn-danger" (click)="onCancel(i)">
-                cancel
-              </div>
-            </li>
-          </ul>
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-      </form>
-
-      <aside class="buttonbox"></aside>
-
-      <div class="listbox">
-        <nav class="nav nav-tabs position-relative" role="tablist">
-          <div class="nav-item" (click)="onTabVideo()">
-            <a
-              class="nav-link p-2 cursor-pointer"
-              data-toggle="tab"
-              role="tab"
-              aria-controls="contentVideo"
-              aria-selected="true"
-              [ngClass]="{ active: active1 }"
-            >Videos's list
-            </a>
-          </div>
-          <div class="nav-item" (click)="onTabQcm()">
-            <a
-              class="nav-link p-2 cursor-pointer"
-              data-toggle="tab"
-              role="tab"
-              aria-controls="contentQCM"
-              aria-selected="true"
-              [ngClass]="{ active: active2 }"
-            >Q.C.M
-            </a>
-          </div>
-          <div class="position-absolute right-0">
-            <label for="video1"><i class="flaticon-search p-2 font-weight-bold"></i></label>
-            <input type="text" id="video1" autocomplete="off" name="search" [(ngModel)]="searchText" />
-          </div>
-        </nav>
-        <div class="record-picker tab-content">
-          <div
-            [ngStyle]="{ 'max-height': height, 'min-height': height }"
-            [ngClass]="{ 'tab-pane fade': true, 'show active': active1 }"
-            role="tabpanel"
-            aria-labelledby="listVideos"
-          >
-            <div class="p-2" *ngFor="let video of sources | filter: searchText">
-              <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left" (click)="selectItem(sources, video)">
-                <i class="fa fa-arrow-left"></i>
-              </div>
-              <span>{{ video.title }}</span>
-              <div class="float-right pl-2 pr-2 mr-2">
-                <a routerLink="../../edit/video/{{ video.id }}"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
-                <i class="flaticon2-trash p-2 btn-danger" (click)="onDeleteVideo(video)"></i>
-              </div>
-            </div>
-          </div>
-          <div
-            [ngStyle]="{ 'max-height': height, 'min-height': height }"
-            [ngClass]="{ 'tab-pane fade': true, 'show active': active2 }"
-            role="tabpanel"
-            aria-labelledby="listQCM"
-          >
-            <div class="p-2">
-              <div class="float-left btn-primary pl-2 pr-2 mr-2 rounded-left">
-                <i class="fa fa-arrow-left"></i>
-              </div>
-              <span>Q.C.M 1</span>
-              <div class="float-right pl-2 pr-2 mr-2">
-                <a routerLink="../../edit/qcm/1"><i class="flaticon-edit-1 p-2 btn-primary"></i></a>
-                <i class="flaticon2-trash p-2 btn-danger"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</ngb-panel>
-</ngb-accordion>
- -->
