@@ -1,0 +1,37 @@
+<form [formGroup]="formVideo" (ngSubmit)="onSubmit()" *ngIf="infoVideo" class="row">
+  <div class="col-lg-5">
+    <h3 class="text-center">{{ infoVideo.title }}</h3>
+    <img class="w-100" [src]="infoVideo.url" alt="Image video" />
+  </div>
+  <div class="col-lg-5">
+    <div *ngIf="!isFileloaded">
+      <h3>Update your video by adding a new one</h3>
+      <div class="form-group">
+        <label class="form-control-label" for="input-first-name">Title</label>
+        <input
+          type="text"
+          id="input-first-name"
+          class="form-control form-control-alternative"
+          placeholder="Title chapter or title video"
+          formControlName="title"
+          [(ngModel)]="infoVideo.title"
+        />
+      </div>
+      <ngx-dropzone (change)="onSelect($event)" [multiple]="false">
+        <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+      </ngx-dropzone>
+    </div>
+    <div *ngIf="isFileloaded">
+      <h3>Preview</h3>
+      <!-- Preview pour les images -->
+      <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+      </ngx-dropzone-image-preview>
+      <!-- Preview pour les videos
+     <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-video-preview>
+     -->
+    </div>
+    <button type="submit" class="btn btn-success mt-4">Save</button>
+  </div>
+</form>
