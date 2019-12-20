@@ -1,5 +1,5 @@
 import { Courses } from './courses.model';
-import { QCMState } from './qcm.model';
+import { QCMState } from './quizz.model';
 import { Certificat } from './certificat.model';
 
 export class Students {
