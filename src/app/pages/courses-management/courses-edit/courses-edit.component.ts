@@ -8,7 +8,13 @@ import { zoomInOnEnterAnimation, zoomOutOnLeaveAnimation } from 'angular-animati
   animations: [zoomInOnEnterAnimation(), zoomOutOnLeaveAnimation()],
 })
 export class CoursesEditComponent implements OnInit {
-  constructor() {}
+  public action;
+  public id;
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.action = this.route.snapshot.params.action;
+    this.id = this.route.snapshot.params.id;
+    console.log(this.action, this.id);
+  }
 }

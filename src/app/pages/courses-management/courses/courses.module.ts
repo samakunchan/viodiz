@@ -12,7 +12,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { AddModuleFormationComponent } from '../add-module-formation/add-module-formation.component';
 import { NgxMegaSimpleDragDropListModule } from 'ngx-mega-simple-drag-drop-list';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
 import { AddQuizzComponent } from '../add-quizz/add-quizz.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
