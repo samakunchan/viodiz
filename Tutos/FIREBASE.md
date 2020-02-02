@@ -2,10 +2,12 @@
 
 ## Installation
 
+```js
     npm install firebase --save
     import * as firebase from 'firebase';
 
     npm install firebase @angular/fire --save
+```
 
 ## Firebase tool
 
